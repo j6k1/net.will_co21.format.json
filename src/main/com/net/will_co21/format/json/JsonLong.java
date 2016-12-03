@@ -1,0 +1,48 @@
+package net.will_co21.format.json;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
+public class JsonLong extends JsonNumber {
+	protected final long value;
+
+	public JsonLong(long value)
+	{
+		this.value = value;
+	}
+
+	@Override
+	public long getLong() {
+		return this.value;
+	}
+
+	@Override
+	public BigInteger getBigInteger() {
+		return BigInteger.valueOf(this.value);
+	}
+
+	@Override
+	public double getDouble() {
+		return (double)this.value;
+	}
+
+	@Override
+	public BigDecimal getBigDecimal() {
+		return BigDecimal.valueOf(this.value);
+	}
+
+	@Override
+	public String getString() {
+		return this.value + "";
+	}
+
+	@Override
+	public boolean getBoolean() {
+		return this.value != 0;
+	}
+
+	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
+	{
+		return null;
+	}
+}
