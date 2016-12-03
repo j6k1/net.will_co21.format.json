@@ -12,6 +12,9 @@ targetCompatibility = 1.5
 
 
 repositories {
-        
+
      maven { url "http://repo.maven.apache.org/maven2" }
+}
+dependencies {
+	testCompile 'junit:junit:4.+'
 }

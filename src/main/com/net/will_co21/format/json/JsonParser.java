@@ -12,7 +12,7 @@ public class JsonParser implements IJsonParser {
 		return (new JsonParser()).parseJson(json, 0);
 	}
 
-	public static <T> T parse(String json, IDeserialize<T> deserializer)
+	public static <T> T parse(String json, IDeserializeJson<T> deserializer)
 	{
 		if(deserializer == null)
 			throw new TypeOfNullableNotAllowedException("A value of null was passed as the value of the deserializer object.");
