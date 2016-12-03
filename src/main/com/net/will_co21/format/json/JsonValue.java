@@ -2,9 +2,7 @@ package net.will_co21.format.json;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.Optional;
-import java.util.TreeMap;
 
 public abstract class JsonValue implements IJsonValue {
 
@@ -128,7 +126,7 @@ public abstract class JsonValue implements IJsonValue {
 		throw new NotSupportedMethodException("This method is not supported by this object type.");
 	}
 
-	public <T> T toObject(IDeserializeJson<T> deserializer)
+	public <R> R toObject(IDeserializeJson<R> deserializer)
 	{
 		if(deserializer == null)
 			throw new TypeOfNullableNotAllowedException("A value of null was passed as the value of the deserializer object.");

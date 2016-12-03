@@ -3,7 +3,6 @@ package net.will_co21.format.json;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -169,26 +168,35 @@ public class JsonArray extends JsonValue {
 
 	public IJsonValue get(int index)
 	{
-		return this.arr.get(index);
+		if(index >= this.arr.size()) throw new TypeOfNullableNotAllowedException("This index cannot be referenced. Invalid reference to object.");
+		else return this.arr.get(index);
 	}
 
 	public Optional<IJsonValue> getOptional(int index)
 	{
-		return Optional.of(get(index));
+		if(index >= this.arr.size()) return Optional.ofNullable(null);
+		else return Optional.of(get(index));
 	}
 
 	public IJsonValue set(int index, IJsonValue v)
 	{
+		if(v == null) throw new TypeOfNullableNotAllowedException("null reference was passed as the value of the element.");
+
 		return this.arr.set(index, v);
 	}
 
 	public boolean add(IJsonValue v)
 	{
+		if(v == null) throw new TypeOfNullableNotAllowedException("null reference was passed as the value of the element.");
+
 		return this.arr.add(v);
 	}
 
 	public boolean add(int index, IJsonValue v)
 	{
+		if(index >= this.arr.size()) throw new ArrayIndexOutOfBoundsException("Index out of range was specified.");
+		else if(v == null) throw new TypeOfNullableNotAllowedException("null reference was passed as the value of the element.");
+
 		this.arr.add(index, v);
 
 		return true;
@@ -196,12 +204,15 @@ public class JsonArray extends JsonValue {
 
 	public IJsonValue removeAt(int index)
 	{
+		if(index >= this.arr.size()) throw new ArrayIndexOutOfBoundsException("Index out of range was specified.");
+
 		return this.arr.remove(index);
 	}
 
 	public boolean remove(IJsonValue o)
 	{
-		return this.arr.remove(o);
+		if(o == null) return false;
+		else return this.arr.remove(o);
 	}
 
 	public ArrayList<IJsonValue> getValues()
@@ -211,6 +222,8 @@ public class JsonArray extends JsonValue {
 
 	public void each(Consumer<KeyValue<Integer, IJsonValue>> func)
 	{
+		if(func == null) throw new TypeOfNullableNotAllowedException("The callback function is a null reference.");
+
 		int i = 0;
 
 		for(IJsonValue v: this.arr)
@@ -222,6 +235,8 @@ public class JsonArray extends JsonValue {
 
 	public <T> ArrayList<T> map(Function<KeyValue<Integer, IJsonValue>, T> func)
 	{
+		if(func == null) throw new TypeOfNullableNotAllowedException("The callback function is a null reference.");
+
 		ArrayList<T> result = new ArrayList<T>();
 
 		int i = 0;
@@ -237,6 +252,8 @@ public class JsonArray extends JsonValue {
 
 	public <T> T fold(BiFunction<T, KeyValue<Integer, IJsonValue>, T> func, T accumulator)
 	{
+		if(func == null) throw new TypeOfNullableNotAllowedException("The callback function is a null reference.");
+
 		int i = 0;
 
 		for(IJsonValue v: this.arr)

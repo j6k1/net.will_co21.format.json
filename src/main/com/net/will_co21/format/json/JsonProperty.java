@@ -22,6 +22,9 @@ public class JsonProperty {
 
 	public static JsonProperty create(String key, IJsonValue value)
 	{
+		if(value == null)
+			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonProperty type constructor.");
+
 		return new JsonProperty(key, value);
 	}
 

@@ -13,6 +13,7 @@ public class CircularReferenceDetector {
 			this.obj = obj;
 		}
 
+		@SuppressWarnings("unused")
 		public boolean equals(ObjectReference other)
 		{
 			return this.obj == other.obj;
@@ -51,7 +52,7 @@ public class CircularReferenceDetector {
 		return this;
 	}
 
-	public boolean detect(Object obj)
+	public boolean detect()
 	{
 		if(referenceSet.contains(referenceStack.getLast()))
 		{
@@ -67,6 +68,6 @@ public class CircularReferenceDetector {
 	public void pop()
 	{
 		referenceSet.remove(referenceStack.getLast());
-		referenceStack.pollFirst();
+		referenceStack.pollLast();
 	}
 }

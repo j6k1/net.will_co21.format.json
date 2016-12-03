@@ -13,8 +13,18 @@ public class JsonNull extends JsonValue {
 	}
 
 	@Override
+	public int getInt() {
+		throw new TypeOfNullableNotAllowedException("This value cannot be referenced. Invalid reference to object.");
+	}
+
+	@Override
 	public Optional<Integer> getOptionalInt() {
 		return Optional.ofNullable(null);
+	}
+
+	@Override
+	public long getLong() {
+		throw new TypeOfNullableNotAllowedException("This value cannot be referenced. Invalid reference to object.");
 	}
 
 	@Override
@@ -23,8 +33,18 @@ public class JsonNull extends JsonValue {
 	}
 
 	@Override
+	public BigInteger getBigInteger() {
+		throw new TypeOfNullableNotAllowedException("This value cannot be referenced. Invalid reference to object.");
+	}
+
+	@Override
 	public Optional<BigInteger> getOptionalBigInteger() {
 		return Optional.ofNullable(null);
+	}
+
+	@Override
+	public float getFloat() {
+		throw new TypeOfNullableNotAllowedException("This value cannot be referenced. Invalid reference to object.");
 	}
 
 	@Override
@@ -33,8 +53,18 @@ public class JsonNull extends JsonValue {
 	}
 
 	@Override
+	public double getDouble() {
+		throw new TypeOfNullableNotAllowedException("This value cannot be referenced. Invalid reference to object.");
+	}
+
+	@Override
 	public Optional<Double> getOptionalDouble() {
 		return Optional.ofNullable(null);
+	}
+
+	@Override
+	public BigDecimal getBigDecimal() {
+		throw new TypeOfNullableNotAllowedException("This value cannot be referenced. Invalid reference to object.");
 	}
 
 	@Override
@@ -43,13 +73,33 @@ public class JsonNull extends JsonValue {
 	}
 
 	@Override
+	public String getString() {
+		throw new TypeOfNullableNotAllowedException("This value cannot be referenced. Invalid reference to object.");
+	}
+
+	@Override
 	public Optional<String> getOptionalString() {
 		return Optional.ofNullable(null);
 	}
 
 	@Override
+	public boolean getBoolean() {
+		throw new TypeOfNullableNotAllowedException("This value cannot be referenced. Invalid reference to object.");
+	}
+
+	@Override
 	public Optional<Boolean> getOptionalBoolean() {
 		return Optional.ofNullable(null);
+	}
+
+	public IJsonValue get(String key)
+	{
+		throw new TypeOfNullableNotAllowedException("Members can not be referenced. Invalid reference to container object.");
+	}
+
+	public IJsonValue get(int index)
+	{
+		throw new TypeOfNullableNotAllowedException("Members can not be referenced. Invalid reference to container object.");
 	}
 
 	public Optional<IJsonValue> getOptional(String key)

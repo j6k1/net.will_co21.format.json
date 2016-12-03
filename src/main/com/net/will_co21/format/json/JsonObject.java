@@ -1,6 +1,5 @@
 package net.will_co21.format.json;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -40,6 +39,7 @@ public class JsonObject extends JsonValue {
 
 		for(JsonProperty prop: properties)
 		{
+			if(prop == null) throw new TypeOfNullableNotAllowedException("Items in the initialization list contain null values.");
 			map.put(prop.key, prop.value);
 		}
 	}
@@ -53,38 +53,43 @@ public class JsonObject extends JsonValue {
 
 		for(Map.Entry<String, IJsonValue> entry: properties.entrySet())
 		{
+			if(entry.getValue() == null) throw new TypeOfNullableNotAllowedException("Items in the initialization list contain null values.");
 			map.put(entry.getKey(), entry.getValue());
 		}
 	}
 
 	public IJsonValue get(String key)
 	{
-		return map.get(key);
+		if(!map.containsKey(key)) throw new TypeOfNullableNotAllowedException("Reference by this key is invalid.");
+		else return map.get(key);
 	}
 
 	public Optional<IJsonValue> getOptional(String key)
 	{
-		return Optional.of(get(key));
+		if(!map.containsKey(key)) return Optional.ofNullable(null);
+		else return Optional.of(get(key));
 	}
 
 	public IJsonValue put(String key, IJsonValue value)
 	{
-		return map.put(key, value);
+		if(value == null) throw new TypeOfNullableNotAllowedException("null reference was passed as the value of the element.");
+		else return map.put(key, value);
 	}
 
 	public IJsonValue remove(String key)
 	{
+		if(key == null) return null;
 		return map.remove(key);
 	}
 
 	public boolean containsKey(String key)
 	{
-		return map.containsKey(key);
+		return key != null && map.containsKey(key);
 	}
 
 	public boolean containsValue(IJsonValue value)
 	{
-		return map.containsValue(value);
+		return value != null && map.containsValue(value);
 	}
 
 	public int size()
@@ -99,6 +104,8 @@ public class JsonObject extends JsonValue {
 
 	public void each(Consumer<KeyValue<String, IJsonValue>> func)
 	{
+		if(func == null) throw new TypeOfNullableNotAllowedException("The callback function is a null reference.");
+
 		for(Map.Entry<String, IJsonValue> entry: map.entrySet())
 		{
 			func.accept(new KeyValue<String, IJsonValue>(entry.getKey(), entry.getValue()));
@@ -107,6 +114,8 @@ public class JsonObject extends JsonValue {
 
 	public <T> TreeMap<String, T> map(Function<KeyValue<String, IJsonValue>, T> func)
 	{
+		if(func == null) throw new TypeOfNullableNotAllowedException("The callback function is a null reference.");
+
 		TreeMap<String, T> result = new TreeMap<String, T>();
 
 		for(Map.Entry<String, IJsonValue> entry: map.entrySet())
@@ -119,6 +128,8 @@ public class JsonObject extends JsonValue {
 
 	public <T> T fold(BiFunction<T, KeyValue<String, IJsonValue>, T> func, T accumulator)
 	{
+		if(func == null) throw new TypeOfNullableNotAllowedException("The callback function is a null reference.");
+
 		for(Map.Entry<String, IJsonValue> entry: map.entrySet())
 		{
 			accumulator = func.apply(accumulator, new KeyValue<String, IJsonValue>(entry.getKey(), entry.getValue()));

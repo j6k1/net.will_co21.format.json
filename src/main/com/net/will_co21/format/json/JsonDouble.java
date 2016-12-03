@@ -43,7 +43,7 @@ public class JsonDouble extends JsonNumber {
 
 	@Override
 	public boolean getBoolean() {
-		return (int)this.value != 0.0d;
+		return this.value != 0.0d;
 	}
 
 	@Override
