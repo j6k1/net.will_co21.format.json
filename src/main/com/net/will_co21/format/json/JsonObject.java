@@ -3,6 +3,7 @@ package net.will_co21.format.json;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.function.BiFunction;
@@ -61,6 +62,11 @@ public class JsonObject extends JsonValue {
 		return map.get(key);
 	}
 
+	public Optional<IJsonValue> getOptional(String key)
+	{
+		return Optional.of(get(key));
+	}
+
 	public IJsonValue put(String key, IJsonValue value)
 	{
 		return map.put(key, value);
@@ -99,13 +105,13 @@ public class JsonObject extends JsonValue {
 		}
 	}
 
-	public <T> ArrayList<T> map(Function<KeyValue<String, IJsonValue>, T> func)
+	public <T> TreeMap<String, T> map(Function<KeyValue<String, IJsonValue>, T> func)
 	{
-		ArrayList<T> result = new ArrayList<T>();
+		TreeMap<String, T> result = new TreeMap<String, T>();
 
 		for(Map.Entry<String, IJsonValue> entry: map.entrySet())
 		{
-			result.add(func.apply(new KeyValue<String, IJsonValue>(entry.getKey(), entry.getValue())));
+			result.put(entry.getKey(), func.apply(new KeyValue<String, IJsonValue>(entry.getKey(), entry.getValue())));
 		}
 
 		return result;

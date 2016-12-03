@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -169,6 +170,11 @@ public class JsonArray extends JsonValue {
 	public IJsonValue get(int index)
 	{
 		return this.arr.get(index);
+	}
+
+	public Optional<IJsonValue> getOptional(int index)
+	{
+		return Optional.of(get(index));
 	}
 
 	public IJsonValue set(int index, IJsonValue v)

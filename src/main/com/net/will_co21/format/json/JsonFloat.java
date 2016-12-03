@@ -1,6 +1,7 @@
 package net.will_co21.format.json;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 public class JsonFloat extends JsonNumber {
 	protected final float value;
@@ -16,8 +17,18 @@ public class JsonFloat extends JsonNumber {
 	}
 
 	@Override
+	public Optional<Float> getOptionalFloat() {
+		return Optional.of(getFloat());
+	}
+
+	@Override
 	public double getDouble() {
 		return this.value;
+	}
+
+	@Override
+	public Optional<Double> getOptionalDouble() {
+		return Optional.of(getDouble());
 	}
 
 	@Override
@@ -26,13 +37,28 @@ public class JsonFloat extends JsonNumber {
 	}
 
 	@Override
+	public Optional<BigDecimal> getOptionalBigDecimal() {
+		return Optional.of(getBigDecimal());
+	}
+
+	@Override
 	public String getString() {
 		return this.value + "";
 	}
 
 	@Override
+	public Optional<String> getOptionalString() {
+		return Optional.of(getString());
+	}
+
+	@Override
 	public boolean getBoolean() {
-		return (int)this.value != 0;
+		return this.value != 0.0f;
+	}
+
+	@Override
+	public Optional<Boolean> getOptionalBoolean() {
+		return Optional.of(getBoolean());
 	}
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)

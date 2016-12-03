@@ -1,5 +1,7 @@
 package net.will_co21.format.json;
 
+import java.util.Optional;
+
 public class JsonBoolean extends JsonValue {
 	protected final boolean value;
 
@@ -11,6 +13,11 @@ public class JsonBoolean extends JsonValue {
 	@Override
 	public boolean getBoolean() {
 		return this.value;
+	}
+
+	@Override
+	public Optional<Boolean> getOptionalBoolean() {
+		return Optional.of(getBoolean());
 	}
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)

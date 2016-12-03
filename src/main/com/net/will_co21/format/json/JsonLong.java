@@ -2,6 +2,7 @@ package net.will_co21.format.json;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Optional;
 
 public class JsonLong extends JsonNumber {
 	protected final long value;
@@ -17,8 +18,18 @@ public class JsonLong extends JsonNumber {
 	}
 
 	@Override
+	public Optional<Long> getOptionalLong() {
+		return Optional.of(getLong());
+	}
+
+	@Override
 	public BigInteger getBigInteger() {
 		return BigInteger.valueOf(this.value);
+	}
+
+	@Override
+	public Optional<BigInteger> getOptionalBigInteger() {
+		return Optional.of(getBigInteger());
 	}
 
 	@Override
@@ -27,8 +38,18 @@ public class JsonLong extends JsonNumber {
 	}
 
 	@Override
+	public Optional<Double> getOptionalDouble() {
+		return Optional.of(getDouble());
+	}
+
+	@Override
 	public BigDecimal getBigDecimal() {
 		return BigDecimal.valueOf(this.value);
+	}
+
+	@Override
+	public Optional<BigDecimal> getOptionalBigDecimal() {
+		return Optional.of(getBigDecimal());
 	}
 
 	@Override
@@ -37,8 +58,18 @@ public class JsonLong extends JsonNumber {
 	}
 
 	@Override
+	public Optional<String> getOptionalString() {
+		return Optional.of(getString());
+	}
+
+	@Override
 	public boolean getBoolean() {
 		return this.value != 0;
+	}
+
+	@Override
+	public Optional<Boolean> getOptionalBoolean() {
+		return Optional.of(getBoolean());
 	}
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
