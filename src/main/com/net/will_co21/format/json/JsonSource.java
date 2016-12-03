@@ -140,6 +140,6 @@ public class JsonSource<T> implements IJsonValue {
 		if(deserializer == null)
 			throw new TypeOfNullableNotAllowedException("A value of null was passed as the value of the deserializer object.");
 
-		return deserializer.deserializeFromJson(this);
+		return deserializer.deserializeJson(this);
 	}
 }
