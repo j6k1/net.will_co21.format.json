@@ -45,4 +45,15 @@ public class JsonLong extends JsonNumber {
 	{
 		return null;
 	}
+
+	public boolean equals(JsonLong o)
+	{
+		return this.value == o.value;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Long.hashCode(this.value);
+	}
 }

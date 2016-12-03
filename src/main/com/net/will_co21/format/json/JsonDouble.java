@@ -34,4 +34,15 @@ public class JsonDouble extends JsonNumber {
 	{
 		return null;
 	}
+
+	public boolean equals(JsonDouble o)
+	{
+		return this.value == o.value;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Double.hashCode(this.value);
+	}
 }

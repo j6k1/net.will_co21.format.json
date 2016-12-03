@@ -32,4 +32,15 @@ public class JsonBigDecimal extends JsonNumber {
 	{
 		return null;
 	}
+
+	public boolean equals(JsonBigDecimal o)
+	{
+		return this.value.equals(o.value);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return this.value.hashCode();
+	}
 }

@@ -38,4 +38,15 @@ public class JsonBigInteger extends JsonNumber {
 	{
 		return null;
 	}
+
+	public boolean equals(JsonBigInteger o)
+	{
+		return this.value.equals(o.value);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return this.value.hashCode();
+	}
 }

@@ -125,4 +125,15 @@ public class JsonObject extends JsonValue {
 	{
 		return null;
 	}
+
+	public boolean equals(JsonObject o)
+	{
+		return this.map.equals(o.map);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return this.map.hashCode();
+	}
 }

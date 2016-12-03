@@ -39,4 +39,15 @@ public class JsonFloat extends JsonNumber {
 	{
 		return null;
 	}
+
+	public boolean equals(JsonFloat o)
+	{
+		return this.value == o.value;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Float.hashCode(this.value);
+	}
 }

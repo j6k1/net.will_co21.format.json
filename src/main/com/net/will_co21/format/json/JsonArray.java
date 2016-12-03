@@ -246,4 +246,16 @@ public class JsonArray extends JsonValue {
 	{
 		return null;
 	}
+
+
+	public boolean equals(JsonArray o)
+	{
+		return this.arr.equals(o.arr);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return this.arr.hashCode();
+	}
 }

@@ -54,4 +54,15 @@ public class JsonInt extends JsonNumber {
 	{
 		return null;
 	}
+
+	public boolean equals(JsonInt o)
+	{
+		return this.value == o.value;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Integer.hashCode(this.value);
+	}
 }

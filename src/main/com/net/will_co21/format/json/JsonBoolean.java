@@ -17,4 +17,15 @@ public class JsonBoolean extends JsonValue {
 	{
 		return null;
 	}
+
+	public boolean equals(JsonBoolean o)
+	{
+		return this.value == o.value;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return Boolean.hashCode(this.value);
+	}
 }

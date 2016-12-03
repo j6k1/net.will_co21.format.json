@@ -15,6 +15,23 @@ public class JsonSource<T> implements IJsonValue {
 		this.delegate = delegate;
 	}
 
+	public String toJson()
+	{
+		return this.toJson(new JsonOptions(new JsonOption[] {}));
+	}
+
+	public String toJson(JsonOption[] options)
+	{
+		return this.toJson(new JsonOptions(options));
+	}
+
+	public String toJson(JsonOptions options)
+	{
+		CircularReferenceDetector detector = new CircularReferenceDetector();
+
+		return this.toJsonSource(options, detector).toJson();
+	}
+
 	@Override
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector) {
 		return delegate.toJsonSource(options, detector, targetObject);

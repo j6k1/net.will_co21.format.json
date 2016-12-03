@@ -20,4 +20,15 @@ public class JsonString extends JsonValue {
 	{
 		return null;
 	}
+
+	public boolean equals(JsonString o)
+	{
+		return this.value.equals(o.value);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return this.value.hashCode();
+	}
 }
