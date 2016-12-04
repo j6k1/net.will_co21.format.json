@@ -18,7 +18,7 @@ public class JsonObjectSerializable implements IJsonSerializable, IPrettyJsonSer
 	}
 
 	@Override
-	public String toJson(int index) {
+	public String toJson(int indent) {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
