@@ -45,7 +45,7 @@ public class JsonBigDecimal extends JsonNumber {
 		return Optional.of(getBoolean());
 	}
 
-	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
+	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
 		if(options.hasNumberOfString())
 		{

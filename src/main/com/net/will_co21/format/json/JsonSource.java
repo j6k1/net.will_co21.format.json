@@ -32,7 +32,7 @@ public class JsonSource<T> implements IJsonValue {
 	}
 
 	@Override
-	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector) {
+	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector) {
 		return delegate.toJsonSource(options, detector, targetObject);
 	}
 	@Override

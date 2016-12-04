@@ -7,7 +7,7 @@ import java.util.Optional;
 public abstract class JsonValue implements IJsonValue {
 
 	@Override
-	abstract public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector);
+	abstract public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector);
 
 	public String toJson()
 	{

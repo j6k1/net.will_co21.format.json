@@ -1,6 +1,6 @@
 package net.will_co21.format.json;
 
-public class JsonIntSerializable implements IJsonSerializable {
+public class JsonIntSerializable implements IPrettyJsonSerializable {
 	protected final JsonOptions options;
 	protected final int value;
 
@@ -13,6 +13,12 @@ public class JsonIntSerializable implements IJsonSerializable {
 	@Override
 	public String toJson()
 	{
-		return null;
+		return this.value + "";
+	}
+
+	@Override
+	public String toJson(int indent)
+	{
+		return toJson();
 	}
 }

@@ -20,7 +20,7 @@ public class JsonBoolean extends JsonValue {
 		return Optional.of(getBoolean());
 	}
 
-	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
+	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
 		return new JsonBooleanSerializable(this.value, options);
 	}

@@ -23,7 +23,7 @@ public class JsonString extends JsonValue {
 		return Optional.of(getString());
 	}
 
-	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
+	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
 		return new JsonStringSerializable(this.value, options);
 	}

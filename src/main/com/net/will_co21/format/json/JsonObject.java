@@ -138,9 +138,15 @@ public class JsonObject extends JsonValue {
 		return accumulator;
 	}
 
-	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
+	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return new JsonObjectSerializable(this.map, options);
+		TreeMap<String, IPrettyJsonSerializable> map = new TreeMap<String, IPrettyJsonSerializable>();
+
+		for(Map.Entry<String, IJsonValue> entry: this.map.entrySet())
+		{
+			map.put(entry.getKey(), entry.getValue().toJsonSource(options, detector));
+		}
+		return new JsonObjectSerializable(map, options);
 	}
 
 	public boolean equals(JsonObject o)

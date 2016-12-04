@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class JsonNull extends JsonValue {
 
-	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
+	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
 		return new JsonNullSerializable(options);
 	}

@@ -2,7 +2,7 @@ package net.will_co21.format.json;
 
 import java.math.BigDecimal;
 
-public class JsonBigDecimalSerializable implements IJsonSerializable {
+public class JsonBigDecimalSerializable implements IPrettyJsonSerializable {
 	protected final JsonOptions options;
 	protected final BigDecimal value;
 
@@ -15,6 +15,12 @@ public class JsonBigDecimalSerializable implements IJsonSerializable {
 	@Override
 	public String toJson()
 	{
-		return null;
+		return this.value.toString();
+	}
+
+	@Override
+	public String toJson(int indent)
+	{
+		return toJson();
 	}
 }

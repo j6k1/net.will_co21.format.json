@@ -265,9 +265,15 @@ public class JsonArray extends JsonValue {
 		return accumulator;
 	}
 
-	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
+	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return new JsonArraySerializable(this.arr, options);
+		ArrayList<IPrettyJsonSerializable> arr = new ArrayList<IPrettyJsonSerializable>();
+
+		for(IJsonValue v: this.arr)
+		{
+			arr.add(v.toJsonSource(options, detector));
+		}
+		return new JsonArraySerializable(arr, options);
 	}
 
 	public boolean equals(JsonArray o)
