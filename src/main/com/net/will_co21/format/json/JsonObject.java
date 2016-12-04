@@ -140,12 +140,18 @@ public class JsonObject extends JsonValue {
 
 	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
+		detector.detect(this);
+		detector.push(this);
+
 		TreeMap<String, IPrettyJsonSerializable> map = new TreeMap<String, IPrettyJsonSerializable>();
 
 		for(Map.Entry<String, IJsonValue> entry: this.map.entrySet())
 		{
 			map.put(entry.getKey(), entry.getValue().toJsonSource(options, detector));
 		}
+
+		detector.pop();
+
 		return new JsonObjectSerializable(map, options);
 	}
 

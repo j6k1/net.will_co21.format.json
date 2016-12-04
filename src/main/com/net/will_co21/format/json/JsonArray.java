@@ -267,12 +267,18 @@ public class JsonArray extends JsonValue {
 
 	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
+		detector.detect(this);
+		detector.push(this);
+
 		ArrayList<IPrettyJsonSerializable> arr = new ArrayList<IPrettyJsonSerializable>();
 
 		for(IJsonValue v: this.arr)
 		{
 			arr.add(v.toJsonSource(options, detector));
 		}
+
+		detector.pop();
+
 		return new JsonArraySerializable(arr, options);
 	}
 

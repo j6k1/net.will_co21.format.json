@@ -52,9 +52,9 @@ public class CircularReferenceDetector {
 		return this;
 	}
 
-	public boolean detect(ObjectReference obj)
+	public boolean detect(Object obj)
 	{
-		if(referenceSet.contains(obj))
+		if(referenceSet.contains(new ObjectReference(obj)))
 		{
 			if(generateException) throw new CircularReferenceException("Circular reference detected.");
 			else return true;
