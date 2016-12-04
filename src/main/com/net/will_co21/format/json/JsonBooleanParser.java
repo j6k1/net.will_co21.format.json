@@ -14,8 +14,17 @@ public class JsonBooleanParser implements IJsonParser {
 
 	@Override
 	public Pair<IJsonValue, Integer> parseJson(String json, int start) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		if(json.startsWith("true", start))
+		{
+			return new Pair<IJsonValue, Integer>(new JsonBoolean(true), start + 4);
+		}
+		else if(json.startsWith("false", start))
+		{
+			return new Pair<IJsonValue, Integer>(new JsonBoolean(true), start + 5);
+		}
+		else
+		{
+			throw new JsonFormatErrorException("The format of this json string is not an json null format.");
+		}
 	}
-
 }

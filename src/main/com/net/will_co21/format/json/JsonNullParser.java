@@ -13,8 +13,14 @@ public class JsonNullParser implements IJsonParser {
 
 	@Override
 	public Pair<IJsonValue, Integer> parseJson(String json, int start) {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+		if(!json.startsWith("null", start))
+		{
+			throw new JsonFormatErrorException("The format of this json string is not an json null format.");
+		}
+		else
+		{
+			return new Pair<IJsonValue, Integer>(new JsonNull(), start + 4);
+		}
 	}
 
 }

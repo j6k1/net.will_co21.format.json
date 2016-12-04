@@ -16,6 +16,4 @@ public class JsonStringParser implements IJsonParser {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
-
-
 }
