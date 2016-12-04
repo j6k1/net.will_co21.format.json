@@ -277,7 +277,10 @@ public class JsonArray extends JsonValue {
 			arr.add(v.toJsonSource(options, detector));
 		}
 
-		detector.pop();
+		if(detector.pop() != this)
+		{
+			throw new InvalidDetectorStateException("CircularReferenceDetector Internal state inconsistency detected.");
+		}
 
 		return new JsonArraySerializable(arr, options);
 	}

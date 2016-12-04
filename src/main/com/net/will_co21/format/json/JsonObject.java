@@ -150,7 +150,10 @@ public class JsonObject extends JsonValue {
 			map.put(entry.getKey(), entry.getValue().toJsonSource(options, detector));
 		}
 
-		detector.pop();
+		if(detector.pop() != this)
+		{
+			throw new InvalidDetectorStateException("CircularReferenceDetector Internal state inconsistency detected.");
+		}
 
 		return new JsonObjectSerializable(map, options);
 	}
