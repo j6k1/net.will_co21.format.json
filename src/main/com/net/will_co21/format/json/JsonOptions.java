@@ -38,27 +38,27 @@ public class JsonOptions {
 
 	public boolean hasNumberOfString()
 	{
-		return (this.value & JsonOption.NUMBERTOSTRING.value) != 0;
+		return (this.value & JsonOption.NUMBER_TO_STRING.value) != 0;
 	}
 
 	public boolean hasBigIntAsString()
 	{
-		return (this.value & JsonOption.BIGINTASSTRING.value) != 0;
+		return (this.value & JsonOption.BIGINT_AS_STRING.value) != 0;
 	}
 
 	public boolean hasBigLongAsString()
 	{
-		return (this.value & JsonOption.BIGLONGASSTRING.value) != 0;
+		return (this.value & JsonOption.BIGLONG_AS_STRING.value) != 0;
 	}
 
 	public boolean hasBigFloatAsString()
 	{
-		return (this.value & JsonOption.BIGFLOATASSTRING.value) != 0;
+		return (this.value & JsonOption.BIGFLOAT_AS_STRING.value) != 0;
 	}
 
 	public boolean hasBigDoubleAsString()
 	{
-		return (this.value & JsonOption.BIGDOUBLEASSTRING.value) != 0;
+		return (this.value & JsonOption.BIGDOUBLE_AS_STRING.value) != 0;
 	}
 
 	public boolean hasPrettyPrint()

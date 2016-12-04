@@ -36,7 +36,7 @@ public class JsonObjectSerializable extends JsonContainerSerializable implements
 
 		for(Map.Entry<String, IPrettyJsonSerializable> entry: this.value.entrySet())
 		{
-			String kv = new JsonStringSerializable(entry.getKey(), this.options).toJson() + " : " + entry.getValue().toJson(indent + 1);
+			String kv = new JsonStringSerializable(entry.getKey(), this.options).toJson() + ": " + entry.getValue().toJson(indent + 1);
 			sb.append(strRepeat("    ", indent + 1) + kv + ",\n");
 		}
 

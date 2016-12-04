@@ -1,7 +1,6 @@
 package net.will_co21.format.json;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Optional;
 
 public class JsonBigDecimal extends JsonNumber {
