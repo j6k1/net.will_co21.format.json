@@ -24,7 +24,7 @@ public class JsonBooleanParser implements IJsonParser {
 		}
 		else
 		{
-			throw new JsonFormatErrorException("The format of this json string is not an json null format.");
+			throw new JsonFormatErrorException("The format of this json string is not an json boolean format.");
 		}
 	}
 }
