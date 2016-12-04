@@ -25,7 +25,7 @@ public class JsonString extends JsonValue {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		return new JsonStringSerializable(this.value, options);
 	}
 
 	public boolean equals(JsonString o)

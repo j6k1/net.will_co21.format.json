@@ -9,7 +9,7 @@ public class JsonNull extends JsonValue {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		return new JsonNullSerializable(options);
 	}
 
 	@Override

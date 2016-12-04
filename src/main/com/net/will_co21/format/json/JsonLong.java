@@ -74,7 +74,22 @@ public class JsonLong extends JsonNumber {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		if(options.hasNumberOfString())
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else if(options.hasBigIntAsString() && this.value > Integer.MAX_VALUE)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else if(options.hasBigIntAsString() && this.value < Integer.MIN_VALUE)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else
+		{
+			return new JsonLongSerializable(this.value, options);
+		}
 	}
 
 	public boolean equals(JsonLong o)

@@ -22,7 +22,7 @@ public class JsonBoolean extends JsonValue {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		return new JsonBooleanSerializable(this.value, options);
 	}
 
 	public boolean equals(JsonBoolean o)

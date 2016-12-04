@@ -57,7 +57,30 @@ public class JsonBigInteger extends JsonNumber {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		if(options.hasNumberOfString())
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigIntAsString() && this.value.compareTo(BigInteger.valueOf((long)Integer.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigIntAsString() && this.value.compareTo(BigInteger.valueOf((long)Integer.MIN_VALUE)) < 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigLongAsString() && this.value.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigLongAsString() && this.value.compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else
+		{
+			return new JsonBigIntegerSerializable(this.value, options);
+		}
 	}
 
 	public boolean equals(JsonBigInteger o)

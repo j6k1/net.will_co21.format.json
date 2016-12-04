@@ -1,6 +1,7 @@
 package net.will_co21.format.json;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Optional;
 
 public class JsonBigDecimal extends JsonNumber {
@@ -46,7 +47,30 @@ public class JsonBigDecimal extends JsonNumber {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		if(options.hasNumberOfString())
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigFloatAsString() && this.value.compareTo(BigDecimal.valueOf((double)Float.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigFloatAsString() && this.value.compareTo(BigDecimal.valueOf((double)Float.MIN_VALUE)) < 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigDoubleAsString() && this.value.compareTo(BigDecimal.valueOf(Double.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigDoubleAsString() && this.value.compareTo(BigDecimal.valueOf(Double.MIN_VALUE)) < 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else
+		{
+			return new JsonBigDecimalSerializable(this.value, options);
+		}
 	}
 
 	public boolean equals(JsonBigDecimal o)

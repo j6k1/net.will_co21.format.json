@@ -140,7 +140,7 @@ public class JsonObject extends JsonValue {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		return new JsonObjectSerializable(this.map, options);
 	}
 
 	public boolean equals(JsonObject o)

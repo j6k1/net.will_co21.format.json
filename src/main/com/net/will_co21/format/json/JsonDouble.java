@@ -53,7 +53,22 @@ public class JsonDouble extends JsonNumber {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		if(options.hasNumberOfString())
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else if(options.hasBigFloatAsString() && this.value > Float.MAX_VALUE)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else if(options.hasBigFloatAsString() && this.value < Float.MIN_VALUE)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else
+		{
+			return new JsonDoubleSerializable(this.value, options);
+		}
 	}
 
 	public boolean equals(JsonDouble o)

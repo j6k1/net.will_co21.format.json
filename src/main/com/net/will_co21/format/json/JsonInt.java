@@ -94,7 +94,14 @@ public class JsonInt extends JsonNumber {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		if(options.hasNumberOfString())
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else
+		{
+			return new JsonIntSerializable(this.value, options);
+		}
 	}
 
 	public boolean equals(JsonInt o)

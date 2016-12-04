@@ -63,7 +63,14 @@ public class JsonFloat extends JsonNumber {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		if(options.hasNumberOfString())
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else
+		{
+			return new JsonFloatSerializable(this.value, options);
+		}
 	}
 
 	public boolean equals(JsonFloat o)

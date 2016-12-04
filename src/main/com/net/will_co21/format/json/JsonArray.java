@@ -267,9 +267,8 @@ public class JsonArray extends JsonValue {
 
 	public IJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		return null;
+		return new JsonArraySerializable(this.arr, options);
 	}
-
 
 	public boolean equals(JsonArray o)
 	{
