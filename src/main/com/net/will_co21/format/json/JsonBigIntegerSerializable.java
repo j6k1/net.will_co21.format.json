@@ -2,7 +2,7 @@ package net.will_co21.format.json;
 
 import java.math.BigInteger;
 
-public class JsonBigIntegerSerializable {
+public class JsonBigIntegerSerializable implements IJsonSerializable {
 	protected final JsonOptions options;
 	protected final BigInteger value;
 
@@ -12,6 +12,7 @@ public class JsonBigIntegerSerializable {
 		this.options = options;
 	}
 
+	@Override
 	public String toJson()
 	{
 		return null;

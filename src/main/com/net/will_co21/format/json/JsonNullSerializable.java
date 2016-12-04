@@ -1,6 +1,6 @@
 package net.will_co21.format.json;
 
-public class JsonNullSerializable {
+public class JsonNullSerializable implements IJsonSerializable {
 	protected final JsonOptions options;
 
 	public JsonNullSerializable(JsonOptions options)
@@ -8,6 +8,7 @@ public class JsonNullSerializable {
 		this.options = options;
 	}
 
+	@Override
 	public String toJson()
 	{
 		return "null";

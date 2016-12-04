@@ -1,6 +1,6 @@
 package net.will_co21.format.json;
 
-public class JsonDoubleSerializable {
+public class JsonDoubleSerializable implements IJsonSerializable {
 	protected final JsonOptions options;
 	protected final double value;
 
@@ -10,6 +10,7 @@ public class JsonDoubleSerializable {
 		this.options = options;
 	}
 
+	@Override
 	public String toJson()
 	{
 		return null;
