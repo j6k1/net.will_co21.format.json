@@ -15,4 +15,64 @@ public class JsonOptions {
 
 		this.value = optionValue;
 	}
+
+	public boolean hasHexTag()
+	{
+		return (this.value & JsonOption.HEX_TAG.value) != 0;
+	}
+
+	public boolean hasHexAmp()
+	{
+		return (this.value & JsonOption.HEX_AMP.value) != 0;
+	}
+
+	public boolean hasHexApo()
+	{
+		return (this.value & JsonOption.HEX_APO.value) != 0;
+	}
+
+	public boolean hasHexQuot()
+	{
+		return (this.value & JsonOption.HEX_QUOT.value) != 0;
+	}
+
+	public boolean hasNumberOfString()
+	{
+		return (this.value & JsonOption.NUMBERTOSTRING.value) != 0;
+	}
+
+	public boolean hasBigIntAsString()
+	{
+		return (this.value & JsonOption.BIGINTASSTRING.value) != 0;
+	}
+
+	public boolean hasBigLongAsString()
+	{
+		return (this.value & JsonOption.BIGLONGASSTRING.value) != 0;
+	}
+
+	public boolean hasBigFloatAsString()
+	{
+		return (this.value & JsonOption.BIGFLOATASSTRING.value) != 0;
+	}
+
+	public boolean hasBigDoubleAsString()
+	{
+		return (this.value & JsonOption.BIGDOUBLEASSTRING.value) != 0;
+	}
+
+	public boolean hasPrettyPrint()
+	{
+		return (this.value & JsonOption.PRETTY_PRINT.value) != 0;
+	}
+
+	public boolean hasEscapedSlashes()
+	{
+		return (this.value & JsonOption.UNESCAPED_SLASHES.value) != 0;
+	}
+
+	public boolean hasEscapedUnicode()
+	{
+		return (this.value & JsonOption.ESCAPED_UNICODE.value) != 0;
+	}
 }
