@@ -76,7 +76,7 @@ public class JsonStringParser implements IJsonParser {
 
 					if(!(code >= 0xD800 && code <= 0xDBFF))
 					{
-						sb.append((char)((code > 0x7FFF) ? 0x10000 - code : code));
+						sb.append((char)((code > 0x7FFF) ? -(0x10000 - code) : code));
 						index += 4;
 					}
 					else
@@ -109,7 +109,7 @@ public class JsonStringParser implements IJsonParser {
 						if(secondCode < 0xDC00 || secondCode > 0xDFFF)
 							throw new JsonFormatErrorException("Unicode escape string value is invalid.");
 
-						sb.append(new String(new char[] { (char)((code > 0x7FFF) ? 0x10000 - code : code), (char)((secondCode > 0x7FFF) ? 0x10000 - secondCode : secondCode) }));
+						sb.append(new String(new char[] { (char)((code > 0x7FFF) ? -(0x10000 - code) : code), (char)((secondCode > 0x7FFF) ? -(0x10000 - secondCode) : secondCode) }));
 
 						index += 4;
 					}
