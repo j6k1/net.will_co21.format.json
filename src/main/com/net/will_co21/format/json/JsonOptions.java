@@ -66,7 +66,7 @@ public class JsonOptions {
 		return (this.value & JsonOption.PRETTY_PRINT.value) != 0;
 	}
 
-	public boolean hasEscapedSlashes()
+	public boolean hasUnEscapedSlashes()
 	{
 		return (this.value & JsonOption.UNESCAPED_SLASHES.value) != 0;
 	}

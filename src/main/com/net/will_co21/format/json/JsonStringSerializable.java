@@ -145,7 +145,7 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 				}
 				else if(c == '/')
 				{
-					if(this.options.hasEscapedSlashes())
+					if(!this.options.hasUnEscapedSlashes())
 					{
 						if(currentStart < index) sb.append(this.value.substring(currentStart, index));
 						currentStart = index + 1;
