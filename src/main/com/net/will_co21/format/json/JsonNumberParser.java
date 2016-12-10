@@ -50,9 +50,13 @@ public class JsonNumberParser implements IJsonParser {
 		{
 			isInt = false;
 
-			if(index + 2 >= length || json.charAt(index + 1) != '.')
+			if(index + 2 >= length)
 			{
 				throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+			}
+			else if(json.charAt(index + 1) != '.')
+			{
+				throw new JsonFormatErrorException("unexpected character \"" + json.charAt(index + 1) + "\" was found.");
 			}
 
 			index += 2;
@@ -107,7 +111,7 @@ public class JsonNumberParser implements IJsonParser {
 						c = json.charAt(index);
 
 						if(c != '+' && c != '-' && (c < '0' || c > '9'))
-							throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+							throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
 						else if(c == '+' || c == '-')
 							index++;
 
@@ -125,6 +129,8 @@ public class JsonNumberParser implements IJsonParser {
 			c = json.charAt(index);
 
 			if(c < '0' || c > '9') break;
+
+			index++;
 		}
 
 		if(isInt)

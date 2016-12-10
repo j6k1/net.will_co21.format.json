@@ -99,7 +99,7 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 	{
 		int code;
 
-		if(c < 0) code = (int)c + 0xFFFF;
+		if(c < 0) code = (int)c + 0x10000;
 		else code = (int)c;
 
 		String strcode = ("000" + Integer.toHexString(code).toUpperCase());
