@@ -102,34 +102,67 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 			}
 			else if(escapeMap[(int)c] != null)
 			{
-				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
-				currentStart = index + 1;
 				if(optionalEscapeCharsMap[(int)c])
 				{
 					switch(c)
 					{
 						case '<':
-							sb.append((this.options.hasHexTag() ? escapeMap[(int)c] : c));
+							if(this.options.hasHexTag())
+							{
+								if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+								currentStart = index + 1;
+								sb.append(escapeMap[(int)c]);
+							}
 						break;
 
 						case '>':
-							sb.append((this.options.hasHexTag() ? escapeMap[(int)c] : c));
+							if(this.options.hasHexTag())
+							{
+								if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+								currentStart = index + 1;
+								sb.append(escapeMap[(int)c]);
+							}
 						break;
 
 						case '&':
-							sb.append((this.options.hasHexAmp() ? escapeMap[(int)c] : c));
+							if(this.options.hasHexAmp())
+							{
+								if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+								currentStart = index + 1;
+								sb.append(escapeMap[(int)c]);
+							}
 						break;
 
 						case '\'':
-							sb.append((this.options.hasHexApo() ? escapeMap[(int)c] : c));
+							if(this.options.hasHexApo())
+							{
+								if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+								currentStart = index + 1;
+								sb.append(escapeMap[(int)c]);
+							}
 						break;
 					}
 				}
+				else if(c == '/')
+				{
+					if(this.options.hasEscapedSlashes())
+					{
+						if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+						currentStart = index + 1;
+						sb.append(escapeMap[(int)c]);
+					}
+				}
+				else if(c == '"')
+				{
+					if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+					currentStart = index + 1;
+					sb.append((this.options.hasHexQuot() ? "\\u0022" : escapeMap[(int)c]));
+				}
 				else
 				{
-					if(c == '/') sb.append((this.options.hasEscapedSlashes() ? escapeMap[(int)c] : '/'));
-					else if(c == '"') sb.append((this.options.hasHexQuot() ? "\\u0022" : escapeMap[(int)c]));
-					else sb.append(escapeMap[(int)c]);
+					if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+					currentStart = index + 1;
+					sb.append(escapeMap[(int)c]);
 				}
 			}
 			else if(c <= 0x1F || c == 0x7F)
