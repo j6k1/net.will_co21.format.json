@@ -44,16 +44,66 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 
 		StringBuilder sb = new StringBuilder();
 
-		for(int index = 0, length = chars.length; index < length; index++)
+		int index;
+		int length;
+		int currentStart;
+
+		for(index = 0, currentStart = index, length = chars.length; index < length; index++)
 		{
 			char c = chars[index];
 
-			if(c >= 128)
+			if((c >= 0x80 && c <= 0x9F) || (c >= 0x2420 && c <= 0x2426) ||
+				c == 0x200E || c == 0x200F || (c >= 0x202A && c <= 0x202E) || (c >= 0xFFF0 && c <= 0xFFFF) ||(c >= 0xFE00 && c < 0xFE0F))
 			{
+				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+				currentStart = index + 1;
+				sb.append(toUnicodeEscape(c));
+			}
+			else if(c >= 0xD800 && c <= 0xDBFF &&  index + 1 < length && (c == 0xDB00 && chars[index+1] >= 0xDC00 && chars[index+1] <= 0xDC7F) ||
+					(c == 0xDB00 && chars[index+1] >= 0xDD00 && chars[index+1] <= 0xDDEF))
+			{
+				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+				currentStart = index + 2;
+				sb.append(toUnicodeEscape(c));
+				sb.append(toUnicodeEscape(chars[index+1]));
+				index++;
+			}
+			else if(c >= 0xD800 && c <= 0xDBFF && index + 1 < length)
+			{
+				if(this.options.hasEscapedUnicode())
+				{
+					if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+					currentStart = index + 2;
+					sb.append(toUnicodeEscape(c));
+					sb.append(toUnicodeEscape(chars[index+1]));
+				}
+				index++;
+			}
+			else if(c >= 0xD800 && c <= 0xDBFF)
+			{
+				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+				currentStart = index + 1;
+				sb.append(toUnicodeEscape(c));
+			}
+			else if((c >= 0x80 && c < 0xD7FF) || (c >= 0xE000 && c <= 0xFFFF))
+			{
+				if(this.options.hasEscapedUnicode())
+				{
+					if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+					currentStart = index + 1;
+					sb.append(toUnicodeEscape(c));
+				}
+			}
+			else if(c > 128)
+			{
+				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+				currentStart = index + 1;
 				sb.append(toUnicodeEscape(c));
 			}
 			else if(escapeMap[(int)c] != null)
 			{
+				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+				currentStart = index + 1;
 				if(optionalEscapeCharsMap[(int)c])
 				{
 					switch(c)
@@ -82,15 +132,15 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 					else sb.append(escapeMap[(int)c]);
 				}
 			}
-			else if(c < 0x20 || c > 0x7E)
+			else if(c <= 0x1F || c == 0x7F)
 			{
 				sb.append(toUnicodeEscape(c));
-			}
-			else
-			{
-				sb.append(c);
+				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
+				currentStart = index + 1;
 			}
 		}
+
+		if(currentStart < index) sb.append(this.value.substring(currentStart, index));
 
 		return "\"" + sb.toString() + "\"";
 	}
