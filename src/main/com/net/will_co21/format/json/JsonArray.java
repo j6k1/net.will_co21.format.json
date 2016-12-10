@@ -220,6 +220,18 @@ public class JsonArray extends JsonValue {
 		return this.arr;
 	}
 
+	public ArrayList<IJsonValue> toArrayList()
+	{
+		ArrayList<IJsonValue> result = new ArrayList<IJsonValue>();
+
+		for(IJsonValue v: this.arr)
+		{
+			result.add(v);
+		}
+
+		return result;
+	}
+
 	public void each(Consumer<KeyValue<Integer, IJsonValue>> func)
 	{
 		if(func == null) throw new TypeOfNullableNotAllowedException("The callback function is a null reference.");

@@ -102,6 +102,18 @@ public class JsonObject extends JsonValue {
 		return map.entrySet();
 	}
 
+	public TreeMap<String, IJsonValue> toTreeMap()
+	{
+		TreeMap<String, IJsonValue> result = new TreeMap<String, IJsonValue>();
+
+		for(Map.Entry<String, IJsonValue> entry: this.map.entrySet())
+		{
+			result.put(entry.getKey(), entry.getValue());
+		}
+
+		return result;
+	}
+
 	public void each(Consumer<KeyValue<String, IJsonValue>> func)
 	{
 		if(func == null) throw new TypeOfNullableNotAllowedException("The callback function is a null reference.");
