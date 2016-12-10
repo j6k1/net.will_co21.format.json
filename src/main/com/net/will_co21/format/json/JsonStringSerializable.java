@@ -94,7 +94,7 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 					sb.append(toUnicodeEscape(c));
 				}
 			}
-			else if(c > 128)
+			else if(c >= 128)
 			{
 				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
 				currentStart = index + 1;
