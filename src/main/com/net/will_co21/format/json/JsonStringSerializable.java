@@ -60,15 +60,6 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 				currentStart = index + 1;
 				sb.append(toUnicodeEscape(c));
 			}
-			else if(c >= 0xD800 && c <= 0xDBFF &&  index + 1 < length && (c == 0xDB00 && chars[index+1] >= 0xDC00 && chars[index+1] <= 0xDC7F) ||
-					(c == 0xDB00 && chars[index+1] >= 0xDD00 && chars[index+1] <= 0xDDEF))
-			{
-				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
-				currentStart = index + 2;
-				sb.append(toUnicodeEscape(c));
-				sb.append(toUnicodeEscape(chars[index+1]));
-				index++;
-			}
 			else if(c >= 0xD800 && c <= 0xDBFF && index + 1 < length)
 			{
 				if(this.options.hasEscapedUnicode())
