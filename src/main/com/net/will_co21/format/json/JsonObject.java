@@ -118,7 +118,7 @@ public class JsonObject extends JsonValue {
 
 		TreeMap<String, T> result = new TreeMap<String, T>();
 
-		for(Map.Entry<String, IJsonValue> entry: map.entrySet())
+		for(Map.Entry<String, IJsonValue> entry: this.map.entrySet())
 		{
 			result.put(entry.getKey(), func.apply(new KeyValue<String, IJsonValue>(entry.getKey(), entry.getValue())));
 		}
@@ -130,7 +130,7 @@ public class JsonObject extends JsonValue {
 	{
 		if(func == null) throw new TypeOfNullableNotAllowedException("The callback function is a null reference.");
 
-		for(Map.Entry<String, IJsonValue> entry: map.entrySet())
+		for(Map.Entry<String, IJsonValue> entry: this.map.entrySet())
 		{
 			accumulator = func.apply(accumulator, new KeyValue<String, IJsonValue>(entry.getKey(), entry.getValue()));
 		}

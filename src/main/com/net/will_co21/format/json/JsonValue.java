@@ -133,4 +133,5 @@ public abstract class JsonValue implements IJsonValue {
 
 		return deserializer.deserializeJson(this);
 	}
+
 }

@@ -10,6 +10,9 @@ public class JsonSource<T> implements IJsonValue {
 
 	public JsonSource(T targetObject, IJsonSourceDelegate<T> delegate)
 	{
+		if(targetObject == null) throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonSource type constructor.");
+		else if(delegate == null) throw new TypeOfNullableNotAllowedException("null value was passed as the value of json serialized object.");
+
 		this.targetObject = targetObject;
 		this.delegate = delegate;
 	}
