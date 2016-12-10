@@ -70,7 +70,7 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 			}
 			else if(c >= 0xD800 && c <= 0xDBFF && index + 1 < length)
 			{
-				if(this.options.hasEscapedUnicode())
+				if(this.options.hasEscapedUnicode() || chars[index+1] < 0xDC00 || chars[index+1] > 0xDFFF)
 				{
 					if(currentStart < index) sb.append(this.value.substring(currentStart, index));
 					currentStart = index + 2;
