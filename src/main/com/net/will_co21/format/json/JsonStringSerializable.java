@@ -134,9 +134,9 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 			}
 			else if(c <= 0x1F || c == 0x7F)
 			{
-				sb.append(toUnicodeEscape(c));
 				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
 				currentStart = index + 1;
+				sb.append(toUnicodeEscape(c));
 			}
 		}
 
