@@ -54,7 +54,7 @@ public class JsonStringSerializable implements IPrettyJsonSerializable {
 
 			if( (c >= 0x80 && c <= 0x9F) || (c >= 0x200B && c <= 0x200F) || (c >= 0x2028 && c <= 0x202F) ||
 				(c >= 0x2060 && c <= 0x2064) || (c >= 0x2066 && c <= 0x206F) ||
-				 c == 0x200E || c == 0x200F || (c >= 0x202A && c <= 0x202E) || (c >= 0xFFF0 && c <= 0xFFFF) ||(c >= 0xFE00 && c < 0xFE0F))
+				 c == 0x200E || c == 0x200F || (c >= 0x202A && c <= 0x202E) || (c >= 0xFFF0 && c <= 0xFFFF) ||(c >= 0xFE00 && c <= 0xFE0F))
 			{
 				if(currentStart < index) sb.append(this.value.substring(currentStart, index));
 				currentStart = index + 1;
