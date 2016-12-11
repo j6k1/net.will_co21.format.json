@@ -7,6 +7,11 @@ public class JsonArraySerializable extends JsonContainerSerializable implements 
 	protected final ArrayList<IPrettyJsonSerializable> value;
 
 	public JsonArraySerializable(ArrayList<IPrettyJsonSerializable> value, JsonOptions options) {
+		if(value == null)
+			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonArraySerializable type constructor.");
+		else if(options == null)
+			throw new TypeOfNullableNotAllowedException("The value was passed of the option to the constructor of JsonArraySerializable is null.");
+
 		this.options = options;
 		this.value = value;
 	}

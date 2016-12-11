@@ -6,6 +6,9 @@ public class JsonLongSerializable implements IPrettyJsonSerializable {
 
 	public JsonLongSerializable(long value, JsonOptions options)
 	{
+		if(options == null)
+			throw new TypeOfNullableNotAllowedException("The value was passed of the option to the constructor of JsonLongSerializable is null.");
+
 		this.value = value;
 		this.options = options;
 	}

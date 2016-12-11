@@ -6,6 +6,9 @@ public class JsonIntSerializable implements IPrettyJsonSerializable {
 
 	public JsonIntSerializable(int value, JsonOptions options)
 	{
+		if(options == null)
+			throw new TypeOfNullableNotAllowedException("The value was passed of the option to the constructor of JsonIntSerializable is null.");
+
 		this.value = value;
 		this.options = options;
 	}

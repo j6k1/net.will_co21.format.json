@@ -6,6 +6,9 @@ public class JsonFloatSerializable implements IPrettyJsonSerializable {
 
 	public JsonFloatSerializable(float value, JsonOptions options)
 	{
+		if(options == null)
+			throw new TypeOfNullableNotAllowedException("The value was passed of the option to the constructor of JsonFloatSerializable is null.");
+
 		this.value = value;
 		this.options = options;
 	}

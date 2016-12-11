@@ -5,6 +5,9 @@ public class JsonNullSerializable implements IPrettyJsonSerializable {
 
 	public JsonNullSerializable(JsonOptions options)
 	{
+		if(options == null)
+			throw new TypeOfNullableNotAllowedException("The value was passed of the option to the constructor of JsonNullSerializable is null.");
+
 		this.options = options;
 	}
 

@@ -8,6 +8,11 @@ public class JsonObjectSerializable extends JsonContainerSerializable implements
 	protected final TreeMap<String, IPrettyJsonSerializable> value;
 
 	public JsonObjectSerializable(TreeMap<String, IPrettyJsonSerializable> value, JsonOptions options) {
+		if(value == null)
+			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonObjectSerializable type constructor.");
+		else if(options == null)
+			throw new TypeOfNullableNotAllowedException("The value was passed of the option to the constructor of JsonObjectSerializable is null.");
+
 		this.options = options;
 		this.value = value;
 	}

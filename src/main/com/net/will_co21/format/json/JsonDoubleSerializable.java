@@ -6,6 +6,9 @@ public class JsonDoubleSerializable implements IPrettyJsonSerializable {
 
 	public JsonDoubleSerializable(double value, JsonOptions options)
 	{
+		if(options == null)
+			throw new TypeOfNullableNotAllowedException("The value was passed of the option to the constructor of JsonDoubleSerializable is null.");
+
 		this.value = value;
 		this.options = options;
 	}

@@ -8,6 +8,11 @@ public class JsonBigIntegerSerializable implements IPrettyJsonSerializable {
 
 	public JsonBigIntegerSerializable(BigInteger value, JsonOptions options)
 	{
+		if(value == null)
+			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonBigIntegerSerializable type constructor.");
+		else if(options == null)
+			throw new TypeOfNullableNotAllowedException("The value was passed of the option to the constructor of JsonBigIntegerSerializable is null.");
+
 		this.value = value;
 		this.options = options;
 	}
