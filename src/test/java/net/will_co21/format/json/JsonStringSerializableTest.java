@@ -30,4 +30,20 @@ public class JsonStringSerializableTest {
 		String json = (new JsonStringSerializable(str, new JsonOptions(new JsonOption[] {}))).toJson();
 		assertEquals("\"!#$%&()-=^~|@`[{;+:*]},.?_\"", json);
 	}
+
+	@Test
+	public void testToUnicodeEscape()
+	{
+		char c = '腕';
+
+		assertEquals("\\u8155", (new JsonStringSerializable("", new JsonOptions(new JsonOption[] {}))).toUnicodeEscape(c));
+	}
+
+	@Test
+	public void testToUnicodeEscapeAscii()
+	{
+		char c = 'A';
+
+		assertEquals("\\u0041", (new JsonStringSerializable("", new JsonOptions(new JsonOption[] {}))).toUnicodeEscape(c));
+	}
 }
