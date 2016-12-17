@@ -44,7 +44,8 @@ public class JsonStringSerializableTest {
 				"\uDB40\uDC00\uDB40\uDC7F\uDB3F\uDC00\uDB40\uDBFF\uDB40\uDC80" +
 				"\uD800\uDC00\uD800\uDFFF\uDBFF\uDC00\uDBFF\uDFFF" +
 				"\uD7FF\uDC00\uD800\uD800\uE000\uDBFF\uDBFF\uDBFF\uE000" +
-				"\u0080\uD7FF\u007F\uD800\uE000\uFFFF\uDFFF\u0100\b\f\n\r\t<>&'/\"\u001F\u007F";
+				"\u0080\uD7FF\u007F\uD800" +
+				"\uE000\uF8FF\uF900\uFFFF\uDFFF\u0100\b\f\n\r\t<>&'/\"\u001F\u007F";
 
 		String json = (new JsonStringSerializable(str, new JsonOptions(new JsonOption[] {}))).toJson();
 
@@ -57,9 +58,10 @@ public class JsonStringSerializableTest {
 				"\\u202A\\u202E\\u2029\\u202F" +
 				"\\uFFF0\\uFFFF\uFFEF" +
 				"\\uDB40\\uDC00\\uDB40\\uDC7F\uDB3F\uDC00\\uDB40\\uDBFF\uDB40\uDC80" +
-				"\uD800\uDC00\uD800\uDFFF\uDBFF\uDC00\uDBFF\uDFFF" +
-				"\uD7FF\\uDC00\\uD800\\uD800\uE000\\uDBFF\\uDBFF\\uDBFF\\uE000" +
-				"\\u0080\uD7FF\\u007F\\uD800\\uE000\\uFFFF\\uDFFF\u0100\\b\\f\\n\\r\\t<>&'\\/\\\"\\u001F\\u007F\"", json);
+				"\uD800\uDC00\uD800\uDFFF\\uDBFF\\uDC00\\uDBFF\\uDFFF" +
+				"\uD7FF\\uDC00\\uD800\\uD800\\uE000\\uDBFF\\uDBFF\\uDBFF\\uE000" +
+				"\\u0080\uD7FF\\u007F\\uD800" +
+				"\\uE000\\uF8FF\uF900\\uFFFF\\uDFFF\u0100\\b\\f\\n\\r\\t<>&'\\/\\\"\\u001F\\u007F\"", json);
 	}
 
 	@Test
