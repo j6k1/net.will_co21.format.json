@@ -19,7 +19,7 @@ public class JsonNull extends JsonValue {
 
 	@Override
 	public Optional<Integer> getOptionalInt() {
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class JsonNull extends JsonValue {
 
 	@Override
 	public Optional<Long> getOptionalLong() {
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	@Override
@@ -39,7 +39,7 @@ public class JsonNull extends JsonValue {
 
 	@Override
 	public Optional<BigInteger> getOptionalBigInteger() {
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class JsonNull extends JsonValue {
 
 	@Override
 	public Optional<Float> getOptionalFloat() {
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class JsonNull extends JsonValue {
 
 	@Override
 	public Optional<Double> getOptionalDouble() {
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class JsonNull extends JsonValue {
 
 	@Override
 	public Optional<BigDecimal> getOptionalBigDecimal() {
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class JsonNull extends JsonValue {
 
 	@Override
 	public Optional<String> getOptionalString() {
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class JsonNull extends JsonValue {
 
 	@Override
 	public Optional<Boolean> getOptionalBoolean() {
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	public IJsonValue get(String key)
@@ -104,12 +104,12 @@ public class JsonNull extends JsonValue {
 
 	public Optional<IJsonValue> getOptional(String key)
 	{
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	public Optional<IJsonValue> getOptional(int index)
 	{
-		return Optional.ofNullable(null);
+		return Optional.empty();
 	}
 
 	public boolean equals(JsonNull o)

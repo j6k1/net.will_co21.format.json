@@ -66,7 +66,7 @@ public class JsonObject extends JsonValue {
 
 	public Optional<IJsonValue> getOptional(String key)
 	{
-		if(!map.containsKey(key)) return Optional.ofNullable(null);
+		if(!map.containsKey(key)) return Optional.empty();
 		else return Optional.of(get(key));
 	}
 

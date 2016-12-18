@@ -174,7 +174,7 @@ public class JsonArray extends JsonValue {
 
 	public Optional<IJsonValue> getOptional(int index)
 	{
-		if(index >= this.arr.size()) return Optional.ofNullable(null);
+		if(index >= this.arr.size()) return Optional.empty();
 		else return Optional.of(get(index));
 	}
 
