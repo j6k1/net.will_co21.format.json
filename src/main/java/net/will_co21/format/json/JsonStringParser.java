@@ -77,7 +77,7 @@ public class JsonStringParser implements IJsonParser {
 						sb.append((char)code);
 						index += 4;
 					}
-					else if(index + 9 >= length || c != '\\' || json.charAt(index + 5) != 'u')
+					else if(index + 5 >= length || c != '\\' || json.charAt(index + 5) != 'u')
 					{
 						sb.append((char)code);
 						index += 4;
@@ -85,6 +85,9 @@ public class JsonStringParser implements IJsonParser {
 					else
 					{
 						index += 6;
+
+						if(index + 3 >= length)
+							throw new JsonFormatErrorException("The format of this json string is not an json string format.");
 
 						c = json.charAt(index);
 
