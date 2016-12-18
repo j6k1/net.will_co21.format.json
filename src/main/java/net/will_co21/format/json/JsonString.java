@@ -28,14 +28,22 @@ public class JsonString extends JsonValue {
 		return new JsonStringSerializable(this.value, options);
 	}
 
-	public boolean equals(JsonString o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.value.equals(o.value);
+		if(!(o instanceof JsonString)) return false;
+		else return this.value.equals(((JsonString)o).value);
 	}
 
 	@Override
 	public int hashCode()
 	{
 		return this.value.hashCode();
+	}
+
+	@Override
+	public String toString()
+	{
+		return (new JsonStringSerializable(this.value, new JsonOptions(new JsonOption[] {}))).toJson();
 	}
 }

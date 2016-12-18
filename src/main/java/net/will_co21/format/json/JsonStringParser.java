@@ -42,10 +42,8 @@ public class JsonStringParser implements IJsonParser {
 
 		StringBuilder sb = new StringBuilder();
 
-		while(index < length && c != '"')
+		while(index < length && (c = json.charAt(index)) != '"')
 		{
-			c = json.charAt(index);
-
 			if(c == '\\')
 			{
 				if(currentStart < index) sb.append(json.substring(currentStart, index));
@@ -107,10 +105,16 @@ public class JsonStringParser implements IJsonParser {
 						int secondCode = Integer.parseInt(json.substring(index, index + 4), 16);
 
 						if(secondCode < 0xDC00 || secondCode > 0xDFFF)
-							throw new JsonFormatErrorException("Unicode escape string value is invalid.");
-
-						sb.append(new String(new char[] { (char)code, (char)secondCode }));
-
+						{
+							// ユニコードとして不正でもデコードするように(バイナリデータを受け取りたいケースのための実装)
+							// throw new JsonFormatErrorException("Unicode escape string value is invalid.");
+							sb.append((char)code);
+							sb.append((char)secondCode);
+						}
+						else
+						{
+							sb.append(new String(new char[] { (char)code, (char)secondCode }));
+						}
 						index += 4;
 					}
 
