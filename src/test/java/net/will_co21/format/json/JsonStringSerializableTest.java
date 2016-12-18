@@ -9,6 +9,7 @@ public class JsonStringSerializableTest {
 	public void testJsonStringSerializableNullValue() {
 		try {
 			new JsonStringSerializable(null, null);
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertEquals("null value was passed in to the JsonStringSerializable type constructor.", e.getMessage());
 		}
@@ -18,6 +19,7 @@ public class JsonStringSerializableTest {
 	public void testJsonStringSerializableNullOptions() {
 		try {
 			new JsonStringSerializable("", null);
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertEquals("The value was passed of the option to the constructor of JsonStringSerializable is null.", e.getMessage());
 		}

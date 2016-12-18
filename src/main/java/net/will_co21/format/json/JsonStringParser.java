@@ -66,7 +66,7 @@ public class JsonStringParser implements IJsonParser {
 					{
 						c = json.charAt(hexpos);
 
-						if((c >= '0' && c <= '9') || (c >= 'A' || c <= 'F')) hexpos++;
+						if((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F')) hexpos++;
 						else throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
 					}
 
@@ -98,7 +98,7 @@ public class JsonStringParser implements IJsonParser {
 						{
 							c = json.charAt(hexpos);
 
-							if((c >= '0' && c <= '9') || (c >= 'A' || c <= 'F')) hexpos++;
+							if((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F')) hexpos++;
 							else throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
 						}
 
