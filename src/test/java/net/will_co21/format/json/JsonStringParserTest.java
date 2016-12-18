@@ -76,11 +76,19 @@ public class JsonStringParserTest {
 	}
 
 	@Test
-	public void testParseJsonSurrogateSecondUnicodeEscapeStartNotBackslash()
+	public void testParseJsonFirstSurrogateUnicodeEscapeLowerBound()
 	{
 		JsonStringParser parser = new JsonStringParser();
 		Pair<IJsonValue, Integer> result = parser.parseJson("\"aaaああああ\\uE000\\uD800aあああいいい\"", 0);
 		assertEquals(new Pair<IJsonValue, Integer>(new JsonString("aaaああああ\uE000\uD800aあああいいい"), 28), result);
+	}
+
+	@Test
+	public void testParseJsonFirstSurrogateUnicodeEscapeUpperBound()
+	{
+		JsonStringParser parser = new JsonStringParser();
+		Pair<IJsonValue, Integer> result = parser.parseJson("\"aaaああああ\\uE000\\uDBFF\\nあああいいい\"", 0);
+		assertEquals(new Pair<IJsonValue, Integer>(new JsonString("aaaああああ\uE000\uDBFF\nあああいいい"), 29), result);
 	}
 
 	@Test
