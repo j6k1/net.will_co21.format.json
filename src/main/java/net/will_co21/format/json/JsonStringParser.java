@@ -72,25 +72,21 @@ public class JsonStringParser implements IJsonParser {
 
 					int code = Integer.parseInt(json.substring(index, index + 4), 16);
 
-					if(!(code >= 0xD800 && code <= 0xDBFF))
+					if(!(code >= 0xD800 && code <= 0xDBFF) || index + 4 == length)
+					{
+						sb.append((char)code);
+						index += 4;
+					}
+					else if(index + 9 >= length || c != '\\' || json.charAt(index + 5) != 'u')
 					{
 						sb.append((char)code);
 						index += 4;
 					}
 					else
 					{
-						if(index + 9 >= length) throw new JsonFormatErrorException("The format of this json string is not an json string format.");
-
-						index += 4;
+						index += 6;
 
 						c = json.charAt(index);
-
-						if(c != '\\')
-							throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
-						else if(json.charAt(index + 1) != 'u')
-							throw new JsonFormatErrorException("unexpected character \"" + json.charAt(index + 1) + "\" was found.");
-
-						index += 2;
 
 						hexpos = index;
 
