@@ -79,12 +79,8 @@ public class JsonStringParserTest {
 	public void testParseJsonSurrogateSecondUnicodeEscapeStartNotBackslash()
 	{
 		JsonStringParser parser = new JsonStringParser();
-		try {
-			parser.parseJson("\"aaaああああ\\uE000\\uD800aあああいいい\"", 0);
-			fail();
-		} catch (JsonFormatErrorException e) {
-			assertEquals("unexpected character \"a\" was found.", e.getMessage());
-		}
+		Pair<IJsonValue, Integer> result = parser.parseJson("\"aaaああああ\\uE000\\uD800aあああいいい\"", 0);
+		assertEquals(new Pair<IJsonValue, Integer>(new JsonString("aaaああああ\uE000\uD800aあああいいい"), 28), result);
 	}
 
 	@Test
