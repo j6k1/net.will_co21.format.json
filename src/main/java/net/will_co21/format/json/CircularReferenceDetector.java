@@ -18,10 +18,11 @@ public class CircularReferenceDetector {
 			return this.obj;
 		}
 
-		@SuppressWarnings("unused")
-		public boolean equals(ObjectReference other)
+		@Override
+		public boolean equals(Object other)
 		{
-			return this.obj == other.obj;
+			if(!(other instanceof ObjectReference)) return false;
+			return this.obj == ((ObjectReference)other).obj;
 		}
 
 		@Override

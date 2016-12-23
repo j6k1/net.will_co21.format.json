@@ -297,9 +297,11 @@ public class JsonArray extends JsonValue {
 		return new JsonArraySerializable(arr, options);
 	}
 
-	public boolean equals(JsonArray o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.arr.equals(o.arr);
+		if(!(o instanceof JsonArray)) return false;
+		return this.arr.equals(((JsonArray)o).arr);
 	}
 
 	@Override

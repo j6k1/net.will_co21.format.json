@@ -25,9 +25,11 @@ public class JsonBoolean extends JsonValue {
 		return new JsonBooleanSerializable(this.value, options);
 	}
 
-	public boolean equals(JsonBoolean o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.value == o.value;
+		if(!(o instanceof JsonBoolean)) return false;
+		return this.value == ((JsonBoolean)o).value;
 	}
 
 	@Override

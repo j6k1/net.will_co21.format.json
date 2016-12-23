@@ -71,9 +71,11 @@ public class JsonDouble extends JsonNumber {
 		}
 	}
 
-	public boolean equals(JsonDouble o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.value == o.value;
+		if(!(o instanceof JsonDouble)) return false;
+		return this.value == ((JsonDouble)o).value;
 	}
 
 	@Override

@@ -73,9 +73,11 @@ public class JsonFloat extends JsonNumber {
 		}
 	}
 
-	public boolean equals(JsonFloat o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.value == o.value;
+		if(!(o instanceof JsonFloat)) return false;
+		return this.value == ((JsonFloat)o).value;
 	}
 
 	@Override

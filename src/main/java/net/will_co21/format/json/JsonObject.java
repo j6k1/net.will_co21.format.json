@@ -170,9 +170,11 @@ public class JsonObject extends JsonValue {
 		return new JsonObjectSerializable(map, options);
 	}
 
-	public boolean equals(JsonObject o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.map.equals(o.map);
+		if(!(o instanceof JsonObject)) return false;
+		return this.map.equals(((JsonObject)o).map);
 	}
 
 	@Override

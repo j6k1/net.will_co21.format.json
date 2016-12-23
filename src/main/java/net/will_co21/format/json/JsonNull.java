@@ -112,9 +112,11 @@ public class JsonNull extends JsonValue {
 		return Optional.empty();
 	}
 
-	public boolean equals(JsonNull o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return true;
+		if(!(o instanceof JsonNull)) return false;
+		else return true;
 	}
 
 	@Override

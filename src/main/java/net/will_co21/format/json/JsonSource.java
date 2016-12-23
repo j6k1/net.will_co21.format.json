@@ -145,4 +145,17 @@ public class JsonSource<T> implements IJsonValue {
 
 		return deserializer.deserializeJson(this);
 	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if(!(o instanceof JsonSource)) return false;
+		return targetObject.equals(((JsonSource)o).targetObject);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return this.targetObject.hashCode();
+	}
 }

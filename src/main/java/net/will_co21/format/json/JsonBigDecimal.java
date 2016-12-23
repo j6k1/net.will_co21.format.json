@@ -72,9 +72,11 @@ public class JsonBigDecimal extends JsonNumber {
 		}
 	}
 
-	public boolean equals(JsonBigDecimal o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.value.equals(o.value);
+		if(!(o instanceof JsonBigDecimal)) return false;
+		return this.value.equals(((JsonBigDecimal)o).value);
 	}
 
 	@Override

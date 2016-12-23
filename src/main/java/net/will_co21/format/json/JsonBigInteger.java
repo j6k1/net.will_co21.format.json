@@ -83,9 +83,11 @@ public class JsonBigInteger extends JsonNumber {
 		}
 	}
 
-	public boolean equals(JsonBigInteger o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.value.equals(o.value);
+		if(!(o instanceof JsonBigInteger)) return false;
+		return this.value.equals(((JsonBigInteger)o).value);
 	}
 
 	@Override

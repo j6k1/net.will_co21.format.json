@@ -104,9 +104,11 @@ public class JsonInt extends JsonNumber {
 		}
 	}
 
-	public boolean equals(JsonInt o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.value == o.value;
+		if(!(o instanceof JsonInt)) return false;
+		return this.value == ((JsonInt)o).value;
 	}
 
 	@Override

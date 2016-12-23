@@ -92,9 +92,11 @@ public class JsonLong extends JsonNumber {
 		}
 	}
 
-	public boolean equals(JsonLong o)
+	@Override
+	public boolean equals(Object o)
 	{
-		return this.value == o.value;
+		if(!(o instanceof JsonLong)) return false;
+		return this.value == ((JsonLong)o).value;
 	}
 
 	@Override
