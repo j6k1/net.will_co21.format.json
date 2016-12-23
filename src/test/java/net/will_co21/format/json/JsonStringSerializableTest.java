@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.*;
+
 public class JsonStringSerializableTest {
 	@Test
 	public void testJsonStringSerializableNullValue() {
@@ -11,7 +13,7 @@ public class JsonStringSerializableTest {
 			new JsonStringSerializable(null, null);
 			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
-			assertEquals("null value was passed in to the JsonStringSerializable type constructor.", e.getMessage());
+			assertThat(e.getMessage(), is("null value was passed in to the JsonStringSerializable type constructor."));
 		}
 	}
 
@@ -21,7 +23,7 @@ public class JsonStringSerializableTest {
 			new JsonStringSerializable("", null);
 			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
-			assertEquals("The value was passed of the option to the constructor of JsonStringSerializable is null.", e.getMessage());
+			assertThat(e.getMessage(), is("The value was passed of the option to the constructor of JsonStringSerializable is null."));
 		}
 	}
 
@@ -30,7 +32,7 @@ public class JsonStringSerializableTest {
 		String str = "!#$%&()-=^~|@`[{;+:*]},.?_";
 
 		String json = (new JsonStringSerializable(str, new JsonOptions(new JsonOption[] {}))).toJson();
-		assertEquals("\"!#$%&()-=^~|@`[{;+:*]},.?_\"", json);
+		assertThat(json, is("\"!#$%&()-=^~|@`[{;+:*]},.?_\""));
 	}
 
 	@Test
@@ -54,7 +56,7 @@ public class JsonStringSerializableTest {
 
 		String json = (new JsonStringSerializable(str, new JsonOptions(new JsonOption[] {}))).toJson();
 
-		assertEquals("\"\\u0080\\u009F\\u007F\u00A0" +
+		assertThat(json, is("\"\\u0080\\u009F\\u007F\u00A0" +
 				"\\u200B\\u200F\u200A\u2010" +
 				"\\u2028\\u202F\u2027\u2030" +
 				"\\u2060\\u2064\u205F\u2065" +
@@ -69,7 +71,7 @@ public class JsonStringSerializableTest {
 				"\uD800\uDC00\uD800\uDFFF\\uDBFF\\uDC00\\uDBFF\\uDFFF" +
 				"\uD7FF\\uDC00\\uD800\\uD800\\uE000\\uDBFF\\uDBFF\\uDBFF\\uE000" +
 				"\\u0080\uD7FF\\u007F\\uD800" +
-				"\\uE000\\uF8FF\uF900\\uFFFF\\uDFFF\u0100\\b\\f\\n\\r\\t<>&'\\/\\\"\\u001F\\u007F\"", json);
+				"\\uE000\\uF8FF\uF900\\uFFFF\\uDFFF\u0100\\b\\f\\n\\r\\t<>&'\\/\\\"\\u001F\\u007F\""));
 	}
 
 	@Test
@@ -79,7 +81,7 @@ public class JsonStringSerializableTest {
 
 		String json = (new JsonStringSerializable(str, new JsonOptions(new JsonOption[] {}))).toJson();
 
-		assertEquals("\"あいうえおあお\\uDB80\"", json);
+		assertThat(json, is("\"あいうえおあお\\uDB80\""));
 
 	}
 
@@ -90,7 +92,7 @@ public class JsonStringSerializableTest {
 
 		String json = (new JsonStringSerializable(str, new JsonOptions(new JsonOption[] {}))).toJson();
 
-		assertEquals("\"あいうえおあお\\uDBFF\"", json);
+		assertThat(json, is("\"あいうえおあお\\uDBFF\""));
 
 	}
 
@@ -101,7 +103,7 @@ public class JsonStringSerializableTest {
 
 		String json = (new JsonStringSerializable(str, new JsonOptions(new JsonOption[] {}))).toJson();
 
-		assertEquals("\"あいうえおあお\\uDB40\"", json);
+		assertThat(json, is("\"あいうえおあお\\uDB40\""));
 
 	}
 
@@ -112,7 +114,7 @@ public class JsonStringSerializableTest {
 
 		String json = (new JsonStringSerializable(str, new JsonOptions(new JsonOption[] {}))).toJson();
 
-		assertEquals("\"あいうえおあお\\uDB80\"", json);
+		assertThat(json, is("\"あいうえおあお\\uDB80\""));
 
 	}
 
@@ -123,7 +125,7 @@ public class JsonStringSerializableTest {
 
 		String json = (new JsonStringSerializable(str, new JsonOptions(new JsonOption[] {}))).toJson();
 
-		assertEquals("\"あいうえおあお\\uDBFF\"", json);
+		assertThat(json, is("\"あいうえおあお\\uDBFF\""));
 
 	}
 
@@ -155,7 +157,7 @@ public class JsonStringSerializableTest {
                 JsonOption.UNESCAPED_SLASHES
 		}))).toJson();
 
-		assertEquals("\"\\u0080\\u009F\\u007F\u00A0" +
+		assertThat(json, is("\"\\u0080\\u009F\\u007F\u00A0" +
 				"\\u200B\\u200F\u200A\u2010" +
 				"\\u2028\\u202F\u2027\u2030" +
 				"\\u2060\\u2064\u205F\u2065" +
@@ -170,7 +172,7 @@ public class JsonStringSerializableTest {
 				"\uD800\uDC00\uD800\uDFFF\\uDBFF\\uDC00\\uDBFF\\uDFFF" +
 				"\uD7FF\\uDC00\\uD800\\uD800\\uE000\\uDBFF\\uDBFF\\uDBFF\\uE000" +
 				"\\u0080\uD7FF\\u007F\\uD800" +
-				"\\uE000\\uF8FF\uF900\\uFFFF\\uDFFF\u0100\\b\\f\\n\\r\\t\\u003C\\u003E\\u0026\\u0027/\\u0022\\u001F\\u007F\"", json);
+				"\\uE000\\uF8FF\uF900\\uFFFF\\uDFFF\u0100\\b\\f\\n\\r\\t\\u003C\\u003E\\u0026\\u0027/\\u0022\\u001F\\u007F\""));
 	}
 
 	@Test
@@ -202,7 +204,7 @@ public class JsonStringSerializableTest {
                 JsonOption.ESCAPED_UNICODE
 		}))).toJson();
 
-		assertEquals("\"\\u0080\\u009F\\u007F\\u00A0" +
+		assertThat(json, is("\"\\u0080\\u009F\\u007F\\u00A0" +
 				"\\u200B\\u200F\\u200A\\u2010" +
 				"\\u2028\\u202F\\u2027\\u2030" +
 				"\\u2060\\u2064\\u205F\\u2065" +
@@ -217,7 +219,7 @@ public class JsonStringSerializableTest {
 				"\\uD800\\uDC00\\uD800\\uDFFF\\uDBFF\\uDC00\\uDBFF\\uDFFF" +
 				"\\uD7FF\\uDC00\\uD800\\uD800\\uE000\\uDBFF\\uDBFF\\uDBFF\\uE000" +
 				"\\u0080\\uD7FF\\u007F\\uD800" +
-				"\\uE000\\uF8FF\\uF900\\uFFFF\\uDFFF\\u0100\\b\\f\\n\\r\\t\\u003C\\u003E\\u0026\\u0027/\\u0022\\u001F\\u007F\"", json);
+				"\\uE000\\uF8FF\\uF900\\uFFFF\\uDFFF\\u0100\\b\\f\\n\\r\\t\\u003C\\u003E\\u0026\\u0027/\\u0022\\u001F\\u007F\""));
 	}
 
 	@Test
@@ -254,7 +256,7 @@ public class JsonStringSerializableTest {
                 JsonOption.ESCAPED_UNICODE
 		}))).toJson();
 
-		assertEquals("\"\\u0080\\u009F\\u007F\\u00A0" +
+		assertThat(json, is("\"\\u0080\\u009F\\u007F\\u00A0" +
 				"\\u200B\\u200F\\u200A\\u2010" +
 				"\\u2028\\u202F\\u2027\\u2030" +
 				"\\u2060\\u2064\\u205F\\u2065" +
@@ -269,7 +271,7 @@ public class JsonStringSerializableTest {
 				"\\uD800\\uDC00\\uD800\\uDFFF\\uDBFF\\uDC00\\uDBFF\\uDFFF" +
 				"\\uD7FF\\uDC00\\uD800\\uD800\\uE000\\uDBFF\\uDBFF\\uDBFF\\uE000" +
 				"\\u0080\\uD7FF\\u007F\\uD800" +
-				"\\uE000\\uF8FF\\uF900\\uFFFF\\uDFFF\\u0100\\b\\f\\n\\r\\t\\u003C\\u003E\\u0026\\u0027/\\u0022\\u001F\\u007F\"", json);
+				"\\uE000\\uF8FF\\uF900\\uFFFF\\uDFFF\\u0100\\b\\f\\n\\r\\t\\u003C\\u003E\\u0026\\u0027/\\u0022\\u001F\\u007F\""));
 	}
 
 	@Test
@@ -277,7 +279,7 @@ public class JsonStringSerializableTest {
 	{
 		char c = '腕';
 
-		assertEquals("\\u8155", (new JsonStringSerializable("", new JsonOptions(new JsonOption[] {}))).toUnicodeEscape(c));
+		assertThat((new JsonStringSerializable("", new JsonOptions(new JsonOption[] {}))).toUnicodeEscape(c), is("\\u8155"));
 	}
 
 	@Test
@@ -285,6 +287,6 @@ public class JsonStringSerializableTest {
 	{
 		char c = 'A';
 
-		assertEquals("\\u0041", (new JsonStringSerializable("", new JsonOptions(new JsonOption[] {}))).toUnicodeEscape(c));
+		assertThat((new JsonStringSerializable("", new JsonOptions(new JsonOption[] {}))).toUnicodeEscape(c), is("\\u0041"));
 	}
 }
