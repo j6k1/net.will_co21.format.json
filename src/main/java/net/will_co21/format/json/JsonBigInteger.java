@@ -60,7 +60,7 @@ public class JsonBigInteger extends JsonNumber {
 
 	@Override
 	public boolean getBoolean() {
-		return this.value.compareTo(BigInteger.valueOf(0)) == 0;
+		return this.value.compareTo(BigInteger.valueOf(0)) != 0;
 	}
 
 	@Override

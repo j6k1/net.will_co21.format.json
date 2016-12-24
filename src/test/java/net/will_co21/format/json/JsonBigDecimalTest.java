@@ -9,7 +9,6 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
 
 public class JsonBigDecimalTest {
-
 	@Test
 	public void testJsonBigDecimalNullString() {
 		try {
