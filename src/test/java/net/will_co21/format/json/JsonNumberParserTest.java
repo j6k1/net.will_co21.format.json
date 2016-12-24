@@ -194,7 +194,7 @@ public class JsonNumberParserTest {
 		String json = "0.111";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(0.111), 5)));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(0.111f), 5)));
 	}
 
 	@Test
@@ -202,7 +202,7 @@ public class JsonNumberParserTest {
 		String json = "-0.111";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-0.111), 6)));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(-0.111f), 6)));
 	}
 
 	@Test
@@ -210,7 +210,7 @@ public class JsonNumberParserTest {
 		String json = "1.111";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(1.111), 5)));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1.111f), 5)));
 	}
 
 	@Test
@@ -218,7 +218,7 @@ public class JsonNumberParserTest {
 		String json = "-1.111";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-1.111), 6)));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(-1.111f), 6)));
 	}
 
 	@Test
@@ -259,7 +259,7 @@ public class JsonNumberParserTest {
 		String json = "1e-10";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(1e-10), 5)));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1e-10f), 5)));
 	}
 
 	@Test
@@ -267,7 +267,7 @@ public class JsonNumberParserTest {
 		String json = "1E-10";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(1e-10), 5)));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1e-10f), 5)));
 	}
 
 	@Test
@@ -308,7 +308,7 @@ public class JsonNumberParserTest {
 		String json = "1.1e-10";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(1.1e-10), json.length())));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1.1e-10f), json.length())));
 	}
 
 	@Test
@@ -316,7 +316,7 @@ public class JsonNumberParserTest {
 		String json = "1.1E-10";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(1.1e-10), json.length())));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1.1e-10f), json.length())));
 	}
 
 
@@ -358,7 +358,7 @@ public class JsonNumberParserTest {
 		String json = "-1.1e-10";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-1.1e-10), json.length())));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(-1.1e-10f), json.length())));
 	}
 
 	@Test
@@ -366,7 +366,7 @@ public class JsonNumberParserTest {
 		String json = "-1.1E-10";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-1.1e-10), json.length())));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(-1.1e-10f), json.length())));
 	}
 
 	@Test

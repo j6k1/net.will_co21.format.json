@@ -191,7 +191,7 @@ public class JsonNumberParser implements IJsonParser {
 				return new Pair<IJsonValue, Integer>(new JsonBigDecimal(number), index);
 			}
 			else if(doubleValue > Float.MAX_VALUE || doubleValue < -Float.MAX_VALUE ||
-					 Double.compare(doubleValue, ((double)(float)doubleValue)) != 0)
+					number.compareTo(new BigDecimal(Float.toString((float)doubleValue))) != 0)
 			{
 				return new Pair<IJsonValue, Integer>(new JsonDouble(doubleValue), index);
 			}
