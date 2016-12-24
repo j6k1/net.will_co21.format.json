@@ -104,4 +104,9 @@ public class JsonLong extends JsonNumber {
 	{
 		return Long.hashCode(this.value);
 	}
+
+	public String toString()
+	{
+		return "Long(" + Long.toString(this.value) + ")";
+	}
 }

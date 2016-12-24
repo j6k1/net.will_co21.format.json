@@ -116,4 +116,9 @@ public class JsonInt extends JsonNumber {
 	{
 		return Integer.hashCode(this.value);
 	}
+
+	public String toString()
+	{
+		return "Integer(" + Integer.toString(this.value) + ")";
+	}
 }

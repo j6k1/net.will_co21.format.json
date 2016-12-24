@@ -1,10 +1,32 @@
 package net.will_co21.format.json;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Optional;
 
 public class JsonBigDecimal extends JsonNumber {
 	protected final BigDecimal value;
+
+	public JsonBigDecimal(String strValue)
+	{
+		if(strValue == null)
+			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonBigDecimal type constructor.");
+
+		this.value = new BigDecimal(strValue);
+	}
+
+	public JsonBigDecimal(long value)
+	{
+		this(new BigDecimal(BigInteger.valueOf(value)));
+	}
+
+	public JsonBigDecimal(BigInteger value)
+	{
+		if(value == null)
+			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonBigDecimal type constructor.");
+
+		this.value = new BigDecimal(value);
+	}
 
 	public JsonBigDecimal(BigDecimal value)
 	{
@@ -83,5 +105,10 @@ public class JsonBigDecimal extends JsonNumber {
 	public int hashCode()
 	{
 		return this.value.hashCode();
+	}
+
+	public String toString()
+	{
+		return "BigDecimal(" + this.value.toString() + ")";
 	}
 }

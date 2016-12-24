@@ -42,8 +42,6 @@ public class JsonNumberParser implements IJsonParser {
 			if(index == length) throw new JsonFormatErrorException("The format of this json string is not an json number format.");
 
 			c = json.charAt(index);
-
-			if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
 		}
 
 		if(c == '0')
@@ -63,7 +61,7 @@ public class JsonNumberParser implements IJsonParser {
 
 			c = json.charAt(index);
 
-			if(c < '0' || c > '9') throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+			if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
 			else index++;
 
 			while(index < length)
@@ -74,6 +72,10 @@ public class JsonNumberParser implements IJsonParser {
 
 				index++;
 			}
+		}
+		else if(c < '1' || c > '9')
+		{
+			throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
 		}
 		else
 		{
@@ -93,44 +95,69 @@ public class JsonNumberParser implements IJsonParser {
 					{
 						throw new JsonFormatErrorException("The format of this json string is not an json number format.");
 					}
+
 					index++;
-					break;
-				}
-				else if(c == 'e' || c == 'E')
-				{
-					isInt = false;
 
-					if(index + 1 == length)
-					{
-						throw new JsonFormatErrorException("The format of this json string is not an json number format.");
-					}
-					else
-					{
-						index++;
+					c = json.charAt(index);
 
+					if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+
+
+					while(index < length)
+					{
 						c = json.charAt(index);
 
-						if(c != '+' && c != '-' && (c < '0' || c > '9'))
-							throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
-						else if(c == '+' || c == '-')
-							index++;
+						if(c < '0' || c > '9') break;
 
-						if(index + 1 == length)
-							throw new JsonFormatErrorException("The format of this json string is not an json number format.");
-
-						break;
+						index++;
 					}
+				}
+				else
+				{
+					break;
 				}
 			}
 		}
 
-		while(index < length)
+		if(c == 'e' || c == 'E')
 		{
-			c = json.charAt(index);
+			isInt = false;
 
-			if(c < '0' || c > '9') break;
+			if(index + 1 == length)
+			{
+				throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+			}
+			else
+			{
+				index++;
 
-			index++;
+				c = json.charAt(index);
+
+				if(c != '+' && c != '-' && (c < '0' || c > '9'))
+				{
+					throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+				}
+				else if(c == '+' || c == '-')
+				{
+					index++;
+
+					if(index == length)
+						throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+
+					c = json.charAt(index);
+
+					if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+				}
+			}
+
+			while(index < length)
+			{
+				c = json.charAt(index);
+
+				if(c < '0' || c > '9') break;
+
+				index++;
+			}
 		}
 
 		if(isInt)
@@ -139,7 +166,8 @@ public class JsonNumberParser implements IJsonParser {
 
 			long longValue = number.longValue();
 
-			if(longValue > Long.MAX_VALUE || longValue < Long.MIN_VALUE)
+			if(number.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0 ||
+					number.compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0)
 			{
 				return new Pair<IJsonValue, Integer>(new JsonBigInteger(number), index);
 			}
@@ -156,13 +184,14 @@ public class JsonNumberParser implements IJsonParser {
 		{
 			BigDecimal number = new BigDecimal(json.substring(start, index));
 
-			double doubleValue = number.longValue();
+			double doubleValue = number.doubleValue();
 
-			if(doubleValue > Double.MAX_VALUE || doubleValue < Double.MIN_VALUE || !BigDecimal.valueOf(doubleValue).equals(number))
+			if(doubleValue > Double.MAX_VALUE || doubleValue < -Double.MAX_VALUE || BigDecimal.valueOf(doubleValue).compareTo(number) != 0)
 			{
 				return new Pair<IJsonValue, Integer>(new JsonBigDecimal(number), index);
 			}
-			else if(doubleValue > Float.MAX_VALUE || doubleValue < Float.MIN_VALUE)
+			else if(doubleValue > Float.MAX_VALUE || doubleValue < -Float.MAX_VALUE ||
+					 Double.compare(doubleValue, ((double)(float)doubleValue)) != 0)
 			{
 				return new Pair<IJsonValue, Integer>(new JsonDouble(doubleValue), index);
 			}

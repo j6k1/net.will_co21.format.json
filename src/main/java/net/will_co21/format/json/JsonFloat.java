@@ -85,4 +85,9 @@ public class JsonFloat extends JsonNumber {
 	{
 		return Float.hashCode(this.value);
 	}
+
+	public String toString()
+	{
+		return "Float(" + Float.toString(this.value) + ")";
+	}
 }

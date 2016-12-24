@@ -83,4 +83,9 @@ public class JsonDouble extends JsonNumber {
 	{
 		return Double.hashCode(this.value);
 	}
+
+	public String toString()
+	{
+		return "Double(" + Double.toString(this.value) + ")";
+	}
 }

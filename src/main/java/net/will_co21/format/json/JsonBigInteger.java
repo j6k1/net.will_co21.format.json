@@ -7,6 +7,19 @@ import java.util.Optional;
 public class JsonBigInteger extends JsonNumber {
 	protected final BigInteger value;
 
+	public JsonBigInteger(String strValue)
+	{
+		if(strValue == null)
+			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonBigInteger type constructor.");
+
+		this.value = new BigInteger(strValue);
+	}
+
+	public JsonBigInteger(long value)
+	{
+		this(BigInteger.valueOf(value));
+	}
+
 	public JsonBigInteger(BigInteger value)
 	{
 		if(value == null)
@@ -94,5 +107,10 @@ public class JsonBigInteger extends JsonNumber {
 	public int hashCode()
 	{
 		return this.value.hashCode();
+	}
+
+	public String toString()
+	{
+		return "BigInteger(" + this.value.toString() + ")";
 	}
 }
