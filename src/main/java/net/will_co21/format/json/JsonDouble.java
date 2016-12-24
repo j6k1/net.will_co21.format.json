@@ -65,6 +65,10 @@ public class JsonDouble extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}
+		else if(options.hasBigFloatAsString() && this.value != (double)(float)this.value)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
 		else if(options.hasBigLongAsString() && this.value > Long.MAX_VALUE)
 		{
 			return new JsonStringSerializable(this.value + "", options);
@@ -73,11 +77,19 @@ public class JsonDouble extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}
+		else if(options.hasBigLongAsString() && this.value != (double)(long)this.value)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
 		else if(options.hasBigIntAsString() && this.value > Integer.MAX_VALUE)
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}
 		else if(options.hasBigIntAsString() && this.value < Integer.MIN_VALUE)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else if(options.hasBigIntAsString() && this.value != (double)(int)this.value)
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}

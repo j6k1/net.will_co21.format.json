@@ -98,6 +98,10 @@ public class JsonInt extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}
+		else if(options.hasBigFloatAsString() && this.value != (int)(float)this.value)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
 		else
 		{
 			return new JsonIntSerializable(this.value, options);

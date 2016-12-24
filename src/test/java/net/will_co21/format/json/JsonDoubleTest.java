@@ -142,18 +142,18 @@ public class JsonDoubleTest {
 	{
 		float value = 3.4028235E+38f;
 
-		assertThat((new JsonDouble((double)value)).toJsonSource(
+		assertThat((new JsonDouble(value)).toJsonSource(
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGFLOAT_AS_STRING
 					}), new CircularReferenceDetector()).toJson(), is(Double.toString(value)));
 	}
 
 	@Test
-	public void testToJsonSourceOptionBigFloatAsStringCaseFloatOneGreaterThanMinimum()
+	public void testToJsonSourceOptionBigFloatAsStringCaseFloatMin()
 	{
 		float value = -3.4028235E+38f;
 
-		assertThat((new JsonDouble((double)value)).toJsonSource(
+		assertThat((new JsonDouble(value)).toJsonSource(
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGFLOAT_AS_STRING
 					}), new CircularReferenceDetector()).toJson(), is(Double.toString(value)));

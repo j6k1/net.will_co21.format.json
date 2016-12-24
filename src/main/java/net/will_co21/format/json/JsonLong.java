@@ -78,6 +78,14 @@ public class JsonLong extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}
+		else if(options.hasBigDoubleAsString() && this.value != (long)(double)this.value)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else if(options.hasBigFloatAsString() && this.value != (long)(float)this.value)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
 		else if(options.hasBigIntAsString() && this.value > Integer.MAX_VALUE)
 		{
 			return new JsonStringSerializable(this.value + "", options);

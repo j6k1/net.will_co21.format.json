@@ -76,19 +76,16 @@ public class JsonBigInteger extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
-		else if(options.hasBigIntAsString() && this.value.compareTo(BigInteger.valueOf((long)Integer.MAX_VALUE)) > 0)
+		else if(options.hasBigDoubleAsString() && bigDecimalValue.compareTo(BigDecimal.valueOf(Double.MAX_VALUE)) > 0)
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
-		else if(options.hasBigIntAsString() && this.value.compareTo(BigInteger.valueOf((long)Integer.MIN_VALUE)) < 0)
+		else if(options.hasBigDoubleAsString() && bigDecimalValue.compareTo(BigDecimal.valueOf(-Double.MAX_VALUE)) < 0)
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
-		else if(options.hasBigLongAsString() && this.value.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0)
-		{
-			return new JsonStringSerializable(this.value.toString(), options);
-		}
-		else if(options.hasBigLongAsString() && this.value.compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0)
+		else if(options.hasBigDoubleAsString() &&
+				bigDecimalValue.compareTo(BigDecimal.valueOf(bigDecimalValue.doubleValue())) != 0)
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
@@ -100,11 +97,24 @@ public class JsonBigInteger extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
-		else if(options.hasBigDoubleAsString() && bigDecimalValue.compareTo(BigDecimal.valueOf(Double.MAX_VALUE)) > 0)
+		else if(options.hasBigFloatAsString() &&
+				bigDecimalValue.compareTo(new BigDecimal(Float.toString((float)bigDecimalValue.doubleValue()))) != 0)
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
-		else if(options.hasBigDoubleAsString() && bigDecimalValue.compareTo(BigDecimal.valueOf(-Double.MAX_VALUE)) < 0)
+		else if(options.hasBigLongAsString() && this.value.compareTo(BigInteger.valueOf(Long.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigLongAsString() && this.value.compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigIntAsString() && this.value.compareTo(BigInteger.valueOf((long)Integer.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigIntAsString() && this.value.compareTo(BigInteger.valueOf((long)Integer.MIN_VALUE)) < 0)
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}

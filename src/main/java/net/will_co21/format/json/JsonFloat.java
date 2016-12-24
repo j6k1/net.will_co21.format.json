@@ -75,11 +75,19 @@ public class JsonFloat extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}
+		else if(options.hasBigLongAsString() && this.value != (float)(long)this.value)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
 		else if(options.hasBigIntAsString() && this.value > Integer.MAX_VALUE)
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}
 		else if(options.hasBigIntAsString() && this.value < Integer.MIN_VALUE)
+		{
+			return new JsonStringSerializable(this.value + "", options);
+		}
+		else if(options.hasBigIntAsString() && this.value != (float)(int)this.value)
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}
