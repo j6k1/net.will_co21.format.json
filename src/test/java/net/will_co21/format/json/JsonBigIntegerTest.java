@@ -186,7 +186,7 @@ public class JsonBigIntegerTest {
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGFLOAT_AS_STRING
 					}), new CircularReferenceDetector()).toJson(),
-				is("\"" + (new BigDecimal(strValue)).toBigInteger().toString() + "\""));
+				is((new BigDecimal(strValue)).toBigInteger().toString()));
 	}
 
 	@Test
@@ -198,7 +198,7 @@ public class JsonBigIntegerTest {
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGFLOAT_AS_STRING
 					}), new CircularReferenceDetector()).toJson(),
-				is("\"" + (new BigDecimal(strValue)).toBigInteger().toString() + "\""));
+				is((new BigDecimal(strValue)).toBigInteger().toString()));
 	}
 
 	@Test

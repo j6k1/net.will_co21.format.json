@@ -187,7 +187,7 @@ public class JsonBigDecimalTest {
 		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGFLOAT_AS_STRING
-					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
+					}), new CircularReferenceDetector()).toJson(), is(strValue));
 	}
 
 	@Test
@@ -198,31 +198,8 @@ public class JsonBigDecimalTest {
 		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGFLOAT_AS_STRING
-					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
-	}
-
-	@Test
-	public void testToJsonSourceOptionBigFloatAsStringCaseFloatOneLessThanMaximum()
-	{
-		String strValue = "3.4028234E+38";
-
-		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
-				new JsonOptions(new JsonOption[] {
-						JsonOption.BIGFLOAT_AS_STRING
 					}), new CircularReferenceDetector()).toJson(), is(strValue));
 	}
-
-	@Test
-	public void testToJsonSourceOptionBigFloatAsStringCaseFloatOneGreaterThanMinimum()
-	{
-		String strValue = "-3.4028234E+38";
-
-		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
-				new JsonOptions(new JsonOption[] {
-						JsonOption.BIGFLOAT_AS_STRING
-					}), new CircularReferenceDetector()).toJson(), is(strValue));
-	}
-
 
 	@Test
 	public void testToJsonSourceOptionBigLongAsStringCaseGreaterLongMax()
