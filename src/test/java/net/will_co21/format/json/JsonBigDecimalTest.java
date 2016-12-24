@@ -79,7 +79,14 @@ public class JsonBigDecimalTest {
 	}
 
 	@Test
-	public void testGetOptionalBoolean() {
+	public void testGetOptionalBooleanTrue() {
+		String strValue = "1.0";
+
+		assertThat((new JsonBigDecimal(strValue)).getOptionalBoolean().get(), is(true));
+	}
+
+	@Test
+	public void testGetOptionalBooleanFalse() {
 		String strValue = "0.0";
 
 		assertThat((new JsonBigDecimal(strValue)).getOptionalBoolean().get(), is(false));
@@ -91,9 +98,8 @@ public class JsonBigDecimalTest {
 		String strValue = "1.7976931348623158E+308";
 
 		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
-				new JsonOptions(new JsonOption[] {
-						JsonOption.NUMBER_TO_STRING
-					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
+				new JsonOptions(new JsonOption[] {}),
+				new CircularReferenceDetector()).toJson(), is(strValue));
 	}
 
 	@Test
@@ -102,8 +108,9 @@ public class JsonBigDecimalTest {
 		String strValue = "1.7976931348623158E+308";
 
 		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
-				new JsonOptions(new JsonOption[] {}),
-				new CircularReferenceDetector()).toJson(), is(strValue));
+				new JsonOptions(new JsonOption[] {
+						JsonOption.NUMBER_TO_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
 	}
 
 	@Test
@@ -171,6 +178,28 @@ public class JsonBigDecimalTest {
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGDOUBLE_AS_STRING
 					}), new CircularReferenceDetector()).toJson(), is(strValue));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigFloatAsStringCaseFloatMax()
+	{
+		String strValue = "3.4028235E+38";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGFLOAT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigFloatAsStringCaseFloatMin()
+	{
+		String strValue = "-3.4028235E+38";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGFLOAT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
 	}
 
 	@Test
