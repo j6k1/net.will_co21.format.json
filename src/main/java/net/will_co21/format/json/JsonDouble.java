@@ -61,7 +61,7 @@ public class JsonDouble extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}
-		else if(options.hasBigFloatAsString() && this.value < Float.MIN_VALUE)
+		else if(options.hasBigFloatAsString() && this.value < -Float.MAX_VALUE)
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}

@@ -76,7 +76,7 @@ public class JsonBigDecimal extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
-		else if(options.hasBigFloatAsString() && this.value.compareTo(BigDecimal.valueOf((double)Float.MIN_VALUE)) < 0)
+		else if(options.hasBigFloatAsString() && this.value.compareTo(BigDecimal.valueOf((double)-Float.MAX_VALUE)) < 0)
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
@@ -84,7 +84,7 @@ public class JsonBigDecimal extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
-		else if(options.hasBigDoubleAsString() && this.value.compareTo(BigDecimal.valueOf(Double.MIN_VALUE)) < 0)
+		else if(options.hasBigDoubleAsString() && this.value.compareTo(BigDecimal.valueOf(-Double.MAX_VALUE)) < 0)
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
