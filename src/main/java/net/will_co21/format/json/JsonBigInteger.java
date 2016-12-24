@@ -70,6 +70,8 @@ public class JsonBigInteger extends JsonNumber {
 
 	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
+		BigDecimal bigDecimalValue = new BigDecimal(this.value);
+
 		if(options.hasNumberToString())
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
@@ -87,6 +89,22 @@ public class JsonBigInteger extends JsonNumber {
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
 		else if(options.hasBigLongAsString() && this.value.compareTo(BigInteger.valueOf(Long.MIN_VALUE)) < 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigFloatAsString() && bigDecimalValue.compareTo(BigDecimal.valueOf((double)Float.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigFloatAsString() && bigDecimalValue.compareTo(BigDecimal.valueOf((double)-Float.MAX_VALUE)) < 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigDoubleAsString() && bigDecimalValue.compareTo(BigDecimal.valueOf(Double.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigDoubleAsString() && bigDecimalValue.compareTo(BigDecimal.valueOf(-Double.MAX_VALUE)) < 0)
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}

@@ -127,7 +127,7 @@ public class JsonDoubleTest {
 	}
 
 	@Test
-	public void testToJsonSourceOptionBigDoubleAsStringDoubleMin()
+	public void testToJsonSourceOptionBigDoubleAsStringCaseDoubleMin()
 	{
 		double value = -1.7976931348623157E308;
 

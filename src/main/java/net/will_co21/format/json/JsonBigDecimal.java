@@ -72,6 +72,22 @@ public class JsonBigDecimal extends JsonNumber {
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}
+		else if(options.hasBigIntAsString() && this.value.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigIntAsString() && this.value.compareTo(BigDecimal.valueOf(Integer.MIN_VALUE)) < 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigLongAsString() && this.value.compareTo(BigDecimal.valueOf(Long.MAX_VALUE)) > 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
+		else if(options.hasBigLongAsString() && this.value.compareTo(BigDecimal.valueOf(Long.MIN_VALUE)) < 0)
+		{
+			return new JsonStringSerializable(this.value.toString(), options);
+		}
 		else if(options.hasBigFloatAsString() && this.value.compareTo(BigDecimal.valueOf((double)Float.MAX_VALUE)) > 0)
 		{
 			return new JsonStringSerializable(this.value.toString(), options);

@@ -169,7 +169,7 @@ public class JsonBigDecimalTest {
 	}
 
 	@Test
-	public void testToJsonSourceOptionBigDoubleAsStringDoubleMin()
+	public void testToJsonSourceOptionBigDoubleAsStringCaseDoubleMin()
 	{
 		String strValue = "-1.7976931348623157E+308";
 
@@ -220,6 +220,96 @@ public class JsonBigDecimalTest {
 		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGFLOAT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(strValue));
+	}
+
+
+	@Test
+	public void testToJsonSourceOptionBigLongAsStringCaseGreaterLongMax()
+	{
+		String strValue = "9223372036854775808";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGLONG_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigLongAsStringCaseLessLongMin()
+	{
+		String strValue = "-9223372036854775809";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGLONG_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseGreaterIntMax()
+	{
+		String strValue = "2147483648";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseLessIntMin()
+	{
+		String strValue = "-2147483649";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
+	}
+
+
+	@Test
+	public void testToJsonSourceOptionBigLongAsStringCaseLongMax()
+	{
+		String strValue = "9223372036854775807";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGLONG_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(strValue));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigLongAsStringLongMin()
+	{
+		String strValue = "-9223372036854775808";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGLONG_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(strValue));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseIntMax()
+	{
+		String strValue = "2147483647";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(strValue));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseIntMin()
+	{
+		String strValue = "-2147483648";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
 					}), new CircularReferenceDetector()).toJson(), is(strValue));
 	}
 }
