@@ -58,7 +58,7 @@ public class JsonBigDecimal extends JsonNumber {
 
 	@Override
 	public boolean getBoolean() {
-		return this.value.compareTo(new BigDecimal(0)) == 0;
+		return this.value.compareTo(new BigDecimal(0)) != 0;
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class JsonBigDecimal extends JsonNumber {
 
 	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		if(options.hasNumberOfString())
+		if(options.hasNumberToString())
 		{
 			return new JsonStringSerializable(this.value.toString(), options);
 		}

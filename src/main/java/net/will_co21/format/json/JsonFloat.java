@@ -63,7 +63,7 @@ public class JsonFloat extends JsonNumber {
 
 	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		if(options.hasNumberOfString())
+		if(options.hasNumberToString())
 		{
 			return new JsonStringSerializable(this.value + "", options);
 		}

@@ -36,7 +36,7 @@ public class JsonOptions {
 		return (this.value & JsonOption.HEX_QUOT.value) != 0;
 	}
 
-	public boolean hasNumberOfString()
+	public boolean hasNumberToString()
 	{
 		return (this.value & JsonOption.NUMBER_TO_STRING.value) != 0;
 	}
