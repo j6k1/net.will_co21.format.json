@@ -5,6 +5,9 @@ public class JsonOptions {
 
 	public JsonOptions(JsonOption[] options)
 	{
+		if(options == null)
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of options to the JsonOptions constructor.");
+
 		int optionValue = 0;
 
 		for(JsonOption option: options)
