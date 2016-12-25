@@ -7,62 +7,62 @@ import java.util.Optional;
 public abstract class JsonNumber extends JsonValue {
 
 	@Override
-	public int getInt() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of int data type.");
+	public int getInt() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of int data type.");
 	}
 
 	@Override
-	public Optional<Integer> getOptionalInt() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of int data type.");
+	public Optional<Integer> getOptionalInt() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of int data type.");
 	}
 
 	@Override
-	public long getLong() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of long data type.");
+	public long getLong() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of long data type.");
 	}
 
 	@Override
-	public Optional<Long> getOptionalLong() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of long data type.");
+	public Optional<Long> getOptionalLong() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of long data type.");
 	}
 
 	@Override
-	public BigInteger getBigInteger() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of BigInteger data type.");
+	public BigInteger getBigInteger() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of BigInteger data type.");
 	}
 
 	@Override
-	public Optional<BigInteger> getOptionalBigInteger() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of BigInteger data type.");
+	public Optional<BigInteger> getOptionalBigInteger() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of BigInteger data type.");
 	}
 
 	@Override
-	public float getFloat() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of float data type.");
+	public float getFloat() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of float data type.");
 	}
 
 	@Override
-	public Optional<Float> getOptionalFloat() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of float data type.");
+	public Optional<Float> getOptionalFloat() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of float data type.");
 	}
 
 	@Override
-	public double getDouble() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of double data type.");
+	public double getDouble() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of double data type.");
 	}
 
 	@Override
-	public Optional<Double> getOptionalDouble() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of double data type.");
+	public Optional<Double> getOptionalDouble() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of double data type.");
 	}
 
 	@Override
-	public BigDecimal getBigDecimal() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of BigDecimal data type.");
+	public BigDecimal getBigDecimal() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of BigDecimal data type.");
 	}
 
 	@Override
-	public Optional<BigDecimal> getOptionalBigDecimal() throws NotSupportedMethodException {
-		throw new NotSupportedMethodException("This value is outside the range of BigDecimal data type.");
+	public Optional<BigDecimal> getOptionalBigDecimal() throws CanNotStoreInDataTypeException {
+		throw new CanNotStoreInDataTypeException("This value is outside the range of BigDecimal data type.");
 	}
 }
