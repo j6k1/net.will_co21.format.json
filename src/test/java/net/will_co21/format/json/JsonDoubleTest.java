@@ -114,6 +114,16 @@ public class JsonDoubleTest {
 					}), new CircularReferenceDetector()).toJson(), is("\"" + value + "\""));
 	}
 
+	@Test
+	public void testToJsonSourceOptionBigFloatAsStringCaseGreaterMantissaPart()
+	{
+		double value = 3.40282351E37;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGFLOAT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + value + "\""));
+	}
 
 	@Test
 	public void testToJsonSourceOptionBigDoubleAsStringCaseDoubleMax()
@@ -157,5 +167,115 @@ public class JsonDoubleTest {
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGFLOAT_AS_STRING
 					}), new CircularReferenceDetector()).toJson(), is(Double.toString(value)));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigLongAsStringCaseGreaterLongMax()
+	{
+		double value = 9300000000000000000d;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGLONG_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + value + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigLongAsStringCaseLessLongMin()
+	{
+		double value = -9300000000000000000d;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGLONG_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + value + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigLongAsStringCaseLongMax()
+	{
+		double value = 9223372036854775807d;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGLONG_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(Double.toString(value)));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigLongAsStringCaseLongMin()
+	{
+		double value = -9223372036854775808d;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGLONG_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(Double.toString(value)));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigLongAsStringCaseDecimalValue()
+	{
+		double value = 2147483647.1;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGLONG_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + Double.toString(value) + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseGreaterIntMax()
+	{
+		double value = 2200000000d;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + value + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseLessIntMin()
+	{
+		double value = -2200000000d;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + value + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseIntMax()
+	{
+		double value = 2147483647d;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(Double.toString(value)));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseIntMin()
+	{
+		double value = -2147483648d;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(Double.toString(value)));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseDecimalValue()
+	{
+		double value = 1.1;
+
+		assertThat((new JsonDouble(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + Double.toString(value) + "\""));
 	}
 }

@@ -117,7 +117,7 @@ public class JsonFloatTest {
 	}
 
 	@Test
-	public void testToJsonSourceOptionBigFloatAsStringCaseFloatOneGreaterThanMinimum()
+	public void testToJsonSourceOptionBigFloatAsStringCaseFloatMin()
 	{
 		float value = -3.4028235E+38f;
 
@@ -125,5 +125,60 @@ public class JsonFloatTest {
 				new JsonOptions(new JsonOption[] {
 						JsonOption.BIGFLOAT_AS_STRING
 					}), new CircularReferenceDetector()).toJson(), is(Float.toString(value)));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseGreaterIntMax()
+	{
+		float value = 2200000000f;
+
+		assertThat((new JsonFloat(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + value + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseLessIntMin()
+	{
+		float value = -2200000000f;
+
+		assertThat((new JsonFloat(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + value + "\""));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseIntMax()
+	{
+		float value = 2147483647f;
+
+		assertThat((new JsonFloat(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(Float.toString(value)));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseIntMin()
+	{
+		float value = -2147483648f;
+
+		assertThat((new JsonFloat(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is(Float.toString(value)));
+	}
+
+	@Test
+	public void testToJsonSourceOptionBigIntAsStringCaseDecimalValue()
+	{
+		float value = 1.1f;
+
+		assertThat((new JsonFloat(value)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGINT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + Float.toString(value) + "\""));
 	}
 }

@@ -135,6 +135,17 @@ public class JsonBigDecimalTest {
 	}
 
 	@Test
+	public void testToJsonSourceOptionBigDoubleAsStringCaseGreaterMantissaPart()
+	{
+		String strValue = "22471164185778948222916218155262868027608239412766780263100241258636102756141607129959843456249671444840650018535267579287834082291647314070219057456936246566229799714098366809536004652941487853201097417647192226525594852622831612268360871592331408117651542445559488059018122343636201524867389781720524914688";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGDOUBLE_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
+	}
+
+	@Test
 	public void testToJsonSourceOptionBigFloatAsStringCaseGreaterFloatMax()
 	{
 		String strValue = "3.4028236E+38";
@@ -156,6 +167,16 @@ public class JsonBigDecimalTest {
 					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
 	}
 
+	@Test
+	public void testToJsonSourceOptionBigFloatAsStringCaseGreaterMantissaPart()
+	{
+		String strValue = "3.40282351E+37";
+
+		assertThat((new JsonBigDecimal(strValue)).toJsonSource(
+				new JsonOptions(new JsonOption[] {
+						JsonOption.BIGFLOAT_AS_STRING
+					}), new CircularReferenceDetector()).toJson(), is("\"" + strValue + "\""));
+	}
 
 	@Test
 	public void testToJsonSourceOptionBigDoubleAsStringCaseDoubleMax()

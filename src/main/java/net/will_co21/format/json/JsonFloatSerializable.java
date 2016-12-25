@@ -16,7 +16,7 @@ public class JsonFloatSerializable implements IPrettyJsonSerializable {
 	@Override
 	public String toJson()
 	{
-		return this.value + "";
+		return Float.toString(this.value);
 	}
 
 	@Override

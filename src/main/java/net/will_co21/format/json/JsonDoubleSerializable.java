@@ -16,7 +16,7 @@ public class JsonDoubleSerializable implements IPrettyJsonSerializable {
 	@Override
 	public String toJson()
 	{
-		return this.value + "";
+		return Double.toString(this.value);
 	}
 
 	@Override
