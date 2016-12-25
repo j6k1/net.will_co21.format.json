@@ -30,6 +30,20 @@ public class JsonBigIntegerTest {
 	}
 
 	@Test
+	public void testGetBigInteger() {
+		String strValue = "9223372036854775808";
+		assertThat((new JsonBigInteger(strValue)).getBigInteger(),
+				is(new BigInteger(strValue)));
+	}
+
+	@Test
+	public void testGetOptionalBigInteger() {
+		String strValue = "9223372036854775808";
+		assertThat((new JsonBigInteger(strValue)).getOptionalBigInteger().get(),
+				is(new BigInteger(strValue)));
+	}
+
+	@Test
 	public void testGetBigDecimal() {
 		String strValue = "9223372036854775808";
 		assertThat((new JsonBigInteger(strValue)).getBigDecimal(),

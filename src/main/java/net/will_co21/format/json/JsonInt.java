@@ -43,16 +43,6 @@ public class JsonInt extends JsonNumber {
 	}
 
 	@Override
-	public float getFloat() {
-		return (float)this.value;
-	}
-
-	@Override
-	public Optional<Float> getOptionalFloat() {
-		return Optional.of(getFloat());
-	}
-
-	@Override
 	public double getDouble() {
 		return (double)this.value;
 	}

@@ -33,16 +33,6 @@ public class JsonLong extends JsonNumber {
 	}
 
 	@Override
-	public double getDouble() {
-		return (double)this.value;
-	}
-
-	@Override
-	public Optional<Double> getOptionalDouble() {
-		return Optional.of(getDouble());
-	}
-
-	@Override
 	public BigDecimal getBigDecimal() {
 		return BigDecimal.valueOf(this.value);
 	}
