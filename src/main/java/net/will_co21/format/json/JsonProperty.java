@@ -23,7 +23,7 @@ public class JsonProperty {
 	public static JsonProperty create(String key, IJsonValue value)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 		else if(value == null)
 			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonProperty type constructor.");
 
@@ -33,7 +33,7 @@ public class JsonProperty {
 	public static <T> JsonProperty create(String key, T obj, IJsonSourceDelegate<T> sourceCreator)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 		else if(obj == null)
 			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonProperty type constructor.");
 		else if(sourceCreator == null)
@@ -45,7 +45,7 @@ public class JsonProperty {
 	public static JsonProperty create(String key, int value)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 
 		return new JsonProperty(key, new JsonInt(value));
 	}
@@ -53,7 +53,7 @@ public class JsonProperty {
 	public static JsonProperty create(String key, long value)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 
 		return new JsonProperty(key, new JsonLong(value));
 	}
@@ -61,7 +61,7 @@ public class JsonProperty {
 	public static JsonProperty create(String key, float value)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 
 		return new JsonProperty(key, new JsonFloat(value));
 	}
@@ -69,7 +69,7 @@ public class JsonProperty {
 	public static JsonProperty create(String key, double value)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 
 		return new JsonProperty(key, new JsonDouble(value));
 	}
@@ -77,7 +77,7 @@ public class JsonProperty {
 	public static JsonProperty create(String key, BigInteger value)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 		else if(value == null)
 			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonProperty type constructor.");
 
@@ -87,7 +87,7 @@ public class JsonProperty {
 	public static JsonProperty create(String key, BigDecimal value)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 		else if(value == null)
 			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonProperty type constructor.");
 
@@ -97,7 +97,7 @@ public class JsonProperty {
 	public static JsonProperty create(String key, String value)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 		else if(value == null)
 			throw new TypeOfNullableNotAllowedException("null value was passed in to the JsonProperty type constructor.");
 
@@ -107,7 +107,7 @@ public class JsonProperty {
 	public static JsonProperty create(String key, boolean value)
 	{
 		if(key == null)
-			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonOptions constructor.");
+			throw new TypeOfNullableNotAllowedException("null value was passed as the value of key to the JsonProperty constructor.");
 
 		return new JsonProperty(key, new JsonBoolean(value));
 	}
