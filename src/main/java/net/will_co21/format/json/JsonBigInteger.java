@@ -70,7 +70,12 @@ public class JsonBigInteger extends JsonNumber {
 
 	public IPrettyJsonSerializable toJsonSource(JsonOptions options, CircularReferenceDetector detector)
 	{
-		BigDecimal bigDecimalValue = new BigDecimal(this.value);
+		BigDecimal bigDecimalValue = null;
+
+		if(options.hasBigFloatAsString() || options.hasBigDoubleAsString())
+		{
+			bigDecimalValue = new BigDecimal(this.value);
+		}
 
 		if(options.hasNumberToString())
 		{
