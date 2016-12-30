@@ -215,11 +215,6 @@ public class JsonArray extends JsonValue {
 		else return this.arr.remove(o);
 	}
 
-	public ArrayList<IJsonValue> getValues()
-	{
-		return this.arr;
-	}
-
 	public ArrayList<IJsonValue> toArrayList()
 	{
 		ArrayList<IJsonValue> result = new ArrayList<IJsonValue>();

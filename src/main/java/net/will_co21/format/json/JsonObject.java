@@ -97,11 +97,6 @@ public class JsonObject extends JsonValue {
 		return map.size();
 	}
 
-	public Set<Map.Entry<String, IJsonValue>> entrySet()
-	{
-		return map.entrySet();
-	}
-
 	public TreeMap<String, IJsonValue> toTreeMap()
 	{
 		TreeMap<String, IJsonValue> result = new TreeMap<String, IJsonValue>();
