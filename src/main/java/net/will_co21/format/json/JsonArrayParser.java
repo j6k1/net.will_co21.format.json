@@ -76,11 +76,10 @@ public class JsonArrayParser extends JsonContainerParser implements IJsonParser 
 
 			index = ret.snd;
 
-			if(index == json.length()) {
+			if(index == json.length() || (index = skipWhiteSpace(json, index)) == json.length()) {
 				throw new JsonFormatErrorException("The format of this json string is not an json object format.");
 			}
 
-			index = skipWhiteSpace(json, index);
 
 			c = json.charAt(index);
 
