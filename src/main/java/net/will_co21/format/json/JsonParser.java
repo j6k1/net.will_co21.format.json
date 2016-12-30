@@ -10,7 +10,7 @@ public class JsonParser extends JsonContainerParser implements IJsonParser {
 
 	@Override
 	public Pair<IJsonValue, Integer> parseJson(String json, int start) {
-		int index = start;
+		int index = skipWhiteSpace(json, start);
 
 		char c = json.charAt(index);
 		Pair<IJsonValue, Integer> ret;
@@ -44,6 +44,15 @@ public class JsonParser extends JsonContainerParser implements IJsonParser {
 		else
 		{
 			throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+		}
+
+		index = ret.snd;
+
+		index = skipWhiteSpace(json, index);
+
+		if(index < json.length())
+		{
+			throw new JsonFormatErrorException("unexpected character \"" + json.charAt(index) + "\" was found.");
 		}
 
 		return ret;

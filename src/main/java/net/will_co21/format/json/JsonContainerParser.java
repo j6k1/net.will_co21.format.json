@@ -29,6 +29,6 @@ public abstract class JsonContainerParser implements IJsonParser {
 			}
 		}
 
-		return json.length() - 1;
+		return json.length();
 	}
 }
