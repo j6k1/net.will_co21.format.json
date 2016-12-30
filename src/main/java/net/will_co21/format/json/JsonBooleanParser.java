@@ -20,7 +20,7 @@ public class JsonBooleanParser implements IJsonParser {
 		}
 		else if(json.startsWith("false", start))
 		{
-			return new Pair<IJsonValue, Integer>(new JsonBoolean(true), start + 5);
+			return new Pair<IJsonValue, Integer>(new JsonBoolean(false), start + 5);
 		}
 		else
 		{

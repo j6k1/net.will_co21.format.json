@@ -37,4 +37,9 @@ public class JsonBoolean extends JsonValue {
 	{
 		return Boolean.hashCode(this.value);
 	}
+
+	public String toString()
+	{
+		return (this.value) ? "true" : "false";
+	}
 }

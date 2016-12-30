@@ -124,4 +124,9 @@ public class JsonNull extends JsonValue {
 	{
 		return Objects.hashCode(null);
 	}
+
+	public String toString()
+	{
+		return "null";
+	}
 }
