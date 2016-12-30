@@ -309,4 +309,9 @@ public class JsonArray extends JsonValue {
 	{
 		return this.arr.hashCode();
 	}
+
+	public String toString()
+	{
+		return this.toJson();
+	}
 }
