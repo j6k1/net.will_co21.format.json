@@ -3,6 +3,7 @@ package net.will_co21.format.json;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
@@ -479,6 +480,15 @@ public class JsonNumberParserTest {
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
 		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-1.7976931348623157E308d), json.length())));
+	}
+
+	@Test
+	public void testJsonDoubleCaseFloatMaxValueToDouble() {
+		String json = Double.toString(Float.MAX_VALUE);
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
+		assertThat(result.fst, instanceOf(JsonDouble.class));
+		assertThat(BigDecimal.valueOf(result.fst.getDouble()), is(new BigDecimal(json)));
 	}
 
 	@Test
