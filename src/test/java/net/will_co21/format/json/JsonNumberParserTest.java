@@ -546,4 +546,364 @@ public class JsonNumberParserTest {
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
 		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-3.4028235E38), json.length())));
 	}
+
+	@Test
+	public void testParseJsonInvalidStartUseOffset() {
+		String json = "aaaaaaaaaaa100000";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
+		}
+	}
+
+	@Test
+	public void testParseJsonMinusSignOnlyUseOffset() {
+		String json = "aaaaaaaaaa-";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json number format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonInvalidNegativeStartUseOffset() {
+		String json = "aaaaaaaaaa-a";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
+		}
+	}
+
+	@Test
+	public void testParseJsonDecimalsTooShortUseOffset() {
+		String json = "aaaaaaaaaa0.";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json number format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonNoDotDecimalUseOffset() {
+		String json = "aaaaaaaaaa01111";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("unexpected character \"1\" was found."));
+		}
+	}
+
+	@Test
+	public void testParseJsonNextCharacterOfDotIsNotNumberCaseLessThan1UseOffset() {
+		String json = "aaaaaaaaaa0.a";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
+		}
+	}
+
+	@Test
+	public void testParseJsonEndOfDotCase1orMoreUseOffset() {
+		String json = "aaaaaaaaaa1.";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json number format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonNextCharacterOfDotIsNotNumberCase1orMoreUseOffset() {
+		String json = "aaaaaaaaaa1.a";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
+		}
+	}
+
+	@Test
+	public void testParseJsonHasExponentPartExponentCaseEndsWithLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1234e";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json number format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonHasExponentPartExponentCaseEndsWithUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1234E";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json number format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonInvalidCharacterFollowingExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1234Ea";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
+		}
+	}
+
+	@Test
+	public void testParseJsonExponentialNotationEndsWithSignCharacterCasePlusUseOffset() {
+		String json = "aaaaaaaaaa1234E+";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json number format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonExponentialNotationEndsWithSignCharacterCaseMinusUseOffset() {
+		String json = "aaaaaaaaaa1234E-";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json number format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonNextCharacterToTheExponentialNotationIsNotNumberCasePlusUseOffset() {
+		String json = "aaaaaaaaaa1234E+a";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
+		}
+	}
+
+	@Test
+	public void testParseJsonNextCharacterToTheExponentialNotationIsNotNumberCaseMinusUseOffset() {
+		String json = "aaaaaaaaaa1234E-a";
+
+		try {
+			(new JsonNumberParser()).parseJson(json, 10);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
+		}
+	}
+
+	@Test
+	public void testParseJsonPlusDecimalCaseLessThan1UseOffset() {
+		String json = "aaaaaaaaaa0.111";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(0.111f), 15)));
+	}
+
+	@Test
+	public void testParseJsonMinusDecimalCaseLessThan1UseOffset() {
+		String json = "aaaaaaaaaa-0.111";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(-0.111f), 16)));
+	}
+
+	@Test
+	public void testParseJsonPlusDecimalCase1orMoreUseOffset() {
+		String json = "aaaaaaaaaa1.111";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1.111f), 15)));
+	}
+
+	@Test
+	public void testParseJsonMinusDecimalCase1orMoreUseOffset() {
+		String json = "aaaaaaaaaa-1.111";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(-1.111f), 16)));
+	}
+
+	@Test
+	public void testParseJsonExponentialNotationUnsignedCaseLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1e10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1e10f), 14)));
+	}
+
+	@Test
+	public void testParseJsonExponentialNotationUnsignedCaseUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1E10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1e10f), 14)));
+	}
+
+	@Test
+	public void testParseJsonExponentialNotationPlusCaseLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1e+10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1e10f), 15)));
+	}
+
+	@Test
+	public void testParseJsonExponentialNotationPlusCaseUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1E+10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1e10f), 15)));
+	}
+
+
+	@Test
+	public void testParseJsonExponentialNotationMinusCaseLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1e-10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1e-10f), 15)));
+	}
+
+	@Test
+	public void testParseJsonExponentialNotationMinusCaseUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1E-10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1e-10f), 15)));
+	}
+
+	@Test
+	public void testParseJsonDecimalAndExponentialNotationUnsignedCaseLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1.1e10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(1.1e10), json.length())));
+	}
+
+	@Test
+	public void testParseJsonDecimalAndExponentialNotationUnsignedCaseUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1.1E10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(1.1e10), json.length())));
+	}
+
+	@Test
+	public void testParseJsonDecimalAndExponentialNotationPlusCaseLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1.1e+10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(1.1e10), json.length())));
+	}
+
+	@Test
+	public void testParseJsonDecimalAndExponentialNotationPlusCaseUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1.1E+10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(1.1e10), json.length())));
+	}
+
+
+	@Test
+	public void testParseJsonDecimalAndExponentialNotationMinusCaseLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1.1e-10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1.1e-10f), json.length())));
+	}
+
+	@Test
+	public void testParseJsonDecimalAndExponentialNotationMinusCaseUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa1.1E-10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(1.1e-10f), json.length())));
+	}
+
+
+	@Test
+	public void testParseJsonMinusDecimalAndExponentialNotationUnsignedCaseLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa-1.1e10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-1.1e10), json.length())));
+	}
+
+	@Test
+	public void testParseJsonMinusDecimalAndExponentialNotationUnsignedCaseUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa-1.1E10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-1.1e10), json.length())));
+	}
+
+	@Test
+	public void testParseJsonMinusDecimalAndExponentialNotationPlusCaseLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa-1.1e+10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-1.1e10), json.length())));
+	}
+
+	@Test
+	public void testParseJsonMinusDecimalAndExponentialNotationPlusCaseUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa-1.1E+10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-1.1e10), json.length())));
+	}
+
+
+	@Test
+	public void testParseJsonMinusDecimalAndExponentialNotationMinusCaseLowerExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa-1.1e-10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(-1.1e-10f), json.length())));
+	}
+
+	@Test
+	public void testParseJsonMinusDecimalAndExponentialNotationMinusCaseUpperExponentMarkUseOffset() {
+		String json = "aaaaaaaaaa-1.1E-10";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 10);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(-1.1e-10f), json.length())));
+	}
 }

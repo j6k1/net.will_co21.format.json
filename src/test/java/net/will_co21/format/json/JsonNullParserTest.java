@@ -25,4 +25,24 @@ public class JsonNullParserTest {
 
 		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonNull(), json.length())));
 	}
+
+	@Test
+	public void testParseJsonInvalidUseOffset() {
+		String json = "aaaaaaaaaaaaaa";
+
+		try {
+			Pair<IJsonValue, Integer> result = (new JsonNullParser().parseJson(json, 10));
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json null format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonNullUseOffset() {
+		String json = "aaaaaaaaaanull";
+
+		Pair<IJsonValue, Integer> result = (new JsonNullParser().parseJson(json, 10));
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonNull(), json.length())));
+	}
 }

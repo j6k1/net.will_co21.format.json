@@ -35,4 +35,33 @@ public class JsonBooleanParserTest {
 
 		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonBoolean(false), json.length())));
 	}
+
+	@Test
+	public void testParseJsonInvalidUseOffset() {
+		String json = "aaaaaaaaaaaaaa";
+
+		try {
+			Pair<IJsonValue, Integer> result = (new JsonBooleanParser().parseJson(json, 10));
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json boolean format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonTrueUseOffset() {
+		String json = "aaaaaaaaaatrue";
+
+		Pair<IJsonValue, Integer> result = (new JsonBooleanParser().parseJson(json, 10));
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonBoolean(true), json.length())));
+	}
+
+	@Test
+	public void testParseJsonFalseUseOffset() {
+		String json = "aaaaaaaaaafalse";
+
+		Pair<IJsonValue, Integer> result = (new JsonBooleanParser().parseJson(json, 10));
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonBoolean(false), json.length())));
+	}
 }
