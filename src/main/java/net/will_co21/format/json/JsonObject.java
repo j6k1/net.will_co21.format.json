@@ -26,6 +26,7 @@ public class JsonObject extends JsonValue {
 
 		for(JsonProperty prop: properties)
 		{
+			if(prop == null) throw new TypeOfNullableNotAllowedException("Items in the initialization list contain null values.");
 			map.put(prop.key, prop.value);
 		}
 	}
