@@ -12,6 +12,7 @@ public class JsonNullParserTest {
 
 		try {
 			Pair<IJsonValue, Integer> result = (new JsonNullParser().parseJson(json, 0));
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json null format."));
 		}
@@ -32,6 +33,7 @@ public class JsonNullParserTest {
 
 		try {
 			Pair<IJsonValue, Integer> result = (new JsonNullParser().parseJson(json, 10));
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json null format."));
 		}

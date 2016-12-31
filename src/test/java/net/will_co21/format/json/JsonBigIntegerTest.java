@@ -14,6 +14,7 @@ public class JsonBigIntegerTest {
 		try {
 			String value = null;
 			new JsonBigInteger(value);
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("null value was passed in to the JsonBigInteger type constructor."));
 		}
@@ -24,6 +25,7 @@ public class JsonBigIntegerTest {
 		try {
 			BigInteger value = null;
 			new JsonBigInteger(value);
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("null value was passed in to the JsonBigInteger type constructor."));
 		}

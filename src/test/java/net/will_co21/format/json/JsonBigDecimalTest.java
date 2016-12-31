@@ -14,6 +14,7 @@ public class JsonBigDecimalTest {
 		try {
 			String value = null;
 			new JsonBigDecimal(value);
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("null value was passed in to the JsonBigDecimal type constructor."));
 		}
@@ -24,6 +25,7 @@ public class JsonBigDecimalTest {
 		try {
 			BigInteger value = null;
 			new JsonBigDecimal(value);
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("null value was passed in to the JsonBigDecimal type constructor."));
 		}
@@ -34,6 +36,7 @@ public class JsonBigDecimalTest {
 		try {
 			BigDecimal value = null;
 			new JsonBigDecimal(value);
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("null value was passed in to the JsonBigDecimal type constructor."));
 		}

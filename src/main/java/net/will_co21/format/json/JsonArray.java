@@ -192,9 +192,9 @@ public class JsonArray extends JsonValue {
 		return this.arr.add(v);
 	}
 
-	public boolean add(int index, IJsonValue v)
+	public boolean insert(int index, IJsonValue v)
 	{
-		if(index >= this.arr.size()) throw new ArrayIndexOutOfBoundsException("Index out of range was specified.");
+		if(index > this.arr.size()) throw new ArrayIndexOutOfBoundsException("Index out of range was specified.");
 		else if(v == null) throw new TypeOfNullableNotAllowedException("null reference was passed as the value of the element.");
 
 		this.arr.add(index, v);

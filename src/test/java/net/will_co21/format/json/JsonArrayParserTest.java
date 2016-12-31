@@ -67,6 +67,7 @@ public class JsonArrayParserTest {
 		String json = ",123]";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \",\" was found."));
 		}
@@ -78,6 +79,7 @@ public class JsonArrayParserTest {
 		String json ="[";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -89,6 +91,7 @@ public class JsonArrayParserTest {
 		String json ="[あ]";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \"あ\" was found."));
 		}
@@ -100,6 +103,7 @@ public class JsonArrayParserTest {
 		String json ="[a]";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
 		}
@@ -111,6 +115,7 @@ public class JsonArrayParserTest {
 		String json ="[123";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -122,6 +127,7 @@ public class JsonArrayParserTest {
 		String json ="[123,\"aaaa\"";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -133,6 +139,7 @@ public class JsonArrayParserTest {
 		String json ="[123 \n\r";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -144,6 +151,7 @@ public class JsonArrayParserTest {
 		String json ="[123,\"aaaa\" \n\r";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -156,6 +164,7 @@ public class JsonArrayParserTest {
 		String json ="[   \r\n123";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -167,6 +176,7 @@ public class JsonArrayParserTest {
 		String json ="[  \r\n123 \r\n, \r\n\"aaaa\"";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -178,6 +188,7 @@ public class JsonArrayParserTest {
 		String json ="[  \r\n 123 \n\r";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -189,6 +200,7 @@ public class JsonArrayParserTest {
 		String json ="[  \r\n 123 , \"aaaa\" \n\r";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -200,6 +212,7 @@ public class JsonArrayParserTest {
 		String json ="[123;";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \";\" was found."));
 		}
@@ -211,6 +224,7 @@ public class JsonArrayParserTest {
 		String json ="[123,1324;";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \";\" was found."));
 		}
@@ -222,6 +236,7 @@ public class JsonArrayParserTest {
 		String json ="[  \r\n 123 ;  ";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \";\" was found."));
 		}
@@ -233,6 +248,7 @@ public class JsonArrayParserTest {
 		String json ="[  \r\n  123 ,    1324 ; \n";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \";\" was found."));
 		}
@@ -244,6 +260,7 @@ public class JsonArrayParserTest {
 		String json ="[123,";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -255,6 +272,7 @@ public class JsonArrayParserTest {
 		String json ="[123,5678,";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -266,6 +284,7 @@ public class JsonArrayParserTest {
 		String json ="[ \r\n123  ,  \r\n";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -277,6 +296,7 @@ public class JsonArrayParserTest {
 		String json ="[  123,5678  ,  \r\n";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
 		}
@@ -288,6 +308,7 @@ public class JsonArrayParserTest {
 		String json ="[123,あ";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \"あ\" was found."));
 		}
@@ -299,6 +320,7 @@ public class JsonArrayParserTest {
 		String json ="[123,a";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
 		}
@@ -310,6 +332,7 @@ public class JsonArrayParserTest {
 		String json ="[ 123  ,  あ ";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \"あ\" was found."));
 		}
@@ -321,6 +344,7 @@ public class JsonArrayParserTest {
 		String json ="[  123 , \ra  \r\n";
 		try {
 			parser.parseJson(json, 0);
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
 		}

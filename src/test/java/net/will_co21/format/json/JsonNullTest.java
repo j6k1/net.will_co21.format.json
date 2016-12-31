@@ -18,6 +18,7 @@ public class JsonNullTest {
 	public void testGetInt() {
 		try {
 			(new JsonNull()).getInt();
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("This value cannot be referenced. Invalid reference to object."));
 		}
@@ -32,6 +33,7 @@ public class JsonNullTest {
 	public void testGetLong() {
 		try {
 			(new JsonNull()).getLong();
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("This value cannot be referenced. Invalid reference to object."));
 		}
@@ -46,6 +48,7 @@ public class JsonNullTest {
 	public void testGetBigInteger() {
 		try {
 			(new JsonNull()).getBigInteger();
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("This value cannot be referenced. Invalid reference to object."));
 		}
@@ -60,6 +63,7 @@ public class JsonNullTest {
 	public void testGetFloat() {
 		try {
 			(new JsonNull()).getFloat();
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("This value cannot be referenced. Invalid reference to object."));
 		}
@@ -74,6 +78,7 @@ public class JsonNullTest {
 	public void testGetDouble() {
 		try {
 			(new JsonNull()).getDouble();
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("This value cannot be referenced. Invalid reference to object."));
 		}
@@ -88,6 +93,7 @@ public class JsonNullTest {
 	public void testGetBigDecimal() {
 		try {
 			(new JsonNull()).getBigDecimal();
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("This value cannot be referenced. Invalid reference to object."));
 		}
@@ -102,6 +108,7 @@ public class JsonNullTest {
 	public void testGetString() {
 		try {
 			(new JsonNull()).getString();
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("This value cannot be referenced. Invalid reference to object."));
 		}
@@ -116,6 +123,7 @@ public class JsonNullTest {
 	public void testGetBoolean() {
 		try {
 			(new JsonNull()).getBoolean();
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("This value cannot be referenced. Invalid reference to object."));
 		}
@@ -130,6 +138,7 @@ public class JsonNullTest {
 	public void testGetInt1() {
 		try {
 			(new JsonNull()).get(1);
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("Members can not be referenced. Invalid reference to container object."));
 		}
@@ -139,6 +148,7 @@ public class JsonNullTest {
 	public void testGetString1() {
 		try {
 			(new JsonNull()).get("key");
+			fail();
 		} catch (TypeOfNullableNotAllowedException e) {
 			assertThat(e.getMessage(), is("Members can not be referenced. Invalid reference to container object."));
 		}

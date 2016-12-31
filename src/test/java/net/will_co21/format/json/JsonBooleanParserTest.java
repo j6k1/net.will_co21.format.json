@@ -13,6 +13,7 @@ public class JsonBooleanParserTest {
 
 		try {
 			Pair<IJsonValue, Integer> result = (new JsonBooleanParser().parseJson(json, 0));
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json boolean format."));
 		}
@@ -42,6 +43,7 @@ public class JsonBooleanParserTest {
 
 		try {
 			Pair<IJsonValue, Integer> result = (new JsonBooleanParser().parseJson(json, 10));
+			fail();
 		} catch (JsonFormatErrorException e) {
 			assertThat(e.getMessage(), is("The format of this json string is not an json boolean format."));
 		}
