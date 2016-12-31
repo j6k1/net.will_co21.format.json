@@ -537,7 +537,7 @@ public class JsonArrayTest {
 	}
 
 	@Test
-	public void testJsonSourcePrettyJson() {
+	public void testJsonSourcePrettyPrintOption() {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[3];
 
@@ -551,6 +551,68 @@ public class JsonArrayTest {
 						new JsonNull() })).toJson(new JsonOptions(new JsonOption[] {
 							JsonOption.PRETTY_PRINT
 						})), is(json));
+	}
+
+	@Test
+	public void testJsonSourceNestedInArrayPrintOption() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[4];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat((new JsonArray(new IJsonValue[] {
+						new JsonInt(12345),
+						new JsonArray(new IJsonValue[] {
+							new JsonString("aaaa"),
+							new JsonBoolean(true),
+							new JsonBoolean(false),
+							new JsonNull()
+						}),
+						new JsonInt(123)
+				})).toJson(new JsonOptions (new JsonOption[] {
+					JsonOption.PRETTY_PRINT
+				})), is(json));
+	}
+
+
+	@Test
+	public void testJsonSourceDoubleNestedInArrayPrintOption() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[5];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat((new JsonArray(new IJsonValue[] {
+						new JsonInt(12345),
+						new JsonArray(new IJsonValue[] {
+							new JsonInt(12345),
+							new JsonArray(new IJsonValue[] {
+								new JsonString("aaaa"),
+								new JsonBoolean(true),
+								new JsonBoolean(false),
+								new JsonNull()
+							})
+						}),
+						new JsonInt(123)
+				})).toJson(new JsonOptions (new JsonOption[] {
+					JsonOption.PRETTY_PRINT
+				})), is(json));
+	}
+
+
+	@Test
+	public void testJsonSourcePrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[3];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat((new JsonArray(new IJsonValue[] {
+						new JsonInt(12345),
+						new JsonString("aaaa"),
+						new JsonBoolean(true),
+						new JsonBoolean(false),
+						new JsonNull() })).toPrettyJson(), is(json));
 	}
 
 	@Test
@@ -569,9 +631,7 @@ public class JsonArrayTest {
 							new JsonNull()
 						}),
 						new JsonInt(123)
-				})).toJson(new JsonOptions (new JsonOption[] {
-					JsonOption.PRETTY_PRINT
-				})), is(json));
+				})).toPrettyJson(), is(json));
 	}
 
 
@@ -594,8 +654,6 @@ public class JsonArrayTest {
 							})
 						}),
 						new JsonInt(123)
-				})).toJson(new JsonOptions (new JsonOption[] {
-					JsonOption.PRETTY_PRINT
-				})), is(json));
+				})).toPrettyJson(), is(json));
 	}
 }

@@ -31,7 +31,31 @@ public class JsonSource<T> implements IJsonValue {
 	{
 		CircularReferenceDetector detector = new CircularReferenceDetector();
 
-		return this.toJsonSource(options, detector).toJson();
+		if(options.hasPrettyPrint())
+		{
+			return this.toJsonSource(options, detector).toPrettyJson(0);
+		}
+		else
+		{
+			return this.toJsonSource(options, detector).toJson();
+		}
+	}
+
+	public String toPrettyJson()
+	{
+		return this.toPrettyJson(new JsonOptions(new JsonOption[] {}));
+	}
+
+	public String toPrettyJson(JsonOption[] options)
+	{
+		return this.toJson(new JsonOptions(options));
+	}
+
+	public String toPrettyJson(JsonOptions options)
+	{
+		CircularReferenceDetector detector = new CircularReferenceDetector();
+
+		return this.toJsonSource(options, detector).toPrettyJson(0);
 	}
 
 	@Override
