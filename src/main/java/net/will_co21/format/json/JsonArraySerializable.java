@@ -31,16 +31,16 @@ public class JsonArraySerializable extends JsonContainerSerializable implements 
 	}
 
 	@Override
-	public String toJson(int indent) {
+	public String toPrettyJson(int indent) {
 		if(this.value.size() == 0) return "[]";
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append('[');
+		sb.append("[\n");
 
 		for(IPrettyJsonSerializable v: this.value)
 		{
-			String elm = v.toJson(indent + 1);
+			String elm = v.toPrettyJson(indent + 1);
 			sb.append(strRepeat("    ", indent + 1) + elm + ",\n");
 		}
 		sb.deleteCharAt(sb.length() - 2);

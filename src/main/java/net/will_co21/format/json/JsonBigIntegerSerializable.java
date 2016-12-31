@@ -24,7 +24,7 @@ public class JsonBigIntegerSerializable implements IPrettyJsonSerializable {
 	}
 
 	@Override
-	public String toJson(int indent)
+	public String toPrettyJson(int indent)
 	{
 		return toJson();
 	}

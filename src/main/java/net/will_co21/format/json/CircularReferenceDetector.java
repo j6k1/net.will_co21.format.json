@@ -46,6 +46,7 @@ public class CircularReferenceDetector {
 	{
 		this.generateException = generateException;
 		this.referenceSet = new HashSet<ObjectReference>();
+		this.referenceStack = new LinkedList<ObjectReference>();
 	}
 
 	public CircularReferenceDetector push(Object obj)

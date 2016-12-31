@@ -20,7 +20,7 @@ public class JsonLongSerializable implements IPrettyJsonSerializable {
 	}
 
 	@Override
-	public String toJson(int indent)
+	public String toPrettyJson(int indent)
 	{
 		return toJson();
 	}

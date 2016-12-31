@@ -2,16 +2,49 @@ package net.will_co21.format.json;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.*;
 
 public class JsonArrayTest {
+	private static String[] jsons;
+
+	@BeforeClass
+	public static void loadJsons() throws UnsupportedCharsetException, UnsupportedEncodingException, FileNotFoundException, IOException
+	{
+		String currentDir = System.getProperty("user.dir");
+
+		String path = String.join(File.separator, new String[] { currentDir, "testdata", "test_jsonarrayserializable_jsons.txt" });
+
+		LinkedList<String> lines = new LinkedList<String>();
+
+		try(BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path),"UTF-8"))) {
+
+			String line;
+
+			while((line = reader.readLine()) != null)
+			{
+				lines.add(line);
+			}
+		}
+		jsons = String.join("\n", lines).split("\\r\\n\\r\\n|\\n\\n|\\r\\r");
+	}
+
 
 	@Test
 	public void testGetIntIndexOfOutBound() {
@@ -442,5 +475,127 @@ public class JsonArrayTest {
 		acc = jarr.fold((argAcc, v) -> argAcc + v.value.getInt(), acc);
 
 		assertThat(acc, is(Arrays.asList(new Integer[] { 1,2,3,4,5,6,7,8,9,10 }).stream().reduce(0, (v1, v2) -> v1 + v2)));
+	}
+
+
+	@Test
+	public void testJsonSourceNotPrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[0];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat((new JsonArray(new IJsonValue[] {
+				new JsonInt(12345),
+				new JsonString("aaaa"),
+				new JsonBoolean(true),
+				new JsonBoolean(false),
+				new JsonNull() })).toJson(), is(json));
+	}
+
+	@Test
+	public void testJsonSourceNestedInArrayNotPrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[1];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat((new JsonArray(new IJsonValue[] {
+						new JsonInt(12345),
+						new JsonArray(new IJsonValue[] {
+							new JsonString("aaaa"),
+							new JsonBoolean(true),
+							new JsonBoolean(false),
+							new JsonNull()
+						}),
+						new JsonInt(123)
+				})).toJson(), is(json));
+	}
+
+
+	@Test
+	public void testJsonSourceDoubleNestedInArrayNotPrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[2];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat((
+				new JsonArray(new IJsonValue[] {
+						new JsonInt(12345),
+						new JsonArray(new IJsonValue[] {
+							new JsonInt(12345),
+							new JsonArray(new IJsonValue[] {
+								new JsonString("aaaa"),
+								new JsonBoolean(true),
+								new JsonBoolean(false),
+								new JsonNull()
+							})
+						}),
+						new JsonInt(123)
+				})).toJson(), is(json));
+	}
+
+	@Test
+	public void testJsonSourcePrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[3];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat((new JsonArray(new IJsonValue[] {
+						new JsonInt(12345),
+						new JsonString("aaaa"),
+						new JsonBoolean(true),
+						new JsonBoolean(false),
+						new JsonNull() })).toJson(new JsonOptions(new JsonOption[] {
+							JsonOption.PRETTY_PRINT
+						})), is(json));
+	}
+
+	@Test
+	public void testJsonSourceNestedInArrayPrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[4];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat((new JsonArray(new IJsonValue[] {
+						new JsonInt(12345),
+						new JsonArray(new IJsonValue[] {
+							new JsonString("aaaa"),
+							new JsonBoolean(true),
+							new JsonBoolean(false),
+							new JsonNull()
+						}),
+						new JsonInt(123)
+				})).toJson(new JsonOptions (new JsonOption[] {
+					JsonOption.PRETTY_PRINT
+				})), is(json));
+	}
+
+
+	@Test
+	public void testJsonSourceDoubleNestedInArrayPrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[5];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat((new JsonArray(new IJsonValue[] {
+						new JsonInt(12345),
+						new JsonArray(new IJsonValue[] {
+							new JsonInt(12345),
+							new JsonArray(new IJsonValue[] {
+								new JsonString("aaaa"),
+								new JsonBoolean(true),
+								new JsonBoolean(false),
+								new JsonNull()
+							})
+						}),
+						new JsonInt(123)
+				})).toJson(new JsonOptions (new JsonOption[] {
+					JsonOption.PRETTY_PRINT
+				})), is(json));
 	}
 }

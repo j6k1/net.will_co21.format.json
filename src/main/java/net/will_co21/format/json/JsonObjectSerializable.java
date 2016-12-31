@@ -32,16 +32,16 @@ public class JsonObjectSerializable extends JsonContainerSerializable implements
 	}
 
 	@Override
-	public String toJson(int indent) {
+	public String toPrettyJson(int indent) {
 		if(this.value.size() == 0) return "{}";
 
 		StringBuilder sb = new StringBuilder();
 
-		sb.append('{');
+		sb.append("{\n");
 
 		for(Map.Entry<String, IPrettyJsonSerializable> entry: this.value.entrySet())
 		{
-			String kv = new JsonStringSerializable(entry.getKey(), this.options).toJson() + ": " + entry.getValue().toJson(indent + 1);
+			String kv = new JsonStringSerializable(entry.getKey(), this.options).toJson() + ": " + entry.getValue().toPrettyJson(indent + 1);
 			sb.append(strRepeat("    ", indent + 1) + kv + ",\n");
 		}
 

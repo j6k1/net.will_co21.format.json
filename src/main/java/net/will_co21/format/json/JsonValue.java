@@ -23,7 +23,14 @@ public abstract class JsonValue implements IJsonValue {
 	{
 		CircularReferenceDetector detector = new CircularReferenceDetector();
 
-		return this.toJsonSource(options, detector).toJson();
+		if(options.hasPrettyPrint())
+		{
+			return this.toJsonSource(options, detector).toPrettyJson(0);
+		}
+		else
+		{
+			return this.toJsonSource(options, detector).toJson();
+		}
 	}
 
 	@Override
