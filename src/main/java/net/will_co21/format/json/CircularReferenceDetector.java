@@ -1,5 +1,6 @@
 package net.will_co21.format.json;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Objects;
@@ -32,8 +33,7 @@ public class CircularReferenceDetector {
 		}
 	}
 
-	private HashSet<ObjectReference> referenceSet;
-	private LinkedList<ObjectReference> referenceStack;
+	private ArrayList<ObjectReference> referenceList;
 
 	private boolean generateException;
 
@@ -45,23 +45,21 @@ public class CircularReferenceDetector {
 	public CircularReferenceDetector(boolean generateException)
 	{
 		this.generateException = generateException;
-		this.referenceSet = new HashSet<ObjectReference>();
-		this.referenceStack = new LinkedList<ObjectReference>();
+		this.referenceList = new ArrayList<ObjectReference>();
 	}
 
 	public CircularReferenceDetector push(Object obj)
 	{
 		ObjectReference r = new ObjectReference(obj);
 
-		referenceSet.add(r);
-		referenceStack.offerLast(r);
+		referenceList.add(r);
 
 		return this;
 	}
 
 	public boolean detect(Object obj)
 	{
-		if(referenceSet.contains(new ObjectReference(obj)))
+		if(referenceList.contains(new ObjectReference(obj)))
 		{
 			if(generateException) throw new CircularReferenceException("Circular reference detected.");
 			else return true;
@@ -74,9 +72,8 @@ public class CircularReferenceDetector {
 
 	public Object pop()
 	{
-		Object raw = referenceStack.getLast().getRawObject();
-		referenceSet.remove(referenceStack.getLast());
-		referenceStack.pollLast();
+		Object raw = referenceList.get(referenceList.size() - 1).getRawObject();
+		referenceList.remove(referenceList.size() - 1);
 
 		return raw;
 	}

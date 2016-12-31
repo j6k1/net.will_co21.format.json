@@ -262,6 +262,32 @@ public class JsonArrayTest {
 	}
 
 	@Test
+	public void testJsonArrayCircularReference() {
+		JsonArray arr = new JsonArray();
+		arr.add(arr);
+
+		try {
+			arr.toJson();
+			fail();
+		} catch (CircularReferenceException e) {
+			assertThat(e.getMessage(), is("Circular reference detected."));
+		}
+	}
+
+	@Test
+	public void testJsonArrayCircularReferenceNested() {
+		JsonArray arr = new JsonArray();
+		arr.add(new JsonArray(new IJsonValue[] { arr }));
+
+		try {
+			arr.toJson();
+			fail();
+		} catch (CircularReferenceException e) {
+			assertThat(e.getMessage(), is("Circular reference detected."));
+		}
+	}
+
+	@Test
 	public void testSize() {
 		assertThat((new JsonArray(new int[] { 1,2,3,4,5,6,7,8,9,10 })).size(), is(10));
 	}
@@ -483,8 +509,6 @@ public class JsonArrayTest {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[0];
 
-		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
-
 		assertThat((new JsonArray(new IJsonValue[] {
 				new JsonInt(12345),
 				new JsonString("aaaa"),
@@ -498,8 +522,6 @@ public class JsonArrayTest {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[1];
 
-		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
-
 		assertThat((new JsonArray(new IJsonValue[] {
 						new JsonInt(12345),
 						new JsonArray(new IJsonValue[] {
@@ -512,13 +534,10 @@ public class JsonArrayTest {
 				})).toJson(), is(json));
 	}
 
-
 	@Test
 	public void testJsonSourceDoubleNestedInArrayNotPrettyJson() {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[2];
-
-		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
 
 		assertThat((
 				new JsonArray(new IJsonValue[] {
@@ -541,8 +560,6 @@ public class JsonArrayTest {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[3];
 
-		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
-
 		assertThat((new JsonArray(new IJsonValue[] {
 						new JsonInt(12345),
 						new JsonString("aaaa"),
@@ -557,8 +574,6 @@ public class JsonArrayTest {
 	public void testJsonSourceNestedInArrayPrintOption() {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[4];
-
-		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
 
 		assertThat((new JsonArray(new IJsonValue[] {
 						new JsonInt(12345),
@@ -579,8 +594,6 @@ public class JsonArrayTest {
 	public void testJsonSourceDoubleNestedInArrayPrintOption() {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[5];
-
-		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
 
 		assertThat((new JsonArray(new IJsonValue[] {
 						new JsonInt(12345),
@@ -605,8 +618,6 @@ public class JsonArrayTest {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[3];
 
-		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
-
 		assertThat((new JsonArray(new IJsonValue[] {
 						new JsonInt(12345),
 						new JsonString("aaaa"),
@@ -620,8 +631,6 @@ public class JsonArrayTest {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[4];
 
-		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
-
 		assertThat((new JsonArray(new IJsonValue[] {
 						new JsonInt(12345),
 						new JsonArray(new IJsonValue[] {
@@ -634,13 +643,10 @@ public class JsonArrayTest {
 				})).toPrettyJson(), is(json));
 	}
 
-
 	@Test
 	public void testJsonSourceDoubleNestedInArrayPrettyJson() {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[5];
-
-		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
 
 		assertThat((new JsonArray(new IJsonValue[] {
 						new JsonInt(12345),
@@ -654,6 +660,32 @@ public class JsonArrayTest {
 							})
 						}),
 						new JsonInt(123)
+				})).toPrettyJson(), is(json));
+	}
+
+	@Test
+	public void testJsonSourceSameInstanceOfSiblingElementNotPrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[6];
+
+		JsonArray arr = new JsonArray(new int[] {1,2,3});
+
+		assertThat((new JsonArray(new IJsonValue[] {
+						arr,
+						arr
+				})).toJson(), is(json));
+	}
+
+	@Test
+	public void testJsonSourceSameInstanceOfSiblingElementPrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = jsons[7];
+
+		JsonArray arr = new JsonArray(new int[] {1,2,3});
+
+		assertThat((new JsonArray(new IJsonValue[] {
+						arr,
+						arr
 				})).toPrettyJson(), is(json));
 	}
 }
