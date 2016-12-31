@@ -679,7 +679,7 @@ public class JsonArrayTest {
 	}
 
 	@Test
-	public void testJsonSourceFullStringOptionAndMixedElementsNonPrettyJson() {
+	public void testJsonSourceFullStringOptionAndMixedElementsNotPrettyJson() {
 		String json = jsons[8];
 
 		assertThat((new JsonArray(new IJsonValue[] {
@@ -788,7 +788,7 @@ public class JsonArrayTest {
 	}
 
 	@Test
-	public void testJsonSourceNonOptionAndMixedElementsNonPrettyJson() {
+	public void testJsonSourceNonOptionAndMixedElementsNotPrettyJson() {
 		String json = jsons[10];
 
 		assertThat((new JsonArray(new IJsonValue[] {
@@ -886,7 +886,7 @@ public class JsonArrayTest {
 
 
 	@Test
-	public void testJsonSourceOptionAndMixedElementsNonPrettyJson() {
+	public void testJsonSourceOptionAndMixedElementsNotPrettyJson() {
 		String json = jsons[12];
 
 		assertThat((new JsonArray(new IJsonValue[] {
