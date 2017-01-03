@@ -30,7 +30,7 @@ public class JsonArrayParser extends JsonContainerParser implements IJsonParser 
 
 		if(index == json.length())
 		{
-			throw new JsonFormatErrorException("The format of this json string is not an json object format.");
+			throw new JsonFormatErrorException("The format of this json string is not an json array format.");
 		}
 
 		JsonArray result = new JsonArray();
@@ -77,7 +77,7 @@ public class JsonArrayParser extends JsonContainerParser implements IJsonParser 
 			index = ret.snd;
 
 			if(index == json.length() || (index = skipWhiteSpace(json, index)) == json.length()) {
-				throw new JsonFormatErrorException("The format of this json string is not an json object format.");
+				throw new JsonFormatErrorException("The format of this json string is not an json array format.");
 			}
 
 
@@ -98,7 +98,7 @@ public class JsonArrayParser extends JsonContainerParser implements IJsonParser 
 
 				if(index == json.length())
 				{
-					throw new JsonFormatErrorException("The format of this json string is not an json object format.");
+					throw new JsonFormatErrorException("The format of this json string is not an json array format.");
 				}
 			}
 		}

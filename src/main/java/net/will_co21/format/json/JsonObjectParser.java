@@ -41,6 +41,8 @@ public class JsonObjectParser extends JsonContainerParser implements IJsonParser
 			Pair<IJsonValue, Integer> keyRet;
 			String key = null;
 
+			c = json.charAt(index);
+
 			if(c >= 128) throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
 
 			if(!JsonStringParser.headChars[(int)c])

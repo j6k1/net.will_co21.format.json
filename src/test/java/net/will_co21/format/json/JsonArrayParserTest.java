@@ -81,14 +81,26 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
+		}
+	}
+
+	@Test
+	public void testParseJsonEndsWithStartSymbolAndBlank() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json ="[  ";
+		try {
+			parser.parseJson(json, 0);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
 	@Test
 	public void testParseJsonFirstCharacterOfValueIsNotAscii() {
 		JsonArrayParser parser = new JsonArrayParser();
-		String json ="[あ]";
+		String json = "[あ]";
 		try {
 			parser.parseJson(json, 0);
 			fail();
@@ -117,7 +129,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -129,7 +141,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -141,7 +153,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -153,7 +165,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -166,7 +178,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -178,7 +190,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -190,7 +202,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -202,7 +214,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -262,7 +274,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -274,7 +286,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -286,7 +298,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
@@ -298,7 +310,7 @@ public class JsonArrayParserTest {
 			parser.parseJson(json, 0);
 			fail();
 		} catch (JsonFormatErrorException e) {
-			assertThat(e.getMessage(), is("The format of this json string is not an json object format."));
+			assertThat(e.getMessage(), is("The format of this json string is not an json array format."));
 		}
 	}
 
