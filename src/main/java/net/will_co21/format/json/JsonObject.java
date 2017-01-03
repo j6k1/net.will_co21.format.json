@@ -178,4 +178,9 @@ public class JsonObject extends JsonValue {
 	{
 		return this.map.hashCode();
 	}
+
+	public String toString()
+	{
+		return this.toJson();
+	}
 }

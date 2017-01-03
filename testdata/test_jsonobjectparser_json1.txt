@@ -1,0 +1,27 @@
+{
+
+
+      "aaaa" : 12345,
+    "bbbb" : [
+
+      	  12345 ,
+
+        {
+	            "bbbb" : "aaaa" ,
+    	        "cccc":
+
+    	        true,
+
+
+	            "dddd" : false	,
+
+            "eeee"
+            :null
+        	}
+    ]
+    	,
+
+	"cccc":    123
+
+
+}

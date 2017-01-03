@@ -446,4 +446,243 @@ public class JsonObjectParserTest {
 		}
 	}
 
+
+	@Test
+	public void testParseJsonSecondValueFirstCharacterIsInvalidCaseContainWhiteSpace() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json ="[  123 , \ra  \r\n";
+		try {
+			parser.parseJson(json, 0);
+			fail();
+		} catch (JsonFormatErrorException e) {
+			assertThat(e.getMessage(), is("unexpected character \"a\" was found."));
+		}
+	}
+
+	@Test
+	public void testParseJsonNotPrettyJson() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = jsons[0];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aaaa", 12345),
+						JsonProperty.create("bbbb", "aaaa"),
+						JsonProperty.create("cccc", true),
+						JsonProperty.create("dddd", false),
+						JsonProperty.create("eeee", new JsonNull()) }), json.length())));
+	}
+
+	@Test
+	public void testParseJsonNestedInObjectNotPrettyJson() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = jsons[1];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aaaa", 12345),
+						JsonProperty.create("bbbb", new JsonObject(new JsonProperty[] {
+							JsonProperty.create("bbbb", "aaaa"),
+							JsonProperty.create("cccc", true),
+							JsonProperty.create("dddd", false),
+							JsonProperty.create("eeee", new JsonNull())
+						})),
+						JsonProperty.create("cccc", new JsonArray(new IJsonValue[] {
+								new JsonInt(123),
+								new JsonString("aaaa")
+							})),
+						JsonProperty.create("ffff", 123)
+				}), json.length())));
+	}
+
+
+	@Test
+	public void testParseJsonDoubleNestedInObjectNotPrettyJson() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = jsons[2];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aa", 12345),
+						JsonProperty.create("bb", new JsonArray(new IJsonValue[] {
+							new JsonInt(12345),
+							new JsonObject(new JsonProperty[] {
+								JsonProperty.create("cc", "aaaa"),
+								JsonProperty.create("d", true),
+								JsonProperty.create("e", false),
+								JsonProperty.create("fffff", new JsonNull()),
+								JsonProperty.create("ef", new JsonArray(new IJsonValue[] {
+									new JsonInt(123),
+									new JsonString("aaaa")
+								}))
+							})
+						})),
+						JsonProperty.create("g", 123)
+				}), json.length())));
+	}
+
+	@Test
+	public void testParseJsonPrettyJson() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = jsons[3];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aaaa", 12345),
+						JsonProperty.create("bbbb", "aaaa"),
+						JsonProperty.create("cccc", true),
+						JsonProperty.create("dddd", false),
+						JsonProperty.create("eeee", new JsonNull()) }), json.length())));
+	}
+
+	@Test
+	public void testParseJsonNestedInObjectPrettyJson() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = jsons[4];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aaaa", 12345),
+						JsonProperty.create("bbbb", new JsonObject(new JsonProperty[] {
+							JsonProperty.create("bbbb", "aaaa"),
+							JsonProperty.create("cccc", true),
+							JsonProperty.create("dddd", false),
+							JsonProperty.create("eeee", new JsonNull())
+						})),
+						JsonProperty.create("cccc", new JsonArray(new IJsonValue[] {
+							new JsonInt(123),
+							new JsonString("aaaa")
+						})),
+						JsonProperty.create("ffff", 123)
+				}), json.length())));
+	}
+
+
+	@Test
+	public void testParseJsonDoubleNestedInObjectPrettyJson() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = jsons[5];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aa", 12345),
+						JsonProperty.create("bb", new JsonArray(new IJsonValue[] {
+							new JsonInt(12345),
+							new JsonObject(new JsonProperty[] {
+								JsonProperty.create("cc", "aaaa"),
+								JsonProperty.create("d", true),
+								JsonProperty.create("e", false),
+								JsonProperty.create("fffff", new JsonNull()),
+								JsonProperty.create("ef", new JsonArray(new IJsonValue[] {
+									new JsonInt(123),
+									new JsonString("aaaa")
+								}))
+							})
+						})),
+						JsonProperty.create("g", 123)
+				}), json.length())));
+	}
+
+
+	@Test
+	public void testParseJsonPrettyJsonContainWhiteSpace() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = jsons[6];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aaaa", 12345),
+						JsonProperty.create("bbbb", "aaaa"),
+						JsonProperty.create("cccc", true),
+						JsonProperty.create("dddd", false),
+						JsonProperty.create("eeee", new JsonNull()) }), json.length())));
+	}
+
+	@Test
+	public void testParseJsonNestedInObjectPrettyJsonContainWhiteSpace() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = jsons[7];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aaaa", 12345),
+						JsonProperty.create("bbbb", new JsonObject(new JsonProperty[] {
+							JsonProperty.create("bbbb", "aaaa"),
+							JsonProperty.create("cccc", true),
+							JsonProperty.create("dddd", false),
+							JsonProperty.create("eeee", new JsonNull())
+						})),
+						JsonProperty.create("cccc", new JsonArray(new IJsonValue[] {
+								new JsonInt(123),
+								new JsonString("aaaa")
+							})),
+						JsonProperty.create("ffff", 123)
+				}), json.length())));
+	}
+
+	@Test
+	public void testParseJsonDoubleNestedInObjectPrettyJsonContainWhiteSpace() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = jsons[8];
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aa", 12345),
+						JsonProperty.create("bb", new JsonArray(new IJsonValue[] {
+							new JsonInt(12345),
+							new JsonObject(new JsonProperty[] {
+								JsonProperty.create("cc", "aaaa"),
+								JsonProperty.create("d", true),
+								JsonProperty.create("e", false),
+								JsonProperty.create("fffff", new JsonNull()),
+								JsonProperty.create("ef", new JsonArray(new IJsonValue[] {
+									new JsonInt(123),
+									new JsonString("aaaa")
+								}))
+							})
+						})),
+						JsonProperty.create("g", 123)
+				}), json.length())));
+	}
+
+	@Test
+	public void testParseJsonDoubleNestedInObjectPrettyJsonContainWhiteSpaceAndDoubleNL() throws IOException {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = loadJson("test_jsonobjectparser_json1.txt");
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(new JsonProperty[] {
+						JsonProperty.create("aaaa", 12345),
+						JsonProperty.create("bbbb", new JsonArray(new IJsonValue[] {
+							new JsonInt(12345),
+							new JsonObject(new JsonProperty[] {
+								JsonProperty.create("bbbb", "aaaa"),
+								JsonProperty.create("cccc", true),
+								JsonProperty.create("dddd", false),
+								JsonProperty.create("eeee", new JsonNull())
+							})
+						})),
+						JsonProperty.create("cccc", 123)
+				}), json.length())));
+	}
 }
