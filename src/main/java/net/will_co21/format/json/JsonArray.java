@@ -3,6 +3,7 @@ package net.will_co21.format.json;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
@@ -32,7 +33,7 @@ public class JsonArray extends JsonValue {
 		}
 	}
 
-	public JsonArray(ArrayList<IJsonValue> values)
+	public JsonArray(List<IJsonValue> values)
 	{
 		this();
 

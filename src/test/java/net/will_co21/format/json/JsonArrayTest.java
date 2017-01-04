@@ -104,8 +104,8 @@ public class JsonArrayTest {
 	}
 
 	@Test
-	public void testJsonArrayArrayListOfIJsonValueIsNull() {
-		ArrayList<IJsonValue> values = null;
+	public void testJsonArrayListOfIJsonValueIsNull() {
+		List<IJsonValue> values = null;
 
 		try {
 			new JsonArray(values);
@@ -116,8 +116,8 @@ public class JsonArrayTest {
 	}
 
 	@Test
-	public void testJsonArrayArrayListOfIJsonValueElementIsNull() {
-		ArrayList<IJsonValue> values = new ArrayList<IJsonValue>();
+	public void testJsonArrayListOfIJsonValueElementIsNull() {
+		List<IJsonValue> values = new ArrayList<IJsonValue>();
 
 		values.add(null);
 
@@ -503,7 +503,6 @@ public class JsonArrayTest {
 		assertThat(acc, is(Arrays.asList(new Integer[] { 1,2,3,4,5,6,7,8,9,10 }).stream().reduce(0, (v1, v2) -> v1 + v2)));
 	}
 
-
 	@Test
 	public void testJsonSourceNotPrettyJson() {
 		String json = jsons[0];
@@ -605,7 +604,6 @@ public class JsonArrayTest {
 					JsonOption.PRETTY_PRINT
 				})), is(json));
 	}
-
 
 	@Test
 	public void testJsonSourcePrettyJson() {
@@ -886,7 +884,7 @@ public class JsonArrayTest {
 
 
 	@Test
-	public void testJsonSourceOptionAndMixedElementsNotPrettyJson() {
+	public void testJsonSourceFullOptionAndMixedElementsNotPrettyJson() {
 		String json = jsons[12];
 
 		assertThat((new JsonArray(new IJsonValue[] {

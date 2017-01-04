@@ -73,7 +73,7 @@ public class JsonObject extends JsonValue {
 
 	public IJsonValue put(String key, IJsonValue value)
 	{
-		if(value == null) throw new TypeOfNullableNotAllowedException("null reference was passed as the value of the element.");
+		if(key == null || value == null) throw new TypeOfNullableNotAllowedException("null reference was passed as the value of the element.");
 		else return map.put(key, value);
 	}
 
