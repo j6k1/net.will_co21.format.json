@@ -138,7 +138,7 @@ public class JsonBigDecimal extends JsonNumber {
 	@Override
 	public boolean equals(Object o)
 	{
-		if(!(o instanceof JsonBigDecimal)) return false;
+		if(!(o instanceof JsonBigDecimal)) return false; 
 		return this.value.equals(((JsonBigDecimal)o).value);
 	}
 
