@@ -1,0 +1,8 @@
+{"value":{"fst":"aaaa","snd":"bbbb"}}
+
+{
+    "value": {
+        "fst": "aaaa",
+        "snd": "bbbb"
+    }
+}

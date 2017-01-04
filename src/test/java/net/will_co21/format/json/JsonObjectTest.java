@@ -360,6 +360,27 @@ public class JsonObjectTest {
 	}
 
 	@Test
+	public void testToEntrySet() {
+		JsonObject jobj = new JsonObject(new JsonProperty[] {
+				JsonProperty.create("aaaa", 1),
+				JsonProperty.create("bbbb", 2),
+				JsonProperty.create("cccc", 3)
+		});
+
+		assertThat(jobj.entrySet(), is((new TreeMap<String, IJsonValue>() {
+		/**
+			 *
+			 */
+			private static final long serialVersionUID = 4487242222443151532L;
+
+		{
+			put("aaaa", new JsonInt(1));
+			put("bbbb", new JsonInt(2));
+			put("cccc", new JsonInt(3));
+		}}).entrySet()));
+	}
+
+	@Test
 	public void testToTreeMap() {
 		JsonObject jobj = new JsonObject(new JsonProperty[] {
 				JsonProperty.create("aaaa", 1),
@@ -478,6 +499,18 @@ public class JsonObjectTest {
 		assertThat(acc, is(Arrays.asList(new Integer[] { 1,2,3 }).stream().reduce(0, (v1, v2) -> v1 + v2)));
 	}
 
+	@Test
+	public void testToObject()
+	{
+		JsonObject jobj = new JsonObject(new JsonProperty[] {
+			JsonProperty.create("fst", "aaaa"),
+			JsonProperty.create("snd", "bbbb")
+		});
+		
+		assertThat(jobj.toObject((json) -> new Pair<String, String>(json.get("fst").getString(), json.get("snd").getString())), 
+				is(new Pair<String, String>("aaaa", "bbbb")));
+	}
+	
 	@Test
 	public void testJsonArrayCircularReferenceNested() {
 		JsonObject jobj = new JsonObject();
