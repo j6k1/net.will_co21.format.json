@@ -536,7 +536,7 @@ public class JsonNumberParserTest {
 		String json = "3.4028235E38";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(3.4028235E38d), json.length())));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(3.4028235E38f), json.length())));
 	}
 
 	@Test
@@ -544,7 +544,7 @@ public class JsonNumberParserTest {
 		String json = "-3.4028235E38";
 
 		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
-		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonDouble(-3.4028235E38d), json.length())));
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(-3.4028235E38f), json.length())));
 	}
 
 	@Test

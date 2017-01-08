@@ -461,8 +461,8 @@ public class JsonParserTest {
 				new JsonBigDecimal("170141178389866830818769697729071284224.0"),
 				new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38"),
 				new JsonDouble(3.40282351E37d),
-				new JsonDouble(3.4028235E38d),
-				new JsonDouble(-3.4028235E38d)
+				new JsonFloat(3.4028235E38f),
+				new JsonFloat(-3.4028235E38f)
 			})),
 			JsonProperty.create("object", new JsonObject(new JsonProperty[] {
 				JsonProperty.create("StringNonOption", new JsonString("\u0080\u009F\u007F\u00A0" +
@@ -548,8 +548,8 @@ public class JsonParserTest {
 				JsonProperty.create("testParseJsonMantissaPartOf24bit", new JsonBigDecimal("170141178389866830818769697729071284224.0")),
 				JsonProperty.create("testParseJsonMantissaPartOf24bitCaseMin", new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38")),
 				JsonProperty.create("testParseJsonGreaterMantissaPart", new JsonDouble(3.40282351E37d)),
-				JsonProperty.create("testParseJsonFloatMax", new JsonDouble(3.4028235E38d)),
-				JsonProperty.create("testParseJsonFloatMin", new JsonDouble(-3.4028235E38d))
+				JsonProperty.create("testParseJsonFloatMax", new JsonFloat(3.4028235E38f)),
+				JsonProperty.create("testParseJsonFloatMin", new JsonFloat(-3.4028235E38f))
 			}))
 		})));
 	}
@@ -613,8 +613,8 @@ public class JsonParserTest {
 				new JsonBigDecimal("170141178389866830818769697729071284224.0"),
 				new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38"),
 				new JsonDouble(3.40282351E37d),
-				new JsonDouble(3.4028235E38d),
-				new JsonDouble(-3.4028235E38d)
+				new JsonFloat(3.4028235E38f),
+				new JsonFloat(-3.4028235E38f)
 			})),
 			JsonProperty.create("object", new JsonObject(new JsonProperty[] {
 				JsonProperty.create("StringNonOption", new JsonString("\u0080\u009F\u007F\u00A0" +
@@ -700,8 +700,8 @@ public class JsonParserTest {
 				JsonProperty.create("testParseJsonMantissaPartOf24bit", new JsonBigDecimal("170141178389866830818769697729071284224.0")),
 				JsonProperty.create("testParseJsonMantissaPartOf24bitCaseMin", new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38")),
 				JsonProperty.create("testParseJsonGreaterMantissaPart", new JsonDouble(3.40282351E37d)),
-				JsonProperty.create("testParseJsonFloatMax", new JsonDouble(3.4028235E38d)),
-				JsonProperty.create("testParseJsonFloatMin", new JsonDouble(-3.4028235E38d))
+				JsonProperty.create("testParseJsonFloatMax", new JsonFloat(3.4028235E38f)),
+				JsonProperty.create("testParseJsonFloatMin", new JsonFloat(-3.4028235E38f))
 			}))
 		})));
 	}
@@ -765,8 +765,8 @@ public class JsonParserTest {
 				new JsonBigDecimal("170141178389866830818769697729071284224.0"),
 				new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38"),
 				new JsonDouble(3.40282351E37d),
-				new JsonDouble(3.4028235E38d),
-				new JsonDouble(-3.4028235E38d)
+				new JsonFloat(3.4028235E38f),
+				new JsonFloat(-3.4028235E38f)
 			}),
 			new JsonObject(new JsonProperty[] {
 				JsonProperty.create("StringNonOption", new JsonString("\u0080\u009F\u007F\u00A0" +
@@ -852,8 +852,8 @@ public class JsonParserTest {
 				JsonProperty.create("testParseJsonMantissaPartOf24bit", new JsonBigDecimal("170141178389866830818769697729071284224.0")),
 				JsonProperty.create("testParseJsonMantissaPartOf24bitCaseMin", new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38")),
 				JsonProperty.create("testParseJsonGreaterMantissaPart", new JsonDouble(3.40282351E37d)),
-				JsonProperty.create("testParseJsonFloatMax", new JsonDouble(3.4028235E38d)),
-				JsonProperty.create("testParseJsonFloatMin", new JsonDouble(-3.4028235E38d))
+				JsonProperty.create("testParseJsonFloatMax", new JsonFloat(3.4028235E38f)),
+				JsonProperty.create("testParseJsonFloatMin", new JsonFloat(-3.4028235E38f))
 			})
 		})));
 	}
@@ -917,8 +917,8 @@ public class JsonParserTest {
 				new JsonBigDecimal("170141178389866830818769697729071284224.0"),
 				new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38"),
 				new JsonDouble(3.40282351E37d),
-				new JsonDouble(3.4028235E38d),
-				new JsonDouble(-3.4028235E38d)
+				new JsonFloat(3.4028235E38f),
+				new JsonFloat(-3.4028235E38f)
 			}),
 			new JsonObject(new JsonProperty[] {
 				JsonProperty.create("StringNonOption", new JsonString("\u0080\u009F\u007F\u00A0" +
@@ -1004,8 +1004,8 @@ public class JsonParserTest {
 				JsonProperty.create("testParseJsonMantissaPartOf24bit", new JsonBigDecimal("170141178389866830818769697729071284224.0")),
 				JsonProperty.create("testParseJsonMantissaPartOf24bitCaseMin", new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38")),
 				JsonProperty.create("testParseJsonGreaterMantissaPart", new JsonDouble(3.40282351E37d)),
-				JsonProperty.create("testParseJsonFloatMax", new JsonDouble(3.4028235E38d)),
-				JsonProperty.create("testParseJsonFloatMin", new JsonDouble(-3.4028235E38d))
+				JsonProperty.create("testParseJsonFloatMax", new JsonFloat(3.4028235E38f)),
+				JsonProperty.create("testParseJsonFloatMin", new JsonFloat(-3.4028235E38f))
 			})
 		})));
 	}
@@ -1068,8 +1068,8 @@ public class JsonParserTest {
 					new JsonBigDecimal("170141178389866830818769697729071284224.0"),
 					new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38"),
 					new JsonDouble(3.40282351E37d),
-					new JsonDouble(3.4028235E38d),
-					new JsonDouble(-3.4028235E38d)
+					new JsonFloat(3.4028235E38f),
+					new JsonFloat(-3.4028235E38f)
 				})),
 				JsonProperty.create("object", new JsonObject(new JsonProperty[] {
 					JsonProperty.create("StringNonOption", new JsonString("\u0080\u009F\u007F\u00A0" +
@@ -1155,8 +1155,8 @@ public class JsonParserTest {
 					JsonProperty.create("testParseJsonMantissaPartOf24bit", new JsonBigDecimal("170141178389866830818769697729071284224.0")),
 					JsonProperty.create("testParseJsonMantissaPartOf24bitCaseMin", new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38")),
 					JsonProperty.create("testParseJsonGreaterMantissaPart", new JsonDouble(3.40282351E37d)),
-					JsonProperty.create("testParseJsonFloatMax", new JsonDouble(3.4028235E38d)),
-					JsonProperty.create("testParseJsonFloatMin", new JsonDouble(-3.4028235E38d))
+					JsonProperty.create("testParseJsonFloatMax", new JsonFloat(3.4028235E38f)),
+					JsonProperty.create("testParseJsonFloatMin", new JsonFloat(-3.4028235E38f))
 				}))
 			})));
 	}
@@ -1220,8 +1220,8 @@ public class JsonParserTest {
 				new JsonBigDecimal("170141178389866830818769697729071284224.0"),
 				new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38"),
 				new JsonDouble(3.40282351E37d),
-				new JsonDouble(3.4028235E38d),
-				new JsonDouble(-3.4028235E38d)
+				new JsonFloat(3.4028235E38f),
+				new JsonFloat(-3.4028235E38f)
 			}),
 			new JsonObject(new JsonProperty[] {
 				JsonProperty.create("StringNonOption", new JsonString("\u0080\u009F\u007F\u00A0" +
@@ -1307,8 +1307,8 @@ public class JsonParserTest {
 				JsonProperty.create("testParseJsonMantissaPartOf24bit", new JsonBigDecimal("170141178389866830818769697729071284224.0")),
 				JsonProperty.create("testParseJsonMantissaPartOf24bitCaseMin", new JsonBigDecimal("2.3509886315796517996966195282580121911415245495310779491917148247034203244199002114100949256680905818939208984375E-38")),
 				JsonProperty.create("testParseJsonGreaterMantissaPart", new JsonDouble(3.40282351E37d)),
-				JsonProperty.create("testParseJsonFloatMax", new JsonDouble(3.4028235E38d)),
-				JsonProperty.create("testParseJsonFloatMin", new JsonDouble(-3.4028235E38d))
+				JsonProperty.create("testParseJsonFloatMax", new JsonFloat(3.4028235E38f)),
+				JsonProperty.create("testParseJsonFloatMin", new JsonFloat(-3.4028235E38f))
 			})
 		})));
 	}

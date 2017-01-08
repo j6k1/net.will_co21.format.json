@@ -185,12 +185,14 @@ public class JsonNumberParser implements IJsonParser {
 			BigDecimal number = new BigDecimal(json.substring(start, index));
 
 			double doubleValue = number.doubleValue();
+			String strFloatValue = Float.toString(((float)doubleValue));
+			
 
 			if(doubleValue > Double.MAX_VALUE || doubleValue < -Double.MAX_VALUE || BigDecimal.valueOf(doubleValue).compareTo(number) != 0)
 			{
 				return new Pair<IJsonValue, Integer>(new JsonBigDecimal(number), index);
 			}
-			else if(doubleValue > Float.MAX_VALUE || doubleValue < -Float.MAX_VALUE ||
+			else if(strFloatValue.equals("Infinity") || strFloatValue.equals("-Infinity") ||
 					number.compareTo(new BigDecimal(Float.toString((float)doubleValue))) != 0)
 			{
 				return new Pair<IJsonValue, Integer>(new JsonDouble(doubleValue), index);
