@@ -192,8 +192,8 @@ public class JsonNumberParser implements IJsonParser {
 			{
 				return new Pair<IJsonValue, Integer>(new JsonBigDecimal(number), index);
 			}
-			else if(strFloatValue.equals("Infinity") || strFloatValue.equals("-Infinity") ||
-					number.compareTo(new BigDecimal(Float.toString((float)doubleValue))) != 0)
+			else if(strFloatValue.equals("Infinity") || strFloatValue.equals("-Infinity") || 
+					number.compareTo(new BigDecimal(strFloatValue)) != 0)
 			{
 				return new Pair<IJsonValue, Integer>(new JsonDouble(doubleValue), index);
 			}
