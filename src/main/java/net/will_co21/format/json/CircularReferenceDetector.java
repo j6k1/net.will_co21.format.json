@@ -7,14 +7,14 @@ import java.util.Objects;
 
 public class CircularReferenceDetector {
 	private static class ObjectReference {
-		private final Object obj;
+		private final IJsonValue obj;
 
-		public ObjectReference(Object obj)
+		public ObjectReference(IJsonValue obj)
 		{
 			this.obj = obj;
 		}
 
-		public Object getRawObject()
+		public IJsonValue getRawObject()
 		{
 			return this.obj;
 		}
@@ -29,12 +29,13 @@ public class CircularReferenceDetector {
 		@Override
 		public int hashCode()
 		{
-			return Objects.hashCode(this.obj);
+			return System.identityHashCode(this.obj);
 		}
 	}
 
-	private ArrayList<ObjectReference> referenceList;
-
+	private LinkedList<ObjectReference> referenceStack;
+	private HashSet<ObjectReference> referenceSet;
+	
 	private boolean generateException;
 
 	public CircularReferenceDetector()
@@ -45,21 +46,23 @@ public class CircularReferenceDetector {
 	public CircularReferenceDetector(boolean generateException)
 	{
 		this.generateException = generateException;
-		this.referenceList = new ArrayList<ObjectReference>();
+		this.referenceStack = new LinkedList<ObjectReference>();
+		this.referenceSet = new HashSet<ObjectReference>();
 	}
 
-	public CircularReferenceDetector push(Object obj)
+	public CircularReferenceDetector push(IJsonValue obj)
 	{
 		ObjectReference r = new ObjectReference(obj);
 
-		referenceList.add(r);
+		referenceStack.offerLast(r);
+		referenceSet.add(r);
 
 		return this;
 	}
 
-	public boolean detect(Object obj)
+	public boolean detect(IJsonValue obj)
 	{
-		if(referenceList.contains(new ObjectReference(obj)))
+		if(referenceSet.contains(new ObjectReference(obj)))
 		{
 			if(generateException) throw new CircularReferenceException("Circular reference detected.");
 			else return true;
@@ -70,10 +73,11 @@ public class CircularReferenceDetector {
 		}
 	}
 
-	public Object pop()
+	public IJsonValue pop()
 	{
-		Object raw = referenceList.get(referenceList.size() - 1).getRawObject();
-		referenceList.remove(referenceList.size() - 1);
+		ObjectReference r = referenceStack.pollLast();
+		referenceSet.remove(r);
+		IJsonValue raw = r.getRawObject();
 
 		return raw;
 	}
