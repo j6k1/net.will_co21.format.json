@@ -1,0 +1,6 @@
+{"fst":"aaaa","snd":"uuuu"}
+
+{
+    "fst": "aaaa",
+    "snd": "uuuu"
+}
