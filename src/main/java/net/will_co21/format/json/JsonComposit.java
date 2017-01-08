@@ -160,5 +160,17 @@ abstract public class JsonComposit<T> implements IJsonValue {
 	public <T> T toObject(IDeserializeJson<T> deserializer) {
 		throw new NotImplementedException("this method not implimented.");
 	}
-
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if(!(o instanceof JsonComposit)) return false;
+		else return this.value.equals(((JsonComposit)o).value);
+	}
+	
+	@Override
+	public int hashCode()
+	{
+		return this.value.hashCode();
+	}
 }
