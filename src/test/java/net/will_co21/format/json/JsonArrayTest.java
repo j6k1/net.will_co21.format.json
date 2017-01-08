@@ -80,6 +80,15 @@ public class JsonArrayTest {
 	}
 
 	@Test
+	public void testJsonArray() {
+		JsonArray jarr = new JsonArray();
+		
+		jarr.add(new JsonInt(10));
+		
+		assertThat(jarr, is(new JsonArray(new int[] { 10 })));
+	}
+	
+	@Test
 	public void testJsonArrayIJsonValueArrayIsNull() {
 		IJsonValue[] values = null;
 

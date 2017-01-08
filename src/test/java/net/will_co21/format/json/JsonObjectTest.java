@@ -45,6 +45,16 @@ public class JsonObjectTest {
 		jsons = String.join("\n", lines).split("\\r\\n\\r\\n|\\n\\n|\\r\\r");
 	}
 
+	@Test
+	public void testJsonObject() {
+		JsonObject jobj = new JsonObject();
+		
+		jobj.put("aaaa", new JsonInt(10));
+		
+		assertThat(jobj, is(new JsonObject(new JsonProperty[] {
+			JsonProperty.create("aaaa", 10)
+		})));
+	}
 
 	@Test
 	public void testJsonObjectJsonPropertyArrayIsNull() {
