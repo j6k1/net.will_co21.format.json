@@ -143,7 +143,7 @@ public class JsonObjectTest {
 		try {
 			IJsonValue value = jobj.get("dddd");
 			fail();
-		} catch (TypeOfNullableNotAllowedException e) {
+		} catch (KeyNotFoundException e) {
 			assertThat(e.getMessage(), is("Reference by this key is invalid."));
 		}
 	}

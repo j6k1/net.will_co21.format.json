@@ -53,7 +53,7 @@ public class JsonArrayTest {
 		try {
 			IJsonValue value = jarr.get(10);
 			fail();
-		} catch (TypeOfNullableNotAllowedException e) {
+		} catch (OutOfIndexRangeException e) {
 			assertThat(e.getMessage(), is("This index cannot be referenced. Invalid reference to object."));
 		}
 	}

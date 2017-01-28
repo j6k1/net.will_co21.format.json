@@ -169,7 +169,7 @@ public class JsonArray extends JsonValue {
 
 	public IJsonValue get(int index)
 	{
-		if(index >= this.arr.size()) throw new TypeOfNullableNotAllowedException("This index cannot be referenced. Invalid reference to object.");
+		if(index >= this.arr.size()) throw new OutOfIndexRangeException("This index cannot be referenced. Invalid reference to object.");
 		else return this.arr.get(index);
 	}
 

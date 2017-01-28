@@ -61,7 +61,7 @@ public class JsonObject extends JsonValue {
 
 	public IJsonValue get(String key)
 	{
-		if(!map.containsKey(key)) throw new TypeOfNullableNotAllowedException("Reference by this key is invalid.");
+		if(!map.containsKey(key)) throw new KeyNotFoundException("Reference by this key is invalid.");
 		else return map.get(key);
 	}
 
