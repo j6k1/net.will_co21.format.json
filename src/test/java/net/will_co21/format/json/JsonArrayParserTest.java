@@ -363,6 +363,17 @@ public class JsonArrayParserTest {
 	}
 
 	@Test
+	public void testParseJsonEmptyArrayNotPrettyJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = "[]";
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonArray(), json.length())));
+	}
+
+	@Test
 	public void testParseJsonNotPrettyJson() {
 		JsonArrayParser parser = new JsonArrayParser();
 		String json = jsons[0];
@@ -438,6 +449,17 @@ public class JsonArrayParserTest {
 						new JsonNull() }), json.length())));
 	}
 
+	@Test
+	public void testParseJsonEmptyArrayJson() {
+		JsonArrayParser parser = new JsonArrayParser();
+		String json = "[" + "\n" + "\t" +"\n" + "]\n";
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonArray(), json.length())));
+	}
+	
 	@Test
 	public void testParseJsonNestedInArrayPrettyJson() {
 		JsonArrayParser parser = new JsonArrayParser();

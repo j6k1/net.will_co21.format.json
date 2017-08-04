@@ -23,6 +23,22 @@ public class JsonNumberParserTest {
 	}
 
 	@Test
+	public void testParseJsonIntZero() {
+		String json = "0";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonInt(0), json.length())));
+	}
+
+	@Test
+	public void testParseJsonFloatZero() {
+		String json = "0.0";
+
+		Pair<IJsonValue, Integer> result = (new JsonNumberParser()).parseJson(json, 0);
+		assertThat(result, is(new Pair<IJsonValue, Integer>(new JsonFloat(0.0f), json.length())));
+	}
+
+	@Test
 	public void testParseJsonMinusSignOnly() {
 		String json = "-";
 

@@ -43,123 +43,136 @@ public class JsonNumberParser implements IJsonParser {
 
 			c = json.charAt(index);
 		}
-
-		if(c == '0')
+		
+		char next;
+		
+		if(c == '0' && index == length - 1)
 		{
-			isInt = false;
-
-			if(index + 2 >= length)
-			{
-				throw new JsonFormatErrorException("The format of this json string is not an json number format.");
-			}
-			else if(json.charAt(index + 1) != '.')
-			{
-				throw new JsonFormatErrorException("unexpected character \"" + json.charAt(index + 1) + "\" was found.");
-			}
-
-			index += 2;
-
-			c = json.charAt(index);
-
-			if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
-			else index++;
-
-			while(index < length)
-			{
-				c = json.charAt(index);
-
-				if(c < '0' || c > '9') break;
-
-				index++;
-			}
+			index++;
 		}
-		else if(c < '1' || c > '9')
+		else if(c == '0' && (next = json.charAt(index + 1)) != '.' && (next < '0' || next > '9'))
 		{
-			throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+			index++;
 		}
 		else
 		{
-			while(index < length)
+			if(c == '0')
 			{
+				isInt = false;
+	
+				if(index + 2 >= length)
+				{
+					throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+				}
+				else if(json.charAt(index + 1) != '.')
+				{
+					throw new JsonFormatErrorException("unexpected character \"" + json.charAt(index + 1) + "\" was found.");
+				}
+	
+				index += 2;
+	
 				c = json.charAt(index);
-
-				if(c >= '0' && c <= '9')
+	
+				if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+				else index++;
+	
+				while(index < length)
 				{
-					index++;
-				}
-				else if(c == '.')
-				{
-					isInt = false;
-
-					if(index + 1 == length)
-					{
-						throw new JsonFormatErrorException("The format of this json string is not an json number format.");
-					}
-
-					index++;
-
 					c = json.charAt(index);
-
-					if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
-
-
-					while(index < length)
-					{
-						c = json.charAt(index);
-
-						if(c < '0' || c > '9') break;
-
-						index++;
-					}
-				}
-				else
-				{
-					break;
+	
+					if(c < '0' || c > '9') break;
+	
+					index++;
 				}
 			}
-		}
-
-		if(c == 'e' || c == 'E')
-		{
-			isInt = false;
-
-			if(index + 1 == length)
+			else if(c < '1' || c > '9')
 			{
-				throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+				throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
 			}
 			else
 			{
-				index++;
-
-				c = json.charAt(index);
-
-				if(c != '+' && c != '-' && (c < '0' || c > '9'))
+				while(index < length)
 				{
-					throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+					c = json.charAt(index);
+	
+					if(c >= '0' && c <= '9')
+					{
+						index++;
+					}
+					else if(c == '.')
+					{
+						isInt = false;
+	
+						if(index + 1 == length)
+						{
+							throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+						}
+	
+						index++;
+	
+						c = json.charAt(index);
+	
+						if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+	
+	
+						while(index < length)
+						{
+							c = json.charAt(index);
+	
+							if(c < '0' || c > '9') break;
+	
+							index++;
+						}
+					}
+					else
+					{
+						break;
+					}
 				}
-				else if(c == '+' || c == '-')
+			}
+	
+			if(c == 'e' || c == 'E')
+			{
+				isInt = false;
+	
+				if(index + 1 == length)
+				{
+					throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+				}
+				else
 				{
 					index++;
-
-					if(index == length)
-						throw new JsonFormatErrorException("The format of this json string is not an json number format.");
-
+	
 					c = json.charAt(index);
-
-					if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+	
+					if(c != '+' && c != '-' && (c < '0' || c > '9'))
+					{
+						throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+					}
+					else if(c == '+' || c == '-')
+					{
+						index++;
+	
+						if(index == length)
+							throw new JsonFormatErrorException("The format of this json string is not an json number format.");
+	
+						c = json.charAt(index);
+	
+						if(c < '0' || c > '9') throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+					}
+				}
+	
+				while(index < length)
+				{
+					c = json.charAt(index);
+	
+					if(c < '0' || c > '9') break;
+	
+					index++;
 				}
 			}
-
-			while(index < length)
-			{
-				c = json.charAt(index);
-
-				if(c < '0' || c > '9') break;
-
-				index++;
-			}
 		}
-
+		
 		if(isInt)
 		{
 			BigInteger number = new BigInteger(json.substring(start, index));

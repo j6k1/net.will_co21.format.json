@@ -460,6 +460,17 @@ public class JsonObjectParserTest {
 	}
 
 	@Test
+	public void testParseJsonEmptyObjectNotPrettyJson() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = "{}";
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(), json.length())));
+	}
+
+	@Test
 	public void testParseJsonNotPrettyJson() {
 		JsonObjectParser parser = new JsonObjectParser();
 		String json = jsons[0];
@@ -525,6 +536,17 @@ public class JsonObjectParserTest {
 						})),
 						JsonProperty.create("g", 123)
 				}), json.length())));
+	}
+
+	@Test
+	public void testParseJsonEmptyObjectPrettyJson() {
+		JsonObjectParser parser = new JsonObjectParser();
+		String json = "{" + "\n" + "\t" + "\n" + "}\n";
+
+		Pair<IJsonValue, Integer> result = parser.parseJson(json, 0);
+
+		assertThat(result, is(new Pair<IJsonValue, Integer>(
+				new JsonObject(), json.length())));
 	}
 
 	@Test

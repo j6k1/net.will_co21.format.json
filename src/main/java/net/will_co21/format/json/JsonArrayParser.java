@@ -35,74 +35,81 @@ public class JsonArrayParser extends JsonContainerParser implements IJsonParser 
 
 		JsonArray result = new JsonArray();
 
-		while(index < json.length())
+		if(json.charAt(index) == ']')
 		{
-			Pair<IJsonValue, Integer> ret;
-
-			c = json.charAt(index);
-
-			if(c >= 128) throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
-
-			if(JsonNumberParser.headChars[(int)c])
+			index = skipWhiteSpace(json, ++index);
+		}
+		else
+		{
+			while(index < json.length())
 			{
-				ret = numberParser.parseJson(json, index);
-			}
-			else if(JsonStringParser.headChars[(int)c])
-			{
-				ret = stringParser.parseJson(json, index);
-			}
-			else if(JsonBooleanParser.headChars[(int)c])
-			{
-				ret = booleanParser.parseJson(json, index);
-			}
-			else if(JsonNullParser.headChars[(int)c])
-			{
-				ret = nullParser.parseJson(json, index);
-			}
-			else if(JsonArrayParser.headChars[(int)c])
-			{
-				ret = arrayParser.parseJson(json, index);
-			}
-			else if(JsonObjectParser.headChars[(int)c])
-			{
-				ret = objectParser.parseJson(json, index);
-			}
-			else
-			{
-				throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
-			}
-
-			result.add(ret.fst);
-
-			index = ret.snd;
-
-			if(index == json.length() || (index = skipWhiteSpace(json, index)) == json.length()) {
-				throw new JsonFormatErrorException("The format of this json string is not an json array format.");
-			}
-
-
-			c = json.charAt(index);
-
-			if(c != ',' && c != ']')
-			{
-				throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
-			}
-			else if(c == ']')
-			{
-				++index;
-				break;
-			}
-			else
-			{
-				index = skipWhiteSpace(json, ++index);
-
-				if(index == json.length())
+				Pair<IJsonValue, Integer> ret;
+	
+				c = json.charAt(index);
+	
+				if(c >= 128) throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+	
+				if(JsonNumberParser.headChars[(int)c])
 				{
+					ret = numberParser.parseJson(json, index);
+				}
+				else if(JsonStringParser.headChars[(int)c])
+				{
+					ret = stringParser.parseJson(json, index);
+				}
+				else if(JsonBooleanParser.headChars[(int)c])
+				{
+					ret = booleanParser.parseJson(json, index);
+				}
+				else if(JsonNullParser.headChars[(int)c])
+				{
+					ret = nullParser.parseJson(json, index);
+				}
+				else if(JsonArrayParser.headChars[(int)c])
+				{
+					ret = arrayParser.parseJson(json, index);
+				}
+				else if(JsonObjectParser.headChars[(int)c])
+				{
+					ret = objectParser.parseJson(json, index);
+				}
+				else
+				{
+					throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+				}
+	
+				result.add(ret.fst);
+	
+				index = ret.snd;
+	
+				if(index == json.length() || (index = skipWhiteSpace(json, index)) == json.length()) {
 					throw new JsonFormatErrorException("The format of this json string is not an json array format.");
+				}
+	
+	
+				c = json.charAt(index);
+	
+				if(c != ',' && c != ']')
+				{
+					throw new JsonFormatErrorException("unexpected character \"" + c + "\" was found.");
+				}
+				else if(c == ']')
+				{
+					++index;
+					break;
+				}
+				else
+				{
+					index = skipWhiteSpace(json, ++index);
+	
+					if(index == json.length())
+					{
+						throw new JsonFormatErrorException("The format of this json string is not an json array format.");
+					}
 				}
 			}
 		}
-
+		
 		return new Pair<IJsonValue, Integer>(result, index);
 	}
 }
